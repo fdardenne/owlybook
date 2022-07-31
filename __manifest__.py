@@ -28,7 +28,8 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'storybook/static/src/js/**/*'
+            'storybook/static/src/js/**/*',
+            'storybook/static/src/js/components/*/*.scss',
         ],
         'web.assets_qweb': [
             'storybook/static/src/**/*.xml',
