@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <menuitem name="Storybook"
+            id="menu_root_storybook"
+            action="storybook_open"
+            web_icon="storybook,static/description/icon.png"
+        />
+    </data>
+</odoo>

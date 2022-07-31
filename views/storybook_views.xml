@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record id="storybook_open" model="ir.actions.client">
+            <field name="name">Storybook</field>
+            <field name="tag">storybook_view</field>
+            <field name="target">main</field>
+        </record>
+    </data>
+</odoo>
