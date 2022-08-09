@@ -1,0 +1,43 @@
+body {
+    font-family: "Roboto";
+}
+
+.o_storybook_sidebar {
+    background-color: #FFF;
+    width: 250px;
+    border-right: 1px solid #C9CCD2 !important;
+}
+
+.folder {
+    text-transform: uppercase;
+    letter-spacing: 0.30em;
+    color: rgb(153, 153, 153);
+    font-weight: 900;
+    font-size: 11px;
+}
+
+.folder:hover {
+    color: map-get($theme-colors,"primary");
+    background-color:rgba(27, 161, 228, 0.2);
+    cursor: pointer !important;
+}
+
+.item {
+    padding-left: 20px;
+    padding-bottom: 2px;
+}
+
+.item.active {
+    background-color: rgba(53, 169, 228, 0.15);
+    font-weight: 700;
+}
+
+.item:hover {
+    color: map-get($theme-colors,"primary");
+    background-color:rgba(27, 161, 228, 0.2);
+    cursor: pointer !important;
+}
+
+.fa-bookmark {
+    color: #714B67;
+}
