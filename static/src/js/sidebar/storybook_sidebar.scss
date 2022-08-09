@@ -1,0 +1,78 @@
+$o-storybook-enterprise-color: #714B67;
+$o-storybook-community-color: #71639e;
+$o-storybook-hover-color: rgba(27, 161, 228, 0.2);
+
+.o_storybook_sidebar {
+    background-color: #FFF;
+    width: 250px;
+    border-right: 1px solid #C9CCD2 !important;
+    font-family: "Roboto";
+    font-size: 1.3rem;
+}
+
+.o_storybook_module {
+    text-transform: uppercase;
+    letter-spacing: 0.20em;
+    color: #495057c0;
+    font-weight: 900;
+    font-size: 1.33rem;
+}
+
+.o_storybook_module:hover {
+    color: map-get($theme-colors,"primary");
+    background-color: $o-storybook-hover-color;
+    cursor: pointer !important;
+}
+
+.o_storybook_folder {
+    padding-left: 15px;
+    padding-bottom: 2px;
+}
+
+.o_storybook_folder.active {
+    font-weight: 700;
+}
+
+.o_storybook_folder:hover {
+    color: map-get($theme-colors,"primary");
+    background-color: $o-storybook-hover-color;
+    cursor: pointer !important;
+}
+
+
+.o_storybook_item {
+    padding-left: 30px;
+    padding-bottom: 2px;
+}
+
+.o_storybook_item.active {
+    background-color: rgba(53, 169, 228, 0.15);
+    font-weight: 700;
+}
+
+.o_storybook_item:hover {
+    color: map-get($theme-colors,"primary");
+    background-color: $o-storybook-hover-color;
+    cursor: pointer !important;
+}
+
+.fa-bookmark {
+    color: $o-storybook-community-color;
+}
+
+.fa-folder {
+    color: $o-storybook-enterprise-color;
+}
+
+.fa-folder-open {
+    color: $o-storybook-enterprise-color;
+}
+
+ul {
+    padding: 0px;
+}
+li {
+    list-style: none;
+    padding:0px;
+}
+
