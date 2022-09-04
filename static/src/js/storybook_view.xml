@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="storybook.StorybookView" owl="1">
-        <StorybookSidebar stories="stories" onStoryClick="this.loadStory"/>
+        <div class="d-sm-flex flex-row h-100 ">
+
+            <StorybookSidebar stories="stories" onStoryClick="this.loadStory"/>
+            <div class="d-flex flex-column bg-white w-100 h-100" style="width:100px">
+                <div class="w-100">
+                    <div class="d-flex flex-row justify-content-between border-bottom align-items-center">
+                        <span class="p-3"> Story 1</span>
+                        <div class="d-flex flex-row">
+                            <button class="btn"> Canvas </button>  
+                            <button class="btn"> Documentation </button>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </t>
 </templates>
