@@ -1,98 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- <templates>
-    <t t-name="storybook.StorybookSidebar2" owl="1">
-
-        <div class="o_storybook_sidebar h-100">
-            <div class="o_sidebar_tree p-3">
-                <div class="o_storybook_module"><i class="fa fa-chevron-down"></i> Module 1 </div>
-                    <div class="o_storybook_folder active"><i class="fa fa-folder-open"></i> Views </div>
-                        <div class="o_storybook_item active"><i class="fa fa-bookmark"></i> Story 1 </div>
-                        <div class="o_storybook_item"><i class="fa fa-bookmark"></i> Story 2 </div>
-                        <div class="o_storybook_item"><i class="fa fa-bookmark"></i> Story 3 </div>
-                        <div class="o_storybook_item"><i class="fa fa-bookmark"></i> Story 4 </div>
-                
-
-                <div class="o_storybook_module"><i class="fa fa-chevron-down"></i> Module 2 </div>
-                    <div class="o_storybook_folder"><i class="fa fa-folder-open"></i> Widgets </div>
-                        <div class="o_storybook_item"><i class="fa fa-bookmark"></i> Story 1 </div>
-                        <div class="o_storybook_item"><i class="fa fa-bookmark"></i> Story 2 </div>
-                        <div class="o_storybook_item"><i class="fa fa-bookmark"></i> Story 3 </div>
-                        <div class="o_storybook_item"><i class="fa fa-bookmark"></i> Story 4 </div>
-
-                <div class="o_storybook_module"><i class="fa fa-chevron-down"></i> Module 3 </div>
-                    <div class="o_storybook_folder"><i class="fa fa-folder"></i> Widgets </div>
-                    <div class="o_storybook_folder"><i class="fa fa-folder"></i> Views </div>
-                    <div class="o_storybook_folder"><i class="fa fa-folder"></i> Fields </div>
-
-                <div class="o_storybook_module"><i class="fa fa-chevron-right"></i> Module 4 </div>
-            </div>
-        </div>
-    </t>
-</templates> -->
 
 <templates>
     <t t-name="storybook.StorybookSidebar" owl="1">
-
         <div class="o_storybook_sidebar h-100">
             <ul class="o_sidebar_tree p-3">
-                <li>
-                    <div class="o_storybook_module"><i class="fa fa-chevron-down"></i> Module 1 </div>
-                </li>
-                <li>
-                    <ul class="pl-2">
-                        <li> <div class="o_storybook_folder active"><i class="fa fa-folder-open"></i> Views </div> </li>
-                        <li>
-                            <ul>
-                                <li>
-                                    <div class="o_storybook_item active"><i class="fa fa-bookmark"></i> Story 1 </div>
-                                </li>
-
-                                <li>
-                                    <div class="o_storybook_item"><i class="fa fa-bookmark"></i> Story 2 </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <div class="o_storybook_module"><i class="fa fa-chevron-down"></i> Module 2 </div>
-                </li>
-                <li>
-                    <ul class="pl-2">
-                        <li>
-                            <div class="o_storybook_folder"><i class="fa fa-folder-open"></i> Views </div>
-                        </li>
-                        <li>
-                            <ul>
-                                <li>
-                                    <div class="o_storybook_item"><i class="fa fa-bookmark"></i> Story 1 </div>
-                                </li>
-
-                                <li>
-                                    <div class="o_storybook_item"><i class="fa fa-bookmark"></i> Story 2 </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li>
-                    <div class="o_storybook_module"><i class="fa fa-chevron-down"></i> Module 3 </div>
-                </li>
-                <li>
-                    <ul class="pl-2">
-                        <li>
-                            <div class="o_storybook_folder"><i class="fa fa-folder"></i> Views </div>
-                            <div class="o_storybook_folder"><i class="fa fa-folder"></i> Widgets </div>
-                            <div class="o_storybook_folder"><i class="fa fa-folder"></i> Fields </div>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <div class="o_storybook_module"><i class="fa fa-chevron-right"></i> Module 4 </div>
+                <li t-foreach="stories" t-as="module" t-key="module">
+                    <div t-on-click="() => this.toggleFold(stories[module])" class="d-flex align-items-center o_storybook_module o_storybook_hover">
+                        <button class="btn btn-link p-0">
+                            <i t-att-class="(!stories[module]['folded'] ? 'fa-caret-down' : 'fa-caret-right') + ' fa o_storybook_caret align-self-center' "></i> 
+                        </button>
+                        
+                        <t t-esc="module"/>
+                    </div>
+                    <t t-if="!stories[module]['folded']">
+                        <ul>
+                            <li t-foreach="stories[module]['folders']" t-as="folder" t-key="folder">
+                                <t t-set="folderObj" t-value="stories[module]['folders'][folder]" />
+                                <div t-on-click="() => this.toggleFold(folderObj)" class="d-flex align-items-center o_storybook_folder o_storybook_hover">
+                                    <button class="btn btn-link p-0">
+                                        <i t-att-class="(!folderObj['folded'] ? 'fa-folder-open' : 'fa-folder') + ' fa' "></i> 
+                                    </button>
+                                    <t t-esc="folder"/> 
+                                </div>
+                                <t t-if="!folderObj['folded']">
+                                    <ul>
+                                        <li t-foreach="stories[module]['folders'][folder]['stories']" t-as="story" t-key="story">
+                                            <div t-on-click="ev => this.onStoryClick(story.id)" t-att-class="active.id == story.id ? 'active' : ''" class="d-flex align-items-center o_storybook_item o_storybook_hover">
+                                                <button class="btn btn-link p-0">
+                                                    <i class="fa fa-bookmark"></i>
+                                                </button>
+                                                <t t-esc="story.name"/> 
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </t>
+                            </li>
+                        </ul>                  
+                    </t>
                 </li>
             </ul>
         </div>
