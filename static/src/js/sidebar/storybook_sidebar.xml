@@ -2,43 +2,53 @@
 
 <templates>
     <t t-name="storybook.StorybookSidebar" owl="1">
-        <div class="o_storybook_sidebar h-100 overflow-auto">
+        <div class="o_storybook_sidebar overflow-auto bg-white fs-5 border-end">
             <ul class="p-3" >
-                <li t-foreach="stories" t-as="module" t-key="module">
-                    <div t-on-click="() => this.toggleFold(stories[module])" class="d-flex align-items-center o_storybook_module o_storybook_hover">
-                        <button class="btn btn-link p-0">
-                            <i t-att-class="(!stories[module]['folded'] ? 'fa-caret-down' : 'fa-caret-right') + ' fa o_storybook_caret align-self-center' "></i> 
-                        </button>
-                        
-                        <t t-esc="module"/>
-                    </div>
-                    <t t-if="!stories[module]['folded']">
-                        <ul>
-                            <li t-foreach="stories[module]['folders']" t-as="folder" t-key="folder">
-                                <t t-set="folderObj" t-value="stories[module]['folders'][folder]" />
-                                <div t-on-click="() => this.toggleFold(folderObj)" class="d-flex align-items-center o_storybook_folder o_storybook_hover">
-                                    <button class="btn btn-link p-0">
-                                        <i t-att-class="(!folderObj['folded'] ? 'fa-folder-open' : 'fa-folder') + ' fa' "></i> 
-                                    </button>
-                                    <t t-esc="folder"/> 
-                                </div>
-                                <t t-if="!folderObj['folded']">
-                                    <ul>
-                                        <li t-foreach="stories[module]['folders'][folder]['stories']" t-as="story" t-key="story">
-                                            <div t-on-click="ev => this.onStoryClick(story.id)" t-att-class="active.id == story.id ? 'active' : ''" class="d-flex align-items-center o_storybook_item o_storybook_hover">
-                                                <button class="btn btn-link p-0">
-                                                    <i class="fa fa-bookmark"></i>
-                                                </button>
-                                                <t t-esc="story.name"/> 
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </t>
-                            </li>
-                        </ul>                  
-                    </t>
+                <li t-foreach="stories" t-as="moduleName" t-key="moduleName">
+                    <t t-call="storybook.StorybookSidebar.module"/>
                 </li>
             </ul>
         </div>
+    </t>
+
+    <t t-name="storybook.StorybookSidebar.module" owl="1">
+        <t t-set="moduleObject" t-value="stories[moduleName]" />
+        <div t-on-click="() => this.toggleFold(moduleObject)" class="d-flex align-items-center o_storybook_module o_storybook_hover text-uppercase text-muted user-select-none">
+            <button class="btn btn-link p-0">
+                <i t-att-class="(!moduleObject['folded'] ? 'fa-caret-down' : 'fa-caret-right') + ' fa o_storybook_caret align-self-center' "></i> 
+            </button>
+            
+            <t t-esc="moduleName"/>
+        </div>
+        <t t-if="!moduleObject['folded']">
+            <ul>
+                <li t-foreach="moduleObject['folders']" t-as="folderName" t-key="folderName">
+                    <t t-call="storybook.StorybookSidebar.folder"/>
+                </li>
+            </ul>                  
+        </t>
+        
+    </t>
+
+    <t t-name="storybook.StorybookSidebar.folder" owl="1">
+        <t t-set="folderObject" t-value="moduleObject['folders'][folderName]" />
+        <div t-on-click="() => this.toggleFold(folderObject)" class="d-flex align-items-center o_storybook_folder o_storybook_hover user-select-none ps-4 pb-1">
+            <button class="btn btn-link p-0">
+                <i t-att-class="(!folderObject['folded'] ? 'fa-folder-open' : 'fa-folder') + ' fa' "></i> 
+            </button>
+            <t t-esc="folderName"/> 
+        </div>
+        <t t-if="!folderObject['folded']">
+            <ul>
+                <li t-foreach="folderObject['stories']" t-as="story" t-key="story">
+                    <div t-on-click="ev => this.onStoryClick(story.id)" t-att-class="active.id == story.id ? 'o_storybook_active' : ''" class="d-flex align-items-center o_storybook_item o_storybook_hover ps-5 pb-1">
+                        <button class="btn btn-link p-0">
+                            <i class="fa fa-bookmark"></i>
+                        </button>
+                        <t t-esc="story.name"/> 
+                    </div>
+                </li>
+            </ul>
+        </t>
     </t>
 </templates>

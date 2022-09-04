@@ -3,40 +3,22 @@ $o-storybook-community-color: $o-community-color;
 $o-storybook-hover-color: map-get($theme-colors, "primary");
 
 .o_storybook_sidebar {
-    background-color:$white;
     width: 250px;
-    border-right: 1px solid map-get($grays, '300');
-    font-family: "Roboto";
-    font-size: 1.2rem;
 }
+
+@media (max-width: 575.98px) {
+    .o_storybook_sidebar {
+      width: 100%;
+    }
+  }
 
 .o_storybook_module {
-    text-transform: uppercase;
     letter-spacing: 0.20em;
-    color: map-get($grays, '400');
-    font-weight: 900;
-    font-size: 1.2rem;
-    user-select: none;
 }
 
-.o_storybook_folder {
-    padding-left: 15px;
-    padding-bottom: 2px;
-    user-select: none;
-
-    &.active {
-        font-weight: 700;
-    }
-}
-
-.o_storybook_item {
-    padding-left: 30px;
-    padding-bottom: 2px;
-
-    &.active {
-        background-color: rgba($o-storybook-hover-color, 0.1);
-        font-weight: 700;
-    }
+.o_storybook_active {
+    background-color: rgba($o-storybook-hover-color, 0.1);
+    font-weight: 700;
 }
 
 .o_storybook_hover:hover {
@@ -48,6 +30,7 @@ $o-storybook-hover-color: map-get($theme-colors, "primary");
 .o_storybook_caret {
     width: 1.29em;
 }
+
 .fa-bookmark {
     color: $o-storybook-community-color;
 }
