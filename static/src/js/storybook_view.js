@@ -86,4 +86,3 @@ const stories = {
     folded: false,
   },
 };
-

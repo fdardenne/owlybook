@@ -2,8 +2,8 @@
 
 <templates>
     <t t-name="storybook.StorybookSidebar" owl="1">
-        <div class="o_storybook_sidebar h-100">
-            <ul class="o_sidebar_tree p-3">
+        <div class="o_storybook_sidebar h-100 overflow-auto">
+            <ul class="p-3" >
                 <li t-foreach="stories" t-as="module" t-key="module">
                     <div t-on-click="() => this.toggleFold(stories[module])" class="d-flex align-items-center o_storybook_module o_storybook_hover">
                         <button class="btn btn-link p-0">
