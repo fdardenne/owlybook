@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <templates>
-    <t t-name="storybook.StorybookSidebar" owl="1">
+    <t t-name="storybook.Sidebar" owl="1">
         <div class="o_storybook_sidebar overflow-auto bg-white border-end">
             <ul class="pt-2" >
                 <li t-foreach="stories.stories" t-as="moduleName" t-key="moduleName">
-                    <t t-call="storybook.StorybookSidebar.module"/>
+                    <t t-call="storybook.Sidebar.module"/>
                 </li>
             </ul>
         </div>
     </t>
 
-    <t t-name="storybook.StorybookSidebar.module" owl="1">
+    <t t-name="storybook.Sidebar.module" owl="1">
         <t t-set="moduleObject" t-value="stories.stories[moduleName]" />
         <div t-on-click="() => this.toggleFold(moduleObject)" class="d-flex align-items-center o_storybook_module o_storybook_hover text-uppercase text-muted user-select-none">
             <button class="btn btn-link p-0">
@@ -23,14 +23,14 @@
         <t t-if="!moduleObject['folded']">
             <ul>
                 <li t-foreach="moduleObject['folders']" t-as="folderName" t-key="folderName">
-                    <t t-call="storybook.StorybookSidebar.folder"/>
+                    <t t-call="storybook.Sidebar.folder"/>
                 </li>
             </ul>                  
         </t>
         
     </t>
 
-    <t t-name="storybook.StorybookSidebar.folder" owl="1">
+    <t t-name="storybook.Sidebar.folder" owl="1">
         <t t-set="folderObject" t-value="moduleObject['folders'][folderName]" />
         <div t-on-click="() => this.toggleFold(folderObject)" class="d-flex align-items-center o_storybook_folder o_storybook_hover user-select-none ps-4 pb-1">
             <button class="btn btn-link p-0">

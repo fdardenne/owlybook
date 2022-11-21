@@ -1,8 +1,8 @@
 /* @odoo-module */
 
-import { StorybookSidebar } from "./sidebar/storybook_sidebar";
+import { Sidebar } from "./sidebar/sidebar";
 import { Canvas } from "./canvas/canvas";
-import { Component, useState } from "@odoo/owl";
+import { Component } from "@odoo/owl";
 import { setupStories } from "./stories";
 export class StorybookView extends Component {
   setup() {
@@ -11,7 +11,7 @@ export class StorybookView extends Component {
 }
 
 StorybookView.template = "storybook.StorybookView";
-StorybookView.components = { StorybookSidebar, Canvas };
+StorybookView.components = { Sidebar, Canvas };
 
 const stories = {
   "Module 1": {

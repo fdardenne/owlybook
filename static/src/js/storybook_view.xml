@@ -3,7 +3,7 @@
     <t t-name="storybook.StorybookView" owl="1">
         <div class="d-sm-flex flex-row h-100 ">
 
-            <StorybookSidebar stories="stories.stories"/>
+            <Sidebar stories="stories.stories"/>
             <div class="d-flex flex-column bg-white w-100 h-100" style="width:100px">
                 <div class="o_storybook_topbar text-light w-100">
                     <div class="d-flex flex-row justify-content-between border-bottom align-items-center">

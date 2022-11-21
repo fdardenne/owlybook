@@ -1,9 +1,9 @@
 /** @odoo-module **/
 
-import { Component, useState } from "@odoo/owl";
+import { Component } from "@odoo/owl";
 import { useStories } from "../stories";
 
-export class StorybookSidebar extends Component {
+export class Sidebar extends Component {
   setup() {
     this.stories = useStories();
   }
@@ -25,4 +25,4 @@ export class StorybookSidebar extends Component {
   }
 }
 
-StorybookSidebar.template = "storybook.StorybookSidebar";
+Sidebar.template = "storybook.Sidebar";
