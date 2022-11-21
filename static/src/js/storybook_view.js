@@ -1,25 +1,17 @@
 /* @odoo-module */
 
-import { registry } from "@web/core/registry";
 import { StorybookSidebar } from "./sidebar/storybook_sidebar";
-const { Component } = owl;
-class StorybookView extends Component {
+import { Canvas } from "./canvas/canvas";
+import { Component, useState } from "@odoo/owl";
+import { setupStories } from "./stories";
+export class StorybookView extends Component {
   setup() {
-    this.stories = stories;
-  }
-  /**
-   * Load the story to the canvas
-   * @param {number} storyId - id of a story
-   */
-  loadStory(storyId) {
-    console.log(`loading story #${storyId}`);
+    this.stories = setupStories(stories);
   }
 }
 
 StorybookView.template = "storybook.StorybookView";
-StorybookView.components = { StorybookSidebar };
-
-registry.category("actions").add("storybook_view", StorybookView);
+StorybookView.components = { StorybookSidebar, Canvas };
 
 const stories = {
   "Module 1": {

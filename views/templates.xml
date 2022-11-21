@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+          <template id="odoo-storybook.storybook" name="Storybook">
+            <html>
+                <head>
+                    <t t-call-assets="odoo-storybook.assets_storybook"/>
+                </head>
+                
+                <body>
+                </body>
+            </html>
+          </template>
+    </data>
+</odoo>

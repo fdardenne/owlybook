@@ -3,17 +3,19 @@
     <t t-name="storybook.StorybookView" owl="1">
         <div class="d-sm-flex flex-row h-100 ">
 
-            <StorybookSidebar stories="stories" onStoryClick="this.loadStory"/>
+            <StorybookSidebar stories="stories.stories"/>
             <div class="d-flex flex-column bg-white w-100 h-100" style="width:100px">
-                <div class="w-100">
+                <div class="o_storybook_topbar text-light w-100">
                     <div class="d-flex flex-row justify-content-between border-bottom align-items-center">
-                        <span class="p-3"> Story 1</span>
+                        <span class="p-3"> <t t-esc="stories.active.name"/> </span>
                         <div class="d-flex flex-row">
-                            <button class="btn"> Canvas </button>  
-                            <button class="btn"> Documentation </button>  
+                            <button class="btn text-light"> Canvas </button>  
+                            <button class="btn text-light"> Documentation </button>  
                         </div>
                     </div>
                 </div>
+
+                <Canvas/>
             </div>
         </div>
 

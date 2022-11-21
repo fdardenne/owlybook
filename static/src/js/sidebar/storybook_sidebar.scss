@@ -1,3 +1,5 @@
+
+
 $o-storybook-enterprise-color: $o-enterprise-color;
 $o-storybook-community-color: $o-community-color;
 $o-storybook-hover-color: map-get($theme-colors, "primary");
@@ -18,7 +20,7 @@ $o-storybook-hover-color: map-get($theme-colors, "primary");
 
 .o_storybook_active {
     background-color: rgba($o-storybook-hover-color, 0.1);
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .o_storybook_hover:hover {
@@ -44,5 +46,5 @@ $o-storybook-hover-color: map-get($theme-colors, "primary");
 ul,
 li {
     list-style: none;
-    padding:0px;
+    padding: 0px;
 }
