@@ -2,10 +2,8 @@
 
 <templates>
     <t t-name="storybook.canvas" owl="1">
-        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-            <div>
+            <div class="m-3">
                 <ComponentRenderer/>
             </div>
-        </div>
     </t>
 </templates>
