@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import { Component, xml } from "@odoo/owl";
+import { Component } from "@odoo/owl";
 import { ComponentRenderer } from "./component_renderer";
 import { useStories } from "../stories";
 
