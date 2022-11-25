@@ -9,8 +9,8 @@
                     <div class="d-flex flex-row justify-content-between border-bottom align-items-center">
                         <span class="p-3"> <t t-esc="stories.active.name"/> </span>
                         <div class="d-flex flex-row">
-                            <button class="btn text-light"> Canvas </button>  
-                            <button class="btn text-light"> Documentation </button>  
+                            <button class="btn text-light"> Canvas </button>
+                            <button class="btn text-light"> Documentation </button>
                         </div>
                     </div>
                 </div>

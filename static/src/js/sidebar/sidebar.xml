@@ -17,17 +17,17 @@
             <button class="btn btn-link p-0">
                 <i t-att-class="(!moduleObject['folded'] ? 'fa-caret-down' : 'fa-caret-right') + ' fa o_storybook_caret align-self-center' "></i> 
             </button>
-            
+
             <t t-esc="moduleName"/>
         </div>
+
         <t t-if="!moduleObject['folded']">
             <ul>
                 <li t-foreach="moduleObject['folders']" t-as="folderName" t-key="folderName">
                     <t t-call="storybook.Sidebar.folder"/>
                 </li>
-            </ul>                  
+            </ul>
         </t>
-        
     </t>
 
     <t t-name="storybook.Sidebar.folder" owl="1">
@@ -45,7 +45,7 @@
                         <button class="btn btn-link p-0">
                             <i class="fa fa-bookmark"></i>
                         </button>
-                        <t t-esc="story.name"/> 
+                        <t t-esc="story.name"/>
                     </div>
                 </li>
             </ul>
