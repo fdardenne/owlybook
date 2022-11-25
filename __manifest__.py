@@ -29,6 +29,7 @@
     'assets': {
         'web.assets_backend': [
             'odoo-storybook/static/src/js/**/*',
+            'odoo-storybook/static/src/stories/**/*',
         ],
     },
     'application': True,
