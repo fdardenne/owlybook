@@ -37,4 +37,4 @@ export const AutocompleteStories = {
     stories: [StoryA],
 };
 
-registry.category("stories").add("storybook.autocomplete", AutocompleteStories);
+registry.category("stories").add("ui_playground.autocomplete", AutocompleteStories);

@@ -5,13 +5,13 @@ import { Canvas } from "./canvas/canvas";
 import { Component } from "@odoo/owl";
 import { setupStories } from "./stories";
 import { registry } from "@web/core/registry";
-export class StorybookView extends Component {
+export class UIPlaygroundView extends Component {
     setup() {
         this.stories = setupStories();
     }
 }
 
-StorybookView.template = "storybook.StorybookView";
-StorybookView.components = { Sidebar, Canvas };
+UIPlaygroundView.template = "ui_playground.UiPlaygroundView";
+UIPlaygroundView.components = { Sidebar, Canvas };
 
-registry.category("actions").add("storybook_view", StorybookView);
+registry.category("actions").add("ui_playground_view", UIPlaygroundView);

@@ -6,7 +6,7 @@ import { useStories } from "../stories";
 
 export class Canvas extends Component {
     static components = { ComponentRenderer };
-    static template = "storybook.canvas";
+    static template = "ui_playground.canvas";
 
     setup() {
         this.stories = useStories();

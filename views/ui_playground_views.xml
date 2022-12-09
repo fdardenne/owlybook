@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record id="ui_playground_open" model="ir.actions.client">
+            <field name="name">UI Playground</field>
+            <field name="tag">ui_playground_view</field>
+            <field name="target">main</field>
+        </record>
+    </data>
+</odoo>

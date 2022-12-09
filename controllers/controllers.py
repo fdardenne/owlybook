@@ -1,13 +1,10 @@
 from odoo import http
 from odoo.http import request, route
 
-class StorybookController(http.Controller):
-    @http.route(['/storybook'], type='http', auth='public')
-    def show_storybook(self):
+class UIPlaygroundController(http.Controller):
+    @http.route(['/ui_playground'], type='http', auth='public')
+    def show_ui_playground(self):
         """
-        Renders the storybook
+        Renders the ui playground
         """
-        return request.render('odoo-storybook.storybook')
-
-
-
+        return request.render('ui_playground.ui_playground')

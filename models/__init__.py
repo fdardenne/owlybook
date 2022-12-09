@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-from . import storybook_story
+from . import ui_playground_story
