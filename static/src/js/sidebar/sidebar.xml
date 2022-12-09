@@ -2,8 +2,12 @@
 
 <templates>
     <t t-name="ui_playground.Sidebar" owl="1">
-        <div class="o_ui_playground_sidebar overflow-auto bg-white border-end">
+        <div class="o_ui_playground_sidebar overflow-auto border-end">
             <ul class="pt-2" >
+                <li t-on-click="showIntroduction" class="d-flex align-items-center o_ui_playground_folder o_ui_playground_hover user-select-none ps-1">
+                    <i t-att-class="'fa fa-star' + ' fa o_ui_playground_star align-self-center'"/>
+                    <span class="p-2 fw-bold">Introduction</span>
+                </li>
                 <li t-foreach="stories.stories" t-as="moduleName" t-key="moduleName">
                     <t t-call="ui_playground.Sidebar.module"/>
                 </li>
@@ -15,7 +19,7 @@
         <t t-set="moduleObject" t-value="stories.stories[moduleName]" />
         <div t-on-click="() => this.toggleFold(moduleObject)" class="d-flex align-items-center o_ui_playground_module o_ui_playground_hover text-uppercase text-muted user-select-none">
             <button class="btn btn-link p-0">
-                <i t-att-class="(!moduleObject['folded'] ? 'fa-caret-down' : 'fa-caret-right') + ' fa o_ui_playground_caret align-self-center' "></i> 
+                <i t-att-class="(!moduleObject['folded'] ? 'fa-caret-down' : 'fa-caret-right') + ' fa o_ui_playground_caret align-self-center' "/>
             </button>
 
             <t t-esc="moduleName"/>

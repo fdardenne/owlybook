@@ -40,6 +40,10 @@ export class Stories {
         this.setupProps(story);
     }
 
+    resetActive() {
+        this.active = {};
+    }
+
     addStory(moduleName, folder, story) {
         if (!(moduleName in this.stories)) {
             this.stories[moduleName] = { folders: {} };

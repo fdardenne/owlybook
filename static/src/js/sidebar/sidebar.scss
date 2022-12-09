@@ -6,6 +6,7 @@ $o-ui_playground-hover-color: map-get($theme-colors, "primary");
 
 .o_ui_playground_sidebar {
     width: 250px;
+    background-color: var(--ui_playground-background-color);
 }
 
 @media (max-width: 575.98px) {
@@ -31,6 +32,11 @@ $o-ui_playground-hover-color: map-get($theme-colors, "primary");
 
 .o_ui_playground_caret {
     width: 1.29em;
+}
+
+.o_ui_playground_star{
+    color: gold;
+    font-size:15px;
 }
 
 .fa-bookmark {
