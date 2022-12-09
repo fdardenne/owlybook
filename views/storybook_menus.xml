@@ -2,9 +2,10 @@
 <odoo>
     <data>
         <menuitem name="Storybook"
-            id="menu_root_storybook"
-            action="storybook_open"
-            web_icon="storybook,static/description/icon.png"
+                  id="menu_root_storybook"
+                  action="storybook_open"
+                  web_icon="odoo-storybook,static/description/icon.png"
+                  sequence="0"
         />
     </data>
 </odoo>
