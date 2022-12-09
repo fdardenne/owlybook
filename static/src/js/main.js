@@ -2,7 +2,7 @@
 // /** @odoo-module **/
 
 // import { mount } from "@odoo/owl";
-// import { StorybookView } from "./storybook_view";
+// import { UIPlaygroundView } from "./ui_playground_view";
 
 // // The following code ensures that owl mount the component when ready.
 // // `templates` contains templates contained in the bundles.
@@ -12,5 +12,5 @@
 // import { templates } from "@web/core/assets";
 
 // owl.whenReady( () => {
-//     mount(StorybookView, document.body, { templates });
+//     mount(UIPlaygroundView, document.body, { templates });
 // });

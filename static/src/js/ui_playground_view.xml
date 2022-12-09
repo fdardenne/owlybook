@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="storybook.StorybookView" owl="1">
+    <t t-name="ui_playground.UiPlaygroundView" owl="1">
         <div class="d-sm-flex flex-row h-100 ">
 
             <Sidebar stories="stories.stories"/>
             <div class="d-flex flex-column bg-white w-100 h-100" style="width:100px">
-                <div class="o_storybook_topbar text-light w-100">
+                <div class="o_ui_playground_topbar text-light w-100">
                     <div class="d-flex flex-row justify-content-between border-bottom align-items-center">
                         <span class="p-3"> <t t-esc="stories.active.name"/> </span>
                         <div class="d-flex flex-row">

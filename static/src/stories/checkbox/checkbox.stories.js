@@ -22,4 +22,4 @@ export const CheckBoxStories = {
     stories: [StoryA, StoryB],
 };
 
-registry.category("stories").add("storybook.checkbox", CheckBoxStories);
+registry.category("stories").add("ui_playground.checkbox", CheckBoxStories);

@@ -1,45 +1,45 @@
 
 // TODO: move this
-$o-storybook-enterprise-color: $o-enterprise-color;
-$o-storybook-community-color: $o-community-color;
-$o-storybook-hover-color: map-get($theme-colors, "primary");
+$o-ui_playground-enterprise-color: $o-enterprise-color;
+$o-ui_playground-community-color: $o-community-color;
+$o-ui_playground-hover-color: map-get($theme-colors, "primary");
 
-.o_storybook_sidebar {
+.o_ui_playground_sidebar {
     width: 250px;
 }
 
 @media (max-width: 575.98px) {
-    .o_storybook_sidebar {
+    .o_ui_playground_sidebar {
       width: 100%;
     }
   }
 
-.o_storybook_module {
+.o_ui_playground_module {
     letter-spacing: 0.20em;
 }
 
-.o_storybook_active {
-    background-color: rgba($o-storybook-hover-color, 0.1);
+.o_ui_playground_active {
+    background-color: rgba($o-ui_playground-hover-color, 0.1);
     font-weight: 600;
 }
 
-.o_storybook_hover:hover {
-    color: $o-storybook-hover-color;
-    background-color: rgba($o-storybook-hover-color, 0.2);
+.o_ui_playground_hover:hover {
+    color: $o-ui_playground-hover-color;
+    background-color: rgba($o-ui_playground-hover-color, 0.2);
     cursor: pointer;
 }
 
-.o_storybook_caret {
+.o_ui_playground_caret {
     width: 1.29em;
 }
 
 .fa-bookmark {
-    color: $o-storybook-community-color;
+    color: $o-ui_playground-community-color;
 }
 
 .fa-folder,
 .fa-folder-open {
-    color: $o-storybook-enterprise-color;
+    color: $o-ui_playground-enterprise-color;
     width: 1.29em
 }
 

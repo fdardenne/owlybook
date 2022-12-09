@@ -25,4 +25,4 @@ export class Sidebar extends Component {
     }
 }
 
-Sidebar.template = "storybook.Sidebar";
+Sidebar.template = "ui_playground.Sidebar";
