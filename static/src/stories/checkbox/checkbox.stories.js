@@ -2,24 +2,54 @@
 
 import { CheckBox } from "@web/core/checkbox/checkbox";
 import { registry } from "@web/core/registry";
-const { Component, xml } = owl;
 
-class StoryA extends Component {
-    static template = xml`<CheckBox/>`;
-    static components = { CheckBox };
-    static title = "Checkbox first story";
-}
+const storyA = {
+    title: "CheckboxFirstStory",
+    component: CheckBox,
+    props: {
+        disabled: {
+            dynamic: true,
+            default: true,
+        },
+        value: {
+            dynamic: true,
+            default: true,
+        },
+        className: {
+            dynamic: true,
+            default: "form-switch",
+        },
+        name: {
+            default: "beautiful_name",
+        },
+    },
+};
 
-class StoryB extends Component {
-    static template = xml`<CheckBox/>`;
-    static components = { CheckBox };
-    static title = "Checkbox second story";
-}
+const storyB = {
+    title: "CheckboxSecondStory",
+    component: CheckBox,
+    props: {
+        disabled: {
+            dynamic: true,
+            default: false,
+        },
+        value: {
+            dynamic: true,
+            default: true,
+        },
+        className: {
+            dynamic: true,
+        },
+        name: {
+            default: "beautiful_name",
+        },
+    },
+};
 
 export const CheckBoxStories = {
     title: "Checkbox",
     module: "web",
-    stories: [StoryA, StoryB],
+    stories: [storyA, storyB],
 };
 
 registry.category("stories").add("ui_playground.checkbox", CheckBoxStories);

@@ -2,39 +2,44 @@
 
 import { AutoComplete } from "@web/core/autocomplete/autocomplete";
 import { registry } from "@web/core/registry";
-const { Component, xml } = owl;
 
-class StoryA extends Component {
-    static template = xml`
-        <AutoComplete
-            value="''"
-            sources="sources"
-            placeholder="'Search order by customer ...'"
-            autoSelect="false"
-            onSelect.bind="onSelect"
-        />
-    `;
-    static components = { AutoComplete };
-    static title = "Autocomplete";
-
-    get sources() {
-        return [
-            {
-                placeholder: "Loading...",
-                options: [{ label: "First choice" }, { label: "Second choice" }],
-            },
-        ];
-    }
-
-    onSelect(option) {
-        console.log(`${option.label} selected`);
-    }
-}
+const storyA = {
+    title: "Autocomplete",
+    component: AutoComplete,
+    props: {
+        value: {
+            default: "",
+            dynamic: true,
+        },
+        sources: {
+            default: [
+                {
+                    placeholder: "Loading...",
+                    options: [{ label: "First choice" }, { label: "Second choice" }],
+                },
+            ],
+        },
+        placeholder: {
+            default: "Search order by customer ...",
+            dynamic: true,
+        },
+        autoSelect: {
+            default: false,
+        },
+        onSelect: {
+            default: () => console.log("Select event"),
+        },
+        resetOnSelect: {
+            default: true,
+            dynamic: true,
+        },
+    },
+};
 
 export const AutocompleteStories = {
     title: "Autocomplete",
     module: "web",
-    stories: [StoryA],
+    stories: [storyA],
 };
 
 registry.category("stories").add("ui_playground.autocomplete", AutocompleteStories);
