@@ -45,7 +45,7 @@
                         <button class="btn btn-link p-0">
                             <i class="fa fa-bookmark"></i>
                         </button>
-                        <t t-esc="story.name"/>
+                        <t t-esc="story.title"/>
                     </div>
                 </li>
             </ul>

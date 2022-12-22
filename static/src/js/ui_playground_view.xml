@@ -4,10 +4,10 @@
         <div class="d-sm-flex flex-row h-100 ">
 
             <Sidebar stories="stories.stories"/>
-            <div class="d-flex flex-column bg-white w-100 h-100" style="width:100px">
+            <div class="d-flex flex-column bg-white w-100 h-100 position-relative" style="width:100px">
                 <div class="o_ui_playground_topbar text-light w-100">
                     <div class="d-flex flex-row justify-content-between border-bottom align-items-center">
-                        <span class="p-3"> <t t-esc="stories.active.name"/> </span>
+                        <span class="p-3"> <t t-esc="stories.active.title"/> </span>
                         <div class="d-flex flex-row">
                             <button class="btn text-light"> Canvas </button>
                             <button class="btn text-light"> Documentation </button>
@@ -16,6 +16,7 @@
                 </div>
 
                 <Canvas/>
+                <Panel/>
             </div>
         </div>
 

@@ -37,6 +37,7 @@ export class Stories {
 
     setActive(story) {
         this.active = story;
+        this.setupProps(story);
     }
 
     addStory(moduleName, folder, story) {
@@ -48,8 +49,30 @@ export class Stories {
         }
         this.stories[moduleName]["folders"][folder].stories.push({
             id: this.counter++,
-            name: story.title,
-            component: story,
+            ...story,
         });
+    }
+
+    setupProps(story) {
+        // Props static definition
+        const propsDefinition = story.component.props;
+        // props story configuration
+        const propsStoryConfig = story.props;
+        story.processedProps = {};
+
+        for (const [propName, value] of Object.entries(propsDefinition)) {
+            story.processedProps[propName] = {};
+            const propsStoryObject = story.processedProps[propName];
+            propsStoryObject.type = value.type;
+            propsStoryObject.value = value.default;
+            propsStoryObject.optional = value.optional || false;
+
+            if (propsStoryConfig && propName in propsStoryConfig) {
+                propsStoryObject.dynamic = propsStoryConfig[propName].dynamic || false;
+                if ("default" in propsStoryConfig[propName]) {
+                    propsStoryObject.value = propsStoryConfig[propName].default;
+                }
+            }
+        }
     }
 }

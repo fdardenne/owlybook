@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<templates>
+    <t t-name="ui_playground.props" owl="1">
+        <div class="table-responsive">
+            <table class="table table-sm table-hover table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">Props Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="storyProps" t-as="props" t-key="props">
+                        <tr>
+                            <td t-esc="props"/>
+                            <td t-esc="props_value.type.name"/>
+                            <td>
+                                <t t-call="ui_playground.props.input"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </t>
+
+    <t t-name="ui_playground.props.input" owl="1">
+        <t t-if="props_value.type.name === 'Boolean'">
+            <input t-att-disabled="!props_value.dynamic" class="o_input" t-att-checked="props_value.value" type="checkbox" t-model="props_value.value"></input>
+        </t>
+        <t t-elif="props_value.type.name === 'String'">
+            <input t-att-disabled="!props_value.dynamic" class="o_input" t-att-value="props_value.value" t-model="props_value.value"></input>
+        </t>
+
+        <t t-else="">
+            <input t-att-disabled="1" class="o_input" value="wip?"></input>
+        </t>
+    </t>
+</templates>
