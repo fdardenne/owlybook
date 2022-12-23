@@ -54,3 +54,27 @@ li {
     list-style: none;
     padding: 0px;
 }
+
+.o_searchview_ui {
+    align-items: flex-end;
+    padding: 0 20px 1px 0;
+    position: relative;
+
+    .o_searchview_input_container {
+        display: flex;
+        flex-flow: row wrap;
+        position: relative;
+    }
+
+    .o_searchview_input {
+        flex: 1 0 auto;
+        width: 75px;
+        border: none;
+        outline: none;
+        background-color: var(--o-input-background-color, #{$input-bg});
+    }
+
+    .o_searchview_icon {
+        @include o-position-absolute($top: 4px, $right: 0);
+    }
+}
