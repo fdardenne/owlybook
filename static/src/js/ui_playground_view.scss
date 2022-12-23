@@ -1,3 +1,7 @@
+.o_action_manager {
+    --ui_playground-background-color: #f0f2f5;
+}
+
 .o_ui_playground_topbar {
-    background-color: $o-ui_playground-enterprise-color;
+    background-color: var(--ui_playground-background-color);
 }

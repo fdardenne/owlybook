@@ -2,7 +2,7 @@
 
 <templates>
     <t t-name="ui_playground.props" owl="1">
-        <div class="table-responsive">
+        <div class="table-responsive o_ui_playground_bottom_bar">
             <table class="table table-sm table-hover table-striped">
                 <thead>
                     <tr>

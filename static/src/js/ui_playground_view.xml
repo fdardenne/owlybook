@@ -5,21 +5,30 @@
 
             <Sidebar stories="stories.stories"/>
             <div class="d-flex flex-column bg-white w-100 h-100 position-relative" style="width:100px">
-                <div class="o_ui_playground_topbar text-light w-100">
+                <div class="o_ui_playground_topbar text-black w-100">
                     <div class="d-flex flex-row justify-content-between border-bottom align-items-center">
                         <span class="p-3"> <t t-esc="stories.active.title"/> </span>
                         <div class="d-flex flex-row">
-                            <button class="btn text-light"> Canvas </button>
-                            <button class="btn text-light"> Documentation </button>
+                            <button class="btn text-black"> Canvas </button>
+                            <button class="btn text-black"> Documentation </button>
                         </div>
                     </div>
                 </div>
 
-                <Canvas/>
-                <Panel/>
+                <t t-if="stories.active.title">
+                    <Canvas/>
+                    <Panel/>
+                </t>
+                <t t-else="">
+                   <t t-call="ui_playground.Introduction"/>
+                </t>
             </div>
         </div>
+    </t>
 
-
+    <t t-name="ui_playground.Introduction" owl="1">
+        <div class="m-3">
+            <span>This is the Introduction of UI Playground, have fun !</span>
+        </div>
     </t>
 </templates>

@@ -23,6 +23,10 @@ export class Sidebar extends Component {
     onStoryClick(story) {
         this.stories.setActive(story);
     }
+
+    showIntroduction() {
+         this.stories.resetActive();
+    }
 }
 
 Sidebar.template = "ui_playground.Sidebar";
