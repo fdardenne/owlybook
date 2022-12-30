@@ -28,14 +28,13 @@
 
     <t t-name="ui_playground.props.input" owl="1">
         <t t-if="props_value.type.name === 'Boolean'">
-            <input t-att-disabled="!props_value.dynamic" class="o_input" t-att-checked="props_value.value" type="checkbox" t-model="props_value.value"></input>
+            <input t-att-disabled="!props_value.dynamic" class="o_input" t-att-checked="props_value.value" type="checkbox" t-model="props_value.value"/>
         </t>
         <t t-elif="props_value.type.name === 'String'">
-            <input t-att-disabled="!props_value.dynamic" class="o_input" t-att-value="props_value.value" t-model="props_value.value"></input>
+            <input t-att-disabled="!props_value.dynamic" class="o_input o_outline" t-att-value="props_value.value" t-model="props_value.value"/>
         </t>
-
         <t t-else="">
-            <input t-att-disabled="1" class="o_input" value="wip?"></input>
+            <input t-att-disabled="1" class="o_input" value="wip?"/>
         </t>
     </t>
 </templates>
