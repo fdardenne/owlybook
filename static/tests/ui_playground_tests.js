@@ -5,7 +5,7 @@ import { click, getFixture, mount, editInput, nextTick } from "@web/../tests/hel
 import { registry } from "@web/core/registry";
 import { hotkeyService } from "@web/core/hotkeys/hotkey_service";
 import { makeTestEnv } from "@web/../tests/helpers/mock_env";
-import { CheckBoxStories, storyA, storyB } from "./checkbox_tests.stories";
+import { CheckBoxStories, storyA, storyB, storyWithoutPropsDef } from "./checkbox_tests.stories";
 
 const storyRegistry = registry.category("stories");
 const serviceRegistry = registry.category("services");
@@ -168,6 +168,50 @@ QUnit.module("UI Playground", (hooks) => {
     });
 
     QUnit.module("Props");
+
+    QUnit.test("Props panel shows the props names", async (assert) => {
+        const env = await makeTestEnv();
+        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
+
+        registry.category("stories").add("ui_playground_tests.checkbox", {
+            title: "Checkbox",
+            module: "web",
+            stories: [storyWithoutPropsDef],
+        });
+        await mount(UIPlaygroundView, target, { env: playgroundEnv });
+
+        await click(target.querySelector(".o_ui_playground_item"));
+        assert.containsOnce(target, ".o-checkbox");
+
+        const namesElement = document.querySelectorAll("tr td:first-child");
+        const expectedNames = ["id", "disabled", "value", "slots", "onChange", "className", "name"];
+
+        for (let i = 0; i < expectedNames.length; i++) {
+            assert.strictEqual(namesElement[i].textContent, expectedNames[i]);
+        }
+    });
+
+    QUnit.test("Props panel shows the props types", async (assert) => {
+        const env = await makeTestEnv();
+        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
+
+        registry.category("stories").add("ui_playground_tests.checkbox", {
+            title: "Checkbox",
+            module: "web",
+            stories: [storyWithoutPropsDef],
+        });
+        await mount(UIPlaygroundView, target, { env: playgroundEnv });
+
+        await click(target.querySelector(".o_ui_playground_item"));
+        assert.containsOnce(target, ".o-checkbox");
+
+        const namesElement = document.querySelectorAll("tr td:nth-child(2)");
+        const expectedNames = ["", "Boolean", "Boolean", "Object", "Function", "String", "String"];
+
+        for (let i = 0; i < expectedNames.length; i++) {
+            assert.strictEqual(namesElement[i].textContent, expectedNames[i]);
+        }
+    });
 
     QUnit.module("Navbar");
 });
