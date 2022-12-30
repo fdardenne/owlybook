@@ -31,22 +31,23 @@ $o-ui_playground-hover-color: map-get($theme-colors, "primary");
 }
 
 .o_ui_playground_caret {
+    color: grey;
     width: 1.29em;
 }
 
-.o_ui_playground_star{
-    color: gold;
+.o_ui_playground_intro{
+    color: goldenrod;
     font-size:15px;
 }
 
-.fa-bookmark {
+.o_ui_playground_folder{
     color: $o-ui_playground-community-color;
+    font-size:15px;
 }
 
-.fa-folder,
-.fa-folder-open {
-    color: $o-ui_playground-enterprise-color;
-    width: 1.29em
+.o_ui_playground_item {
+    color: darkcyan;
+    font-size:15px;
 }
 
 ul,
