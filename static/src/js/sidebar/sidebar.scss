@@ -35,17 +35,17 @@ $o-ui_playground-hover-color: map-get($theme-colors, "primary");
     width: 1.29em;
 }
 
-.o_ui_playground_intro{
+.o_ui_playground_intro {
     color: goldenrod;
     font-size:15px;
 }
 
-.o_ui_playground_folder{
+.o_ui_playground_folder_button {
     color: $o-ui_playground-community-color;
     font-size:15px;
 }
 
-.o_ui_playground_item {
+.o_ui_playground_item_button {
     color: darkcyan;
     font-size:15px;
 }

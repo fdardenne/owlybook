@@ -18,6 +18,7 @@ const storyA = {
                     options: [{ label: "First choice" }, { label: "Second choice" }],
                 },
             ],
+            help: "Change the search options when clicking on the text area",
         },
         placeholder: {
             default: "Search order by customer ...",
@@ -28,10 +29,12 @@ const storyA = {
         },
         onSelect: {
             default: () => console.log("Select event"),
+            help: "Function executed when we select an element of the search",
         },
         resetOnSelect: {
             default: true,
             dynamic: true,
+            help: "Reset the input when clicking on a searched element",
         },
     },
 };
