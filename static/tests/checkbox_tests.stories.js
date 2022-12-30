@@ -31,16 +31,19 @@ export const storyB = {
         disabled: {
             dynamic: true,
             default: false,
+            help: "this is a magnificent tooltip"
         },
         value: {
             dynamic: true,
             default: true,
+            help: "Oh ! another tooltip"
         },
         className: {
             dynamic: true,
         },
         name: {
             default: "beautiful_name",
+            help: "Last but not least"
         },
     },
 };

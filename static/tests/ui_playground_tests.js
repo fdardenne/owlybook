@@ -213,5 +213,22 @@ QUnit.module("UI Playground", (hooks) => {
         }
     });
 
+    QUnit.test("Tooltip show the help message", async (assert) => {
+        const env = await makeTestEnv();
+        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
+
+        registry.category("stories").add("ui_playground_tests.checkbox", {
+            title: "Checkbox",
+            module: "web",
+            stories: [storyWithoutPropsDef],
+        });
+        await mount(UIPlaygroundView, target, { env: playgroundEnv });
+
+        await click(target.querySelector(".o_ui_playground_item"));
+        assert.containsOnce(target, ".o-checkbox");
+
+    });
+
+
     QUnit.module("Navbar");
 });
