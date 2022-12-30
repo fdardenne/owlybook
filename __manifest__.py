@@ -31,6 +31,9 @@
             'ui_playground/static/src/js/**/*',
             'ui_playground/static/src/stories/**/*',
         ],
+        'web.tests_assets': [
+            'ui_playground/static/tests/**/*',
+        ]
     },
     'application': True,
 }
