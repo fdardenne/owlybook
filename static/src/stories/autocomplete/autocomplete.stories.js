@@ -10,6 +10,7 @@ const storyA = {
         value: {
             default: "",
             dynamic: true,
+            help: "ceci est un tooltip1",
         },
         sources: {
             default: [
@@ -18,20 +19,25 @@ const storyA = {
                     options: [{ label: "First choice" }, { label: "Second choice" }],
                 },
             ],
+            help: "ceci est un tooltip2",
         },
         placeholder: {
             default: "Search order by customer ...",
             dynamic: true,
+            help: "ceci est un tooltip",
         },
         autoSelect: {
             default: false,
+            help: "ceci est un tooltip",
         },
         onSelect: {
             default: () => console.log("Select event"),
+            help: "ceci est un tooltip",
         },
         resetOnSelect: {
             default: true,
             dynamic: true,
+            help: "ceci est un tooltip",
         },
     },
 };

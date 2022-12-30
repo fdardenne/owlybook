@@ -13,4 +13,14 @@ export class Props extends Component {
     get storyProps() {
         return this.stories.active?.processedProps || {};
     }
+
+    /**
+     * This function allow to display the value of the help entrie of each props in the tooltip
+     * @returns {string} - The value to be displayed
+     */
+    get tooltipInfo() {
+        return JSON.stringify({
+            help: this.stories.active?.processedProps[this.props].help,
+        });
+    }
 }

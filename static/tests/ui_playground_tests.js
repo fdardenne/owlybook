@@ -213,22 +213,22 @@ QUnit.module("UI Playground", (hooks) => {
         }
     });
 
-    QUnit.test("Tooltip show the help message", async (assert) => {
+    QUnit.test("Check if Tooltip are present and also the content", async (assert) => {
         const env = await makeTestEnv();
         const playgroundEnv = Object.assign(Object.create(env), { config: {} });
 
-        registry.category("stories").add("ui_playground_tests.checkbox", {
-            title: "Checkbox",
-            module: "web",
-            stories: [storyWithoutPropsDef],
-        });
+        registry.category("stories").add("ui_playground_tests.checkbox", CheckBoxStories);
         await mount(UIPlaygroundView, target, { env: playgroundEnv });
 
-        await click(target.querySelector(".o_ui_playground_item"));
-        assert.containsOnce(target, ".o-checkbox");
+        await click(target.querySelectorAll(".o_ui_playground_item")[1]);
+        assert.containsN(target, ".ui_playground_tooltip", 3);
 
+        const tooltips = document.querySelectorAll(".ui_playground_tooltip");
+        assert.hasAttrValue(tooltips[0],
+                       "data-tooltip-info",
+                      "{\"help\":\"this is a magnificent tooltip\"}",
+                       "The msg in the tooltip should be 'this is a magnificent tooltip'")
     });
-
 
     QUnit.module("Navbar");
 });

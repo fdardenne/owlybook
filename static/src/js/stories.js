@@ -73,6 +73,7 @@ export class Stories {
 
             if (propsStoryConfig && propName in propsStoryConfig) {
                 propsStoryObject.dynamic = propsStoryConfig[propName].dynamic || false;
+                propsStoryObject.help = propsStoryConfig[propName].help || false;
                 if ("default" in propsStoryConfig[propName]) {
                     propsStoryObject.value = propsStoryConfig[propName].default;
                 }
