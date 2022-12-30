@@ -45,6 +45,11 @@ export const storyB = {
     },
 };
 
+export const storyWithoutPropsDef = {
+    title: "CheckboxThirdStory",
+    component: CheckBox,
+};
+
 export const CheckBoxStories = {
     title: "Checkbox",
     module: "web",
