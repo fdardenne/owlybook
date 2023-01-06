@@ -14,7 +14,9 @@
                 <tbody>
                     <t t-foreach="storyProps" t-as="props" t-key="props">
                         <tr>
-                            <td t-esc="props"/>
+                            <td>
+                                <t t-call="ui_playground.props.name"/>
+                            </td>
                             <td t-esc="props_value.type.name"/>
                             <td>
                                 <t t-call="ui_playground.props.input"/>
@@ -36,5 +38,11 @@
         <t t-else="">
             <input t-att-disabled="1" class="o_input" value="wip?"/>
         </t>
+    </t>
+
+    <t t-name="ui_playground.props.name" owl="1">
+        <t t-esc="props"/>
+       <i class="fa fa-question-circle-o ps-2 ui_playground_tooltip" t-if="props_value.help"
+          t-att-data-tooltip="tooltipInfo"/>
     </t>
 </templates>
