@@ -5,5 +5,22 @@
             <field name="tag">ui_playground_view</field>
             <field name="target">main</field>
         </record>
+
+        <template id="ui_playground.ui_playground" name="Storybook">
+
+            <t t-call="web.layout">
+                <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
+                <t t-set="title">Web Tests</t>
+                <t t-set="head">
+                    <t t-call-assets="web.assets_common" t-js="false"/>
+                    <t t-call-assets="web.assets_backend" t-js="false"/>
+                    <t t-call-assets="web.tests_assets_common" t-css="false"/>
+                    <t t-call-assets="web.assets_backend" t-css="false"/>
+                    <t t-call-assets="ui_playground.assets_ui_playground"/>
+                    <t t-call="web.test_helpers"/>
+
+                </t>
+            </t>
+        </template>
     </data>
 </odoo>

@@ -27,8 +27,12 @@
         'views/ui_playground_menus.xml',
     ],
     'assets': {
+        'ui_playground.assets_ui_playground': [
+            'ui_playground/static/src/js/main.js',
+        ],
         'web.assets_backend': [
             'ui_playground/static/src/js/**/*',
+            ('remove', 'ui_playground/static/src/js/main.js'),
             'ui_playground/static/src/stories/**/*',
         ],
         'web.tests_assets': [
