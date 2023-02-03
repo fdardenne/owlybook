@@ -1,5 +1,11 @@
 .o_ui_playground_bottom_bar {
     background-color: var(--ui_playground-background-color);
+    > ul > li {
+        .nav-link.active {
+            background-color: #f3f1f1;
+            border-bottom-color: lightgrey;
+        }
+    }
 }
 
 .o_ui_playground_panel {

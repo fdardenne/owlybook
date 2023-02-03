@@ -2,7 +2,8 @@
 
 <templates>
     <t t-name="ui_playground.canvas" owl="1">
-            <div class="m-3">
+        <div class="o_canvas_page d-flex flex-column">
+            <div class="o_canvas_sheet h-100">
                 <t t-if="stories.active.arch">
                     <ArchRenderer t-key="stories.active.arch"/>
                 </t>
@@ -10,5 +11,6 @@
                     <ComponentRenderer/>
                 </t>
             </div>
+        </div>
     </t>
 </templates>
