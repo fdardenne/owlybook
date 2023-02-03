@@ -12,7 +12,9 @@ export function useStories() {
 
 export function setupStories() {
     const stories = new Stories();
-    const storyRegistry = storiesRegistry.getAll();
+    const storyRegistry = storiesRegistry.getAll().sort(function(a, b) {
+        return a.title.localeCompare(b.title);
+    });
     for (const storyCategory of storyRegistry) {
         for (const story of storyCategory.stories) {
             stories.addStory(storyCategory.module, storyCategory.title, story);

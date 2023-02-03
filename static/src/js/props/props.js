@@ -10,6 +10,11 @@ export class Props extends Component {
         this.stories = useStories();
     }
 
+    propsType(props) {
+        const str = props?.type?.name || typeof props.value;
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     get storyProps() {
         return this.stories.active?.processedProps || {};
     }
