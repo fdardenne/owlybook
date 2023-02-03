@@ -17,7 +17,7 @@
                             <td>
                                 <t t-call="ui_playground.props.name"/>
                             </td>
-                            <td t-esc="props_value.type.name"/>
+                            <td t-esc="propsType(props_value)"/>
                             <td>
                                 <t t-call="ui_playground.props.input"/>
                             </td>
@@ -29,10 +29,13 @@
     </t>
 
     <t t-name="ui_playground.props.input" owl="1">
-        <t t-if="props_value.type.name === 'Boolean'">
+        <t t-if="propsType(props_value) === 'Boolean'">
             <input t-att-disabled="!props_value.dynamic" class="o_input" t-att-checked="props_value.value" type="checkbox" t-model="props_value.value"/>
         </t>
-        <t t-elif="props_value.type.name === 'String'">
+        <t t-elif="propsType(props_value) === 'String'">
+            <input t-att-disabled="!props_value.dynamic" class="o_input o_outline" t-att-value="props_value.value" t-model="props_value.value"/>
+        </t>
+        <t t-elif="propsType(props_value) === 'Number'">
             <input t-att-disabled="!props_value.dynamic" class="o_input o_outline" t-att-value="props_value.value" t-model="props_value.value"/>
         </t>
         <t t-else="">
