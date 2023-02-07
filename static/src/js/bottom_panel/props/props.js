@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
 import { Component } from "@odoo/owl";
-import { useStories } from "../stories";
+import { useStories } from "../../stories";
 
 export class Props extends Component {
     static template = "ui_playground.props";

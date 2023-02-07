@@ -13,11 +13,9 @@
                 <t t-set="title">UI Playground</t>
                 <t t-set="head">
                     <t t-call-assets="web.assets_common" t-js="false"/>
-                    <t t-call-assets="web.assets_backend" t-js="false"/>
+                    <t t-call-assets="ui_playground.assets_backend" t-js="false"/>
                     <t t-call-assets="web.assets_common" t-css="false"/>
-                    <t t-call-assets="web.assets_backend" t-css="false"/>
-                    <t t-call-assets="ui_playground.assets_ui_playground"/>
-                    <t t-call-assets="ui_playground.tests_assets_copy"/>
+                    <t t-call-assets="ui_playground.assets_backend" t-css="false"/>
                 </t>
             </t>
         </template>

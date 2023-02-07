@@ -201,12 +201,19 @@ QUnit.module("UI Playground", (hooks) => {
             stories: [storyWithoutPropsDef],
         });
         await mount(UIPlaygroundView, target, { env: playgroundEnv });
-
         await click(target.querySelector(".o_ui_playground_item"));
         assert.containsOnce(target, ".o-checkbox");
 
         const namesElement = document.querySelectorAll("tr td:nth-child(2)");
-        const expectedNames = ["", "Boolean", "Boolean", "Object", "Function", "String", "String"];
+        const expectedNames = [
+            "Undefined",
+            "Boolean",
+            "Boolean",
+            "Object",
+            "Function",
+            "String",
+            "String",
+        ];
 
         for (let i = 0; i < expectedNames.length; i++) {
             assert.strictEqual(namesElement[i].textContent, expectedNames[i]);
@@ -224,10 +231,12 @@ QUnit.module("UI Playground", (hooks) => {
         assert.containsN(target, ".ui_playground_tooltip", 3);
 
         const tooltips = document.querySelectorAll(".ui_playground_tooltip");
-        assert.hasAttrValue(tooltips[0],
-                       "data-tooltip",
-                      "this is a magnificent tooltip",
-                       "The msg in the tooltip should be 'this is a magnificent tooltip'")
+        assert.hasAttrValue(
+            tooltips[0],
+            "data-tooltip",
+            "this is a magnificent tooltip",
+            "The msg in the tooltip should be 'this is a magnificent tooltip'"
+        );
     });
 
     QUnit.module("Navbar");

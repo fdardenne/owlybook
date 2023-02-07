@@ -3,7 +3,12 @@
 <templates>
     <t t-name="ui_playground.canvas" owl="1">
             <div class="m-3">
-                <ComponentRenderer/>
+                <t t-if="stories.active.arch">
+                    <ArchRenderer t-key="stories.active.arch"/>
+                </t>
+                <t t-else="">
+                    <ComponentRenderer/>
+                </t>
             </div>
     </t>
 </templates>

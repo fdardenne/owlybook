@@ -2,10 +2,11 @@
 
 import { Sidebar } from "./sidebar/sidebar";
 import { Canvas } from "./canvas/canvas";
-import { Panel } from "./panel/panel";
+import { Panel } from "./bottom_panel/panel";
 import { Component } from "@odoo/owl";
 import { setupStories } from "./stories";
 import { registry } from "@web/core/registry";
+
 export class UIPlaygroundView extends Component {
     setup() {
         this.stories = setupStories();

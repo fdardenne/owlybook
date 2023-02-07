@@ -28,7 +28,7 @@ export class Stories {
     constructor() {
         const self = reactive(this);
         self.setup();
-        return reactive(self);
+        return self;
     }
 
     setup() {
@@ -39,7 +39,9 @@ export class Stories {
 
     setActive(story) {
         this.active = story;
-        this.setupProps(story);
+        if (!this.active.arch) {
+            this.setupProps(story);
+        }
     }
 
     resetActive() {

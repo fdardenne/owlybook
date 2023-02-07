@@ -3,6 +3,7 @@
 import { mount } from "@odoo/owl";
 import { UIPlaygroundView } from "./ui_playground_view";
 import { makeEnv, startServices } from "@web/env";
+
 // The following code ensures that owl mount the component when ready.
 // `templates` contains templates contained in the bundles.
 //
