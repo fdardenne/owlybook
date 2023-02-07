@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<templates>
+    <t t-name="ui_playground.panel" owl="1">
+        <div class="o_ui_playground_panel border-top w-100 position-absolute d-flex flex-column o_ui_playground_bottom_bar">
+            <ul class="nav nav-tabs">
+                <li class="nav-item" t-if="!stories.active.arch">
+                    <a t-attf-class="nav-link {{mode === 'props' ? 'active' : ''}}" class="nav-link" aria-current="page" href="#" t-on-click="() => this.changeMode('props')">Props</a>
+                </li>
+                <li class="nav-item d-flex flex-row w-100" t-else="">
+                    <a t-attf-class="nav-link {{mode === 'code' ? 'active': ''}}" t-on-click="() => this.changeMode('code')" href="#">Code</a>
+                    <button t-if="isArchDirty" t-on-click="saveDirtyArch" class="btn btn-secondary oe-inline ms-auto"> Render </button>
+                </li>
+            </ul>
+
+            <t t-if="mode === 'props'">
+                <Props/>
+            </t>
+            <t t-elif="mode === 'code'">
+                <CodeEditor type="'qweb'" value="state.dirtyArch || stories.active.arch" onChange="value => this.state.dirtyArch = value" id="'studioXmlEditor'" />
+            </t>
+        </div>
+    </t>
+</templates>
