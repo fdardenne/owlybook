@@ -17,7 +17,7 @@
 
                 <t t-if="stories.active.title">
                     <Canvas/>
-                    <Panel/>
+                    <Panel t-key="stories.active.id"/>
                 </t>
                 <t t-else="">
                    <t t-call="ui_playground.Introduction"/>

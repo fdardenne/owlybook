@@ -29,6 +29,7 @@ export class ArchRenderer extends Component {
         onError((error) => {
             // The arch has an error
             this.state.hasError = true;
+            console.error(error);
         });
 
         this.props = { type: this.stories.active.viewType, resModel: this.stories.active.model };
@@ -36,7 +37,7 @@ export class ArchRenderer extends Component {
         serverData.views = serverData.views || {};
         this.props.viewId = 100000001;
         serverData.views[`${this.props.resModel},${this.props.viewId},${this.props.type}`] =
-            this.stories.active.arch;
+            this.stories.activeArch;
         // note: maybe we'll need to use that later
         // props.searchViewId = 100000002; // hopefully will not conflict with an id already in views
         // const searchViewArch = props.searchViewArch || "<search/>";
@@ -45,11 +46,22 @@ export class ArchRenderer extends Component {
 
         const mockServer = new MockServer(this.stories.active.serverData);
         const _mockRPC = async (route, args = {}) => {
+            let res;
             if (args.method !== "POST") {
                 // simulates that we serialized the call to be passed in a real request
                 args = JSON.parse(JSON.stringify(args));
             }
-            return await mockServer.performRPC(route, args);
+            if (this.stories.active.mockRPC) {
+                res = await this.stories.active.mockRPC(
+                    route,
+                    args,
+                    mockServer.performRPC.bind(mockServer)
+                );
+            }
+            if (res === undefined) {
+                res = await mockServer.performRPC(route, args);
+            }
+            return res;
         };
 
         const rpcService = makeFakeRPCService(_mockRPC).start();

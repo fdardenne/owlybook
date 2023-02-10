@@ -5,7 +5,7 @@
         <div class="o_canvas_page d-flex flex-column">
             <div class="o_canvas_sheet h-100">
                 <t t-if="stories.active.arch">
-                    <ArchRenderer t-key="stories.active.arch"/>
+                    <ArchRenderer t-key="stories.activeArch"/>
                 </t>
                 <t t-else="">
                     <ComponentRenderer/>

@@ -2,7 +2,7 @@
 
 import { reactive, useState, useEnv, useSubEnv } from "@odoo/owl";
 import { registry } from "@web/core/registry";
-
+import { attrsToXml } from "./utils";
 const storiesRegistry = registry.category("stories");
 
 export function useStories() {
@@ -12,7 +12,7 @@ export function useStories() {
 
 export function setupStories() {
     const stories = new Stories();
-    const storyRegistry = storiesRegistry.getAll().sort(function(a, b) {
+    const storyRegistry = storiesRegistry.getAll().sort(function (a, b) {
         return a.title.localeCompare(b.title);
     });
     for (const storyCategory of storyRegistry) {
@@ -37,10 +37,17 @@ export class Stories {
         this.counter = 0;
     }
 
+    /**
+     * Set the story passed in parameter as active.
+     * The active story is read by the UI Playground to know which story to render.
+     * @param {Object} story
+     */
     setActive(story) {
         this.active = story;
         if (!this.active.arch) {
             this.setupProps(story);
+        } else if (this.active.attrs) {
+            this.setupAttrs(story);
         }
     }
 
@@ -48,6 +55,12 @@ export class Stories {
         this.active = {};
     }
 
+    /**
+     * Add the story in the this.stories datastructure
+     * @param {String} moduleName
+     * @param {String} folder
+     * @param {Object} story
+     */
     addStory(moduleName, folder, story) {
         if (!(moduleName in this.stories)) {
             this.stories[moduleName] = { folders: {} };
@@ -61,6 +74,12 @@ export class Stories {
         });
     }
 
+    /**
+     * Loop through the props definition of the component, the props options of the stories
+     * and populate the processedProps of the story. The processedProps will be read and updated by
+     * the Props component (panel) and read by the ComponentRenderer (canvas)
+     * @param {Object} story
+     */
     setupProps(story) {
         // Props static definition
         const propsDefinition = story.component.props;
@@ -83,5 +102,43 @@ export class Stories {
                 }
             }
         }
+    }
+
+    /**
+     * Build the `processedAttrs` of the story. `processedAttrs` contains the attributes shown in
+     * the bottom panel for the modification of view attribute. This method is needed to manipulate
+     * subAttributes such as the `options` attribute in many2one.
+     * @param {Object} story
+     */
+    setupAttrs(story) {
+        const attrsStoryConfig = story.attrs;
+        story.processedAttrs = {};
+
+        for (const [attrsName, value] of Object.entries(attrsStoryConfig)) {
+            if (value.subAttrs) {
+                for (const [subName, subValue] of Object.entries(attrsStoryConfig[attrsName])) {
+                    if (subName !== "subAttrs") {
+                        story.processedAttrs[`${attrsName}.${subName}`] = subValue;
+                    }
+                }
+            } else {
+                story.processedAttrs[attrsName] = value;
+            }
+        }
+    }
+
+    /**
+     * Read the attrs defined by the stories and return a processed arch that reflects the user
+     * choices. If the user did modify the arch manually, then the manually modified arch is
+     * returned.
+     * @returns the active processed arch
+     */
+    get activeArch() {
+        if (this.active.modifiedArch) {
+            return this.active.modifiedArch;
+        }
+
+        const toInject = attrsToXml(this.active.processedAttrs);
+        return this.active.arch.replace("{{attrs}}", toInject);
     }
 }
