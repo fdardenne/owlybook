@@ -46,6 +46,6 @@
     <t t-name="ui_playground.props.name" owl="1">
         <t t-esc="props"/>
        <i class="fa fa-question-circle-o ps-2 ui_playground_tooltip" t-if="props_value.help"
-          t-att-data-tooltip="tooltipInfo"/>
+          t-att-data-tooltip="props_value.help"/>
     </t>
 </templates>

@@ -4,26 +4,30 @@ import { Component } from "@odoo/owl";
 import { useStories } from "../../stories";
 
 export class Props extends Component {
-    static template = "ui_playground.props";
+    static template = "ui_playground.properties";
 
     setup() {
         this.stories = useStories();
     }
 
-    propsType(props) {
+    propertyType(props) {
         const str = props?.type?.name || typeof props.value;
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    get storyProps() {
+    get properties() {
         return this.stories.active?.processedProps || {};
     }
 
-    /**
-     * This function allow to display the value of the help entrie of each props in the tooltip
-     * @returns {string} - The value to be displayed
-     */
-    get tooltipInfo() {
-        return this.stories.active?.processedProps[this.props].help
+    isDisabled(prop) {
+        return !prop.dynamic;
+    }
+
+    onChange(props, value) {
+        props.value = value;
+    }
+
+    formatValue(type, value) {
+        return value;
     }
 }
