@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+ui_playground.access_ui_playground_story,access_ui_playground_story,ui_playground.model_ui_playground_story,base.group_user,1,0,0,0

@@ -6,7 +6,7 @@
             <field name="target">main</field>
         </record>
 
-        <template id="ui_playground.ui_playground" name="Storybook">
+        <template id="ui_playground.ui_playground" name="ui_playground">
 
             <t t-call="web.layout">
                 <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
@@ -16,6 +16,7 @@
                     <t t-call-assets="ui_playground.assets_backend" t-js="false"/>
                     <t t-call-assets="web.assets_common" t-css="false"/>
                     <t t-call-assets="ui_playground.assets_backend" t-css="false"/>
+                    <t t-call-assets="ui_playground.tour" t-if="'tests' in debug or test_mode_enabled" defer_load="True"/>
                 </t>
             </t>
         </template>

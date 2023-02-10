@@ -10,7 +10,7 @@
     """,
 
     'author': "Florent Dardenne & Maximilien La Barre",
-    'website': "https://github.com/fdardenne/odoo-storybook",
+    'website': "https://github.com/fdardenne/ui_playground",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -25,6 +25,7 @@
     'data': [
         'views/ui_playground_views.xml',
         'views/ui_playground_menus.xml',
+        'security/ir.model.access.csv',
     ],
     'assets': {
         'web.assets_backend': [
@@ -49,12 +50,24 @@
             'web/static/tests/views/helpers.js',
             'web/static/tests/search/helpers.js',
             'web/static/tests/webclient/**/helpers.js',
+            'web_tour/static/src/scss/**/*',
         ],
         'web.tests_assets': [
             'ui_playground/static/src/js/**/*.js',
             'ui_playground/static/src/js/**/*.xml',
             ('remove', 'ui_playground/static/src/js/main.js'),
             'ui_playground/static/tests/**/*',
+        ],
+        'ui_playground.tour': [
+            'web_tour/static/src/js/running_tour_action_helper.js',
+            'web_tour/static/src/js/tip.js',
+            'web_tour/static/src/js/tour_manager.js',
+            'web_tour/static/src/js/tour_service.js',
+            'web_tour/static/src/js/tour_step_utils.js',
+            'web_tour/static/src/js/tour_utils.js',
+            '/web_tour/static/src/xml/tip.xml',
+            'web_tour/static/src/js/public/**/*',
+            'ui_playground/static/tests/tours/**/*',
         ],
     },
     'application': True,

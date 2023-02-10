@@ -27,7 +27,7 @@
     </t>
 
     <t t-name="ui_playground.Introduction" owl="1">
-        <div class="m-3">
+        <div class="m-3 o_ui_playground_home_page">
             <span>This is the Introduction of UI Playground, have fun !</span>
         </div>
     </t>
