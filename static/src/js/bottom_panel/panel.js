@@ -5,10 +5,11 @@ import { useStories } from "../stories";
 import { Props } from "./component_properties/props";
 import { CodeEditor } from "../components/code_editor/code_editor";
 import { ArchProperties } from "./arch_properties/arch_properties";
+import { Logs } from "./logs/logs";
 
 export class Panel extends Component {
     static template = "ui_playground.panel";
-    static components = { Props, CodeEditor, ArchProperties };
+    static components = { Props, CodeEditor, ArchProperties, Logs };
 
     setup() {
         this.stories = useStories();
@@ -19,6 +20,7 @@ export class Panel extends Component {
         return {
             props: this.stories.active.attrs || !this.stories.active.arch,
             code: this.stories.active.arch,
+            logs: this.stories.active.attrs || !this.stories.active.arch,
         };
     }
 
