@@ -9,8 +9,8 @@ export class Sidebar extends Component {
         this.filterName = "";
         this.map = this.getAllStories();
         this.all = this.getStoriesAndFolder();
-        this.filteredStories = useState([ ...this.all[0] ]);
-        this.filteredFolders = useState([ ...this.all[1] ]);
+        this.filteredStories = useState([...this.all[0]]);
+        this.filteredFolders = useState([...this.all[1]]);
     }
 
     /**
@@ -73,7 +73,7 @@ export class Sidebar extends Component {
             res_folder.add(key);
             res_stories.push(value);
         }
-        return [res_stories.flat(), res_folder]
+        return [res_stories.flat(), res_folder];
     }
 
     /**
@@ -85,10 +85,13 @@ export class Sidebar extends Component {
         this.filteredStories.splice(0, this.filteredStories.length);
         this.filteredFolders.splice(0, this.filteredFolders.length);
         for (const [key, value] of this.map) {
-            for(const elem of value) {
-                if (elem.toLowerCase().includes(searchString.toLowerCase()) && !this.filteredStories.includes(elem)) {
+            for (const elem of value) {
+                if (
+                    elem.toLowerCase().includes(searchString.toLowerCase()) &&
+                    !this.filteredStories.includes(elem)
+                ) {
                     this.filteredStories.push(elem);
-                    if(!this.filteredFolders.includes(key)) {
+                    if (!this.filteredFolders.includes(key)) {
                         this.filteredFolders.push(key);
                     }
                 }
@@ -97,8 +100,8 @@ export class Sidebar extends Component {
     }
 
     showIntroduction() {
-         this.stories.resetActive();
-         window.history.pushState(null, '', "ui_playground#introduction");
+        this.stories.resetActive();
+        window.history.pushState(null, "", "ui_playground");
     }
 }
 

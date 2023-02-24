@@ -50,7 +50,7 @@ export class Stories {
         } else if (this.active.attrs) {
             this.setupAttrs(story);
         }
-        this.setUrl(story)
+        this.setUrl(story);
     }
 
     /**
@@ -58,13 +58,13 @@ export class Stories {
      * Also deal with go back function of the browser so that when pressing the button the last story become active
      * @param {Object} story
      */
-    setUrl(story){
-        const fileSystem = [story.moduleName, story.folder, story.title].map(function(current) {
-            current = current.replace(/ /g, '+');//replace all spaces by a + sign
+    setUrl(story) {
+        const fileSystem = [story.moduleName, story.folder, story.title].map((current) => {
+            current = current.replace(/ /g, "+"); //replace all spaces by a + sign
             return current;
         });
-        const url = "ui_playground#module=" + fileSystem[0] + "&folder=" + fileSystem[1] + "&story=" + fileSystem[2];
-        window.history.pushState(null, '', url);
+        const url = `ui_playground#module=${fileSystem[0]}&folder=${fileSystem[1]}&story=${fileSystem[2]}`;
+        window.history.pushState(null, "", url);
     }
 
     /**
@@ -85,14 +85,16 @@ export class Stories {
     }
 
     parseParams(str) {
-        let pieces = str.split("&"), data = {}, i, parts;
+        const pieces = str.split("&");
+        const data = {};
+        let i, parts;
         // process each query pair
         for (i = 0; i < pieces.length; i++) {
             parts = pieces[i].split("=");
             if (parts.length < 2) {
                 parts.push("");
             }
-            data[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1].replace(/\+/g,' '));
+            data[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1].replace(/\+/g, " "));
         }
         return data;
     }
