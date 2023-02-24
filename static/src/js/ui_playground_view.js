@@ -3,30 +3,28 @@
 import { Sidebar } from "./sidebar/sidebar";
 import { Canvas } from "./canvas/canvas";
 import { Panel } from "./bottom_panel/panel";
-import { Component , onMounted , useEffect} from "@odoo/owl";
+import { Component, onMounted } from "@odoo/owl";
 import { setupStories } from "./stories";
 import { registry } from "@web/core/registry";
 
 export class UIPlaygroundView extends Component {
     setup() {
         this.stories = setupStories();
-        this.getUrl();
+        this.setStoryFromUrl();
         onMounted(this.onMounted);
     }
 
     onMounted() {
         window.addEventListener("hashchange", (ev) => {
-            this.getUrl();
+            this.setStoryFromUrl();
         });
     }
 
-    getUrl() {
-        const url = document.URL;
-        const params = this.stories.parseParams(url.substring(url.indexOf("#") + 1, url.length));
-        if (!("introduction" in params)) {
+    setStoryFromUrl() {
+        const hash = window.location.hash;
+        if (hash !== "") {
+            const params = this.stories.parseParams(hash.slice(1));
             this.stories.setActive(this.stories.getStoryByName(params));
-        } else {
-            this.stories.resetActive();
         }
     }
 }
