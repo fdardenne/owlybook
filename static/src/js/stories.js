@@ -40,6 +40,7 @@ export class Stories {
     /**
      * Set the story passed in parameter as active.
      * The active story is read by the UI Playground to know which story to render.
+     * Also deal with custom URL
      * @param {Object} story
      */
     setActive(story) {
@@ -49,10 +50,51 @@ export class Stories {
         } else if (this.active.attrs) {
             this.setupAttrs(story);
         }
+        this.setUrl(story)
+    }
+
+    /**
+     * The goal of this function is to set the URL so that it matches the stories the user is checking
+     * Also deal with go back function of the browser so that when pressing the button the last story become active
+     * @param {Object} story
+     */
+    setUrl(story){
+        const fileSystem = [story.moduleName, story.folder, story.title].map(function(current) {
+            current = current.replace(/ /g, '+');//replace all spaces by a + sign
+            return current;
+        });
+        const url = "ui_playground#module=" + fileSystem[0] + "&folder=" + fileSystem[1] + "&story=" + fileSystem[2];
+        window.history.pushState(null, '', url);
+    }
+
+    /**
+     * The goal of this function is to search and get a story by giving the name in argument.
+     * @param {Object} params
+     */
+    getStoryByName (params) {
+        const stories =  this.stories[params.module]["folders"][params.folder].stories;
+        for (const current in stories) {
+            if (stories[current].title === params.story) {
+                return stories[current];
+            }
+        }
     }
 
     resetActive() {
         this.active = {};
+    }
+
+    parseParams(str) {
+        let pieces = str.split("&"), data = {}, i, parts;
+        // process each query pair
+        for (i = 0; i < pieces.length; i++) {
+            parts = pieces[i].split("=");
+            if (parts.length < 2) {
+                parts.push("");
+            }
+            data[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1].replace(/\+/g,' '));
+        }
+        return data;
     }
 
     /**
@@ -70,6 +112,8 @@ export class Stories {
         }
         this.stories[moduleName]["folders"][folder].stories.push({
             id: this.counter++,
+            moduleName,
+            folder,
             ...story,
         });
     }

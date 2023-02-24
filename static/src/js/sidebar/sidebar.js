@@ -98,6 +98,7 @@ export class Sidebar extends Component {
 
     showIntroduction() {
          this.stories.resetActive();
+         window.history.pushState(null, '', "ui_playground#introduction");
     }
 }
 
