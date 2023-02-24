@@ -32,14 +32,35 @@
     </t>
 
     <t t-name="ui_playground.properties.input" owl="1">
-        <t t-if="propertyType(property_value) === 'Boolean'">
-            <input t-att-disabled="isDisabled(property_value)" class="o_input" t-att-checked="formatValue(propertyType(property_value), property_value.value)" type="checkbox" t-on-change="(ev) => this.onChange(property_value, ev.target.checked)"/>
+        <t t-set="propType" t-value="propertyType(property_value)"/>
+        <t t-set="propValue" t-value="formatValue(propType, property_value.value)"/>
+        <t t-if="propType === 'Boolean'">
+            <input t-att-disabled="isDisabled(property_value)" class="o_input" t-att-checked="propValue" type="checkbox" t-on-change="(ev) => this.onChange(property_value, ev.target.checked)"/>
         </t>
-        <t t-elif="propertyType(property_value) === 'String'">
-            <input t-att-disabled="isDisabled(property_value)" class="o_input o_outline" t-att-value="formatValue(propertyType(property_value), property_value.value)" t-on-input="(ev) => this.onChange(property_value, ev.target.value)"/>
+        <t t-elif="propType === 'String'">
+            <input t-att-disabled="isDisabled(property_value)" class="o_input o_outline" t-att-value="propValue" t-on-input="(ev) => this.onChange(property_value, ev.target.value)"/>
         </t>
-        <t t-elif="propertyType(property_value) === 'Number'">
-            <input t-att-disabled="isDisabled(property_value)" class="o_input o_outline" t-att-value="formatValue(propertyType(property_value), property_value.value)" t-on-change="(ev) => this.onChange(property_value, ev.target.value)"/>
+        <t t-elif="propType === 'Number'">
+            <input t-att-disabled="isDisabled(property_value)" class="o_input o_outline" t-att-value="propValue" t-on-change="(ev) => this.onChange(property_value, ev.target.value)"/>
+        </t>
+        <t t-elif="propType === 'Object'">
+            <t t-if="propValue">
+                <ObjectRenderer object="propValue" name="property"/>
+            </t>
+            <t t-else="">
+                undefined
+            </t>
+        </t>
+        <t t-elif="propType === 'Array'">
+            <t t-if="propValue">
+                <ObjectRenderer object="propValue" name="property"/>
+            </t>
+            <t t-else="">
+                undefined
+            </t>
+        </t>
+        <t t-elif="propType === 'Function'">
+            Function
         </t>
         <t t-else="">
             <input t-att-disabled="1" class="o_input" value="wip?"/>
