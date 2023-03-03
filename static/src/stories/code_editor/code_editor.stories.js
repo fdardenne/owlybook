@@ -11,6 +11,7 @@ const storyA = {
         type: {
             dynamic: true,
             default: "qweb",
+            choices: ["qweb", "js", "default", "xml", "scss"],
         },
         value: {
             dynamic: true,

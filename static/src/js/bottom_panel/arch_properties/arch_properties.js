@@ -3,9 +3,11 @@
 import { Component } from "@odoo/owl";
 import { useStories } from "../../stories";
 import { archParseBoolean } from "@web/views/utils";
+import { SelectMenu } from "@web/core/select_menu/select_menu";
 
 export class ArchProperties extends Component {
     static template = "ui_playground.properties";
+    static components = { SelectMenu };
 
     setup() {
         this.stories = useStories();
