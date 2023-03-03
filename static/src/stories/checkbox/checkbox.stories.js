@@ -2,7 +2,7 @@
 
 import { CheckBox } from "@web/core/checkbox/checkbox";
 import { registry } from "@web/core/registry";
-import { getEventFunction } from "../utils/utils"
+import { getEventFunction } from "../utils/utils";
 
 const storyA = {
     title: "CheckboxFirstStory",
@@ -25,7 +25,7 @@ const storyA = {
         },
         onChange: {
             default: getEventFunction("onChange"),
-        }
+        },
     },
 };
 

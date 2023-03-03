@@ -9,6 +9,7 @@ export class ArchProperties extends Component {
 
     setup() {
         this.stories = useStories();
+        this.isDeleteBtnEnabled = true;
     }
 
     propertyType(attrs) {

@@ -20,7 +20,7 @@ export class Panel extends Component {
         return {
             props: this.stories.active.attrs || !this.stories.active.arch,
             code: this.stories.active.arch,
-            logs: this.stories.active.attrs || !this.stories.active.arch,
+            logs: !this.stories.active.arch,
         };
     }
 

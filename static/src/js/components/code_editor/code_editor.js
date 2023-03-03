@@ -107,7 +107,6 @@ export class CodeEditor extends Component {
         if (this.props.id) {
             ACE_SESSIONS.set(this.props.id, this.aceEditor);
         }
-
         this.aceEditor.session.on("change", (ev) => {
             if (this.props.onChange) {
                 this.props.onChange(this.aceEditor.getValue());

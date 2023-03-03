@@ -77,7 +77,7 @@ export class Stories {
      * The goal of this function is to search and get a story by giving the name in argument.
      * @param {Object} params
      */
-    getStoryByName (params) {
+    getStoryByName(params) {
         const stories =  this.stories[params.module]["folders"][params.folder].stories;
         for (const current in stories) {
             if (stories[current].title === params.story) {
@@ -135,6 +135,7 @@ export class Stories {
     setupProps(story) {
         // Props static definition
         const propsDefinition = story.component.props;
+        const propsDefinitionDefault = story.component.defaultProps || [];
         // props story configuration
         const propsStoryConfig = story.props;
         story.processedProps = {};
@@ -143,7 +144,7 @@ export class Stories {
             story.processedProps[propName] = {};
             const propsStoryObject = story.processedProps[propName];
             propsStoryObject.type = value.type;
-            propsStoryObject.value = value.default;
+            propsStoryObject.value = propsDefinitionDefault[propName];
             propsStoryObject.optional = value.optional || false;
 
             if (propsStoryConfig && propName in propsStoryConfig) {
