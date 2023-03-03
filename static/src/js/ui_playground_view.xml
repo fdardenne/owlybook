@@ -7,7 +7,13 @@
             <div class="d-flex flex-column bg-white w-100 h-100 position-relative" style="width:100px">
                 <div class="o_ui_playground_topbar text-black w-100">
                     <div class="d-flex flex-row justify-content-between border-bottom align-items-center">
-                        <span class="p-3"> <t t-esc="stories.active.title"/> </span>
+                        <span class="p-3">
+                            <t t-esc="stories.active.title"/>
+                            <t t-if="stories.active.title">
+                                <i t-if="!stories.active.arch" class="fa fa-code ms-2"/>
+                            </t>
+                        </span>
+
                         <div class="d-flex flex-row">
                             <button class="btn text-black"> Canvas </button>
                             <button class="btn text-black"> Documentation </button>
