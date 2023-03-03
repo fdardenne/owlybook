@@ -39,4 +39,8 @@ export class Props extends Component {
     formatValue(type, value) {
         return value;
     }
+
+    get storyEvents() {
+        return this.stories.active?.events || {};
+    }
 }

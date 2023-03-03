@@ -4,6 +4,11 @@ import { reactive, useState, useEnv, useSubEnv } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { attrsToXml } from "./utils";
 const storiesRegistry = registry.category("stories");
+let stories = undefined;
+
+export function getStories() {
+    return stories;
+}
 
 export function useStories() {
     const env = useEnv();
@@ -11,7 +16,7 @@ export function useStories() {
 }
 
 export function setupStories() {
-    const stories = new Stories();
+    stories = new Stories();
     const storyRegistry = storiesRegistry.getAll().sort(function (a, b) {
         return a.title.localeCompare(b.title);
     });
@@ -45,6 +50,7 @@ export class Stories {
      */
     setActive(story) {
         this.active = story;
+        this.active.events = [];
         if (!this.active.arch) {
             this.setupProps(story);
         } else if (this.active.attrs) {
