@@ -65,7 +65,7 @@
         <t t-else="">
             <input t-att-disabled="1" class="o_input" value="wip?"/>
         </t>
-        <i t-if="property_value.value !== undefined and !isDisabled(property_value)" t-on-click="(ev) => this.onChange(property_value, undefined)" class="fa fa-times" aria-hidden="true"></i>
+        <i t-if="property_value.value !== undefined and !isDisabled(property_value) and isDeleteBtnEnabled" t-on-click="(ev) => this.onChange(property_value, undefined)" class="fa fa-times" aria-hidden="true"></i>
     </t>
 
     <t t-name="ui_playground.properties.name" owl="1">
