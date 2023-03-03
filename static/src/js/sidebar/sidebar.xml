@@ -59,6 +59,7 @@
                                 <i class="fa fa-bookmark-o pe-2"></i>
                             </button>
                             <t t-esc="story.title"/>
+                            <i t-if="!story.arch" class="fa fa-code ms-2"/>
                         </div>
                     </li>
                 </ul>
