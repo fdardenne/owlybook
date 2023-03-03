@@ -70,6 +70,7 @@
 
     <t t-name="ui_playground.properties.name" owl="1">
         <t t-esc="property"/>
+        <t t-if="!property_value.optional"><span>*</span></t>
         <i class="fa fa-question-circle-o ps-2 ui_playground_tooltip" t-if="property_value.help" t-att-data-tooltip="property_value.help"/>
     </t>
 </templates>
