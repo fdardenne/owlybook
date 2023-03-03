@@ -37,11 +37,21 @@
         <t t-if="propType === 'Boolean'">
             <input t-att-disabled="isDisabled(property_value)" class="o_input align-middle" t-att-checked="propValue" type="checkbox" t-on-change="(ev) => this.onChange(property_value, ev.target.checked)"/>
         </t>
+        <t t-elif="property_value.choices">
+            <div class="w-50">
+                <SelectMenu
+                    value="propValue"
+                    choices="property_value.choices"
+                    onSelect="(value) => this.onChange(property_value, value)"
+                    searchable="property_value.length > 8"
+                />
+            </div>
+        </t>
         <t t-elif="propType === 'String'">
-            <input t-att-disabled="isDisabled(property_value)" class="o_input o_outline" t-att-value="propValue" t-on-input="(ev) => this.onChange(property_value, ev.target.value)"/>
+            <input t-att-disabled="isDisabled(property_value)" class="o_input w-50 o_outline" t-att-value="propValue" t-on-input="(ev) => this.onChange(property_value, ev.target.value)"/>
         </t>
         <t t-elif="propType === 'Number'">
-            <input t-att-disabled="isDisabled(property_value)" class="o_input o_outline" t-att-value="propValue" t-on-change="(ev) => this.onChange(property_value, ev.target.value)"/>
+            <input t-att-disabled="isDisabled(property_value)" class="o_input w-50 o_outline" t-att-value="propValue" t-on-change="(ev) => this.onChange(property_value, ev.target.value)"/>
         </t>
         <t t-elif="propType === 'Object'">
             <t t-if="propValue">
@@ -63,7 +73,7 @@
             Function
         </t>
         <t t-else="">
-            <input t-att-disabled="1" class="o_input" value="wip?"/>
+            <input t-att-disabled="1" class="o_input w-50" value="wip?"/>
         </t>
         <i t-if="property_value.value !== undefined and !isDisabled(property_value) and isDeleteBtnEnabled" t-on-click="(ev) => this.onChange(property_value, undefined)" class="fa fa-times ms-1 o_delete align-middle" aria-hidden="true"/>
     </t>
