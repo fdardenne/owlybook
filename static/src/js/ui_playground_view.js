@@ -6,6 +6,7 @@ import { Panel } from "./bottom_panel/panel";
 import { Component, onMounted } from "@odoo/owl";
 import { setupStories } from "./stories";
 import { registry } from "@web/core/registry";
+import { MainComponentsContainer } from "@web/core/main_components_container";
 
 export class UIPlaygroundView extends Component {
     setup() {
@@ -30,6 +31,6 @@ export class UIPlaygroundView extends Component {
 }
 
 UIPlaygroundView.template = "ui_playground.UiPlaygroundView";
-UIPlaygroundView.components = { Sidebar, Canvas, Panel };
+UIPlaygroundView.components = { Sidebar, Canvas, Panel, MainComponentsContainer };
 
 registry.category("actions").add("ui_playground_view", UIPlaygroundView);

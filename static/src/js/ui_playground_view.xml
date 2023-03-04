@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="ui_playground.UiPlaygroundView" owl="1">
+        <MainComponentsContainer/>
         <div class="d-sm-flex flex-row h-100 bg-white">
 
             <Sidebar stories="stories.stories"/>
