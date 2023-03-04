@@ -39,16 +39,13 @@
             'ui_playground/static/src/js/**/*.xml',
             'ui_playground/static/src/stories/**/*',
 
-            'web/static/lib/qunit/qunit-2.9.1.css',
-            'web/static/lib/qunit/qunit-2.9.1.js',
-            'web/static/tests/legacy/helpers/**/*',
-            ('remove', 'web/static/tests/legacy/helpers/test_utils_tests.js'),
+            # next line is required for tour
             'web/static/tests/legacy/legacy_setup.js',
 
             'web/static/tests/helpers/**/*.js',
-            'web/static/tests/views/helpers.js',
-            'web/static/tests/search/helpers.js',
-            'web/static/tests/webclient/**/helpers.js',
+            ('remove', "web/static/tests/helpers/legacy.js"),
+            ('remove', "web/static/tests/helpers/legacy_env_utils.js"),
+            ('remove', "web/static/tests/helpers/mock_env.js"),
         ],
         'web.tests_assets': [
             'ui_playground/static/src/js/**/*.js',

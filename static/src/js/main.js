@@ -14,5 +14,6 @@ import { templates } from "@web/core/assets";
 owl.whenReady(async () => {
     const env = makeEnv();
     await startServices(env);
+    owl.Component.env.session = {};
     mount(UIPlaygroundView, document.body, { templates, env });
 });
