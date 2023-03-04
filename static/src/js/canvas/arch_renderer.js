@@ -9,6 +9,7 @@ import { View } from "@web/views/view";
 import { ORM } from "@web/core/orm_service";
 import { viewService } from "@web/views/view_service";
 import { createDebugContext } from "@web/core/debug/debug_context";
+
 export class ArchRenderer extends Component {
     static template = xml`
         <div t-if="state.hasError" class="alert alert-warning o_error_detail fw-bold m-auto">
