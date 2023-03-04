@@ -1,9 +1,9 @@
 <odoo>
     <data>
-        <record id="ui_playground_open" model="ir.actions.client">
+        <record id="ui_playground_open" model="ir.actions.act_url">
             <field name="name">UI Playground</field>
-            <field name="tag">ui_playground_view</field>
-            <field name="target">main</field>
+            <field name="url">ui_playground</field>
+            <field name="target">self</field>
         </record>
 
         <template id="ui_playground.ui_playground" name="Storybook">
