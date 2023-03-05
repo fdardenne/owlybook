@@ -15,8 +15,8 @@ export function useStories() {
     return useState(env.stories);
 }
 
-export function setupStories() {
-    stories = new Stories();
+export function setupStories(router) {
+    stories = new Stories(router);
     const storyRegistry = storiesRegistry.getAll().sort(function (a, b) {
         return a.title.localeCompare(b.title);
     });
@@ -30,16 +30,17 @@ export function setupStories() {
 }
 
 export class Stories {
-    constructor() {
+    constructor(router) {
         const self = reactive(this);
-        self.setup();
+        self.setup(router);
         return self;
     }
 
-    setup() {
+    setup(router) {
         this.stories = {};
         this.active = {};
         this.counter = 0;
+        this.router = router;
     }
 
     /**
@@ -65,44 +66,25 @@ export class Stories {
      * @param {Object} story
      */
     setUrl(story) {
-        const fileSystem = [story.moduleName, story.folder, story.title].map((current) => {
-            current = current.replace(/ /g, "+"); //replace all spaces by a + sign
-            return current;
-        });
-        const url = `ui_playground#module=${fileSystem[0]}&folder=${fileSystem[1]}&story=${fileSystem[2]}`;
-        window.history.pushState(null, "", url);
+        const { moduleName, folder, title } = story;
+        this.router.pushState({ module: moduleName, folder, title });
     }
 
     /**
      * The goal of this function is to search and get a story by giving the name in argument.
      * @param {Object} params
      */
-    getStoryByName(params) {
-        const stories =  this.stories[params.module]["folders"][params.folder].stories;
-        for (const current in stories) {
-            if (stories[current].title === params.story) {
-                return stories[current];
+    getStoryByDescription({ module, folder, title }) {
+        const stories = this.stories[module]["folders"][folder].stories;
+        for (const currentStory of stories) {
+            if (currentStory.title === title) {
+                return currentStory;
             }
         }
     }
 
     resetActive() {
         this.active = {};
-    }
-
-    parseParams(str) {
-        const pieces = str.split("&");
-        const data = {};
-        let i, parts;
-        // process each query pair
-        for (i = 0; i < pieces.length; i++) {
-            parts = pieces[i].split("=");
-            if (parts.length < 2) {
-                parts.push("");
-            }
-            data[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1].replace(/\+/g, " "));
-        }
-        return data;
     }
 
     /**
