@@ -51,6 +51,7 @@
             'ui_playground/static/src/js/**/*.js',
             'ui_playground/static/src/js/**/*.xml',
             ('remove', 'ui_playground/static/src/js/main.js'),
+            ('remove', 'ui_playground/static/src/js/mock_qunit.js'),
             'ui_playground/static/tests/**/*',
         ],
     },

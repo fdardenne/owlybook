@@ -6,19 +6,24 @@ import { registry } from "@web/core/registry";
 import { hotkeyService } from "@web/core/hotkeys/hotkey_service";
 import { makeTestEnv } from "@web/../tests/helpers/mock_env";
 import { CheckBoxStories, storyA, storyB, storyWithoutPropsDef } from "./checkbox_tests.stories";
+import {
+    makeFakeLocalizationService,
+    makeFakeRouterService,
+} from "@web/../tests/helpers/mock_services";
 
-const storyRegistry = registry.category("stories");
 const serviceRegistry = registry.category("services");
 
 function cleanStoriesRegistry() {
-    const entries = storyRegistry.getEntries();
+    const entries = registry.category("stories").getEntries();
     for (const entry of entries) {
-        storyRegistry.remove(entry[0]);
+        registry.category("stories").remove(entry[0]);
     }
 }
 
 function setupPlaygroundRegistries() {
     serviceRegistry.add("hotkey", hotkeyService);
+    serviceRegistry.add("localization", makeFakeLocalizationService());
+    serviceRegistry.add("router", makeFakeRouterService());
 }
 
 let target;
@@ -34,12 +39,10 @@ QUnit.module("UI Playground", (hooks) => {
 
     QUnit.test("Sidebar correctly show the stories hierarchy", async (assert) => {
         const env = await makeTestEnv();
-        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
 
         // Add two checkbox stories
         registry.category("stories").add("ui_playground_tests.checkbox", CheckBoxStories);
-        await mount(UIPlaygroundView, target, { env: playgroundEnv });
-
+        await mount(UIPlaygroundView, target, { env });
         assert.containsN(target, ".o_ui_playground_module", 1);
 
         assert.strictEqual(
@@ -80,10 +83,9 @@ QUnit.module("UI Playground", (hooks) => {
 
     QUnit.test("Clicking on a folder fold/unfold it", async (assert) => {
         const env = await makeTestEnv();
-        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
 
         registry.category("stories").add("ui_playground_tests.checkbox", CheckBoxStories);
-        await mount(UIPlaygroundView, target, { env: playgroundEnv });
+        await mount(UIPlaygroundView, target, { env });
 
         assert.containsN(target, ".o_ui_playground_item", 2);
 
@@ -98,10 +100,9 @@ QUnit.module("UI Playground", (hooks) => {
 
     QUnit.test("Clicking on a module fold/unfold it", async (assert) => {
         const env = await makeTestEnv();
-        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
 
         registry.category("stories").add("ui_playground_tests.checkbox", CheckBoxStories);
-        await mount(UIPlaygroundView, target, { env: playgroundEnv });
+        await mount(UIPlaygroundView, target, { env });
 
         assert.containsN(target, ".o_ui_playground_item", 2);
         assert.containsN(target, ".o_ui_playground_folder", 2);
@@ -119,7 +120,6 @@ QUnit.module("UI Playground", (hooks) => {
 
     QUnit.test("Searchbar is filtering stories", async (assert) => {
         const env = await makeTestEnv();
-        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
 
         registry.category("stories").add("ui_playground_tests.checkbox", {
             title: "Checkbox",
@@ -133,7 +133,7 @@ QUnit.module("UI Playground", (hooks) => {
             stories: [storyB],
         });
 
-        await mount(UIPlaygroundView, target, { env: playgroundEnv });
+        await mount(UIPlaygroundView, target, { env });
 
         assert.containsOnce(target, ".o_searchview_input");
         assert.containsN(target, ".o_ui_playground_item", 2);
@@ -158,10 +158,9 @@ QUnit.module("UI Playground", (hooks) => {
 
     QUnit.test("Canvas show the clicked story component", async (assert) => {
         const env = await makeTestEnv();
-        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
 
         registry.category("stories").add("ui_playground_tests.checkbox", CheckBoxStories);
-        await mount(UIPlaygroundView, target, { env: playgroundEnv });
+        await mount(UIPlaygroundView, target, { env });
 
         await click(target.querySelector(".o_ui_playground_item"));
         assert.containsOnce(target, ".o-checkbox");
@@ -171,14 +170,13 @@ QUnit.module("UI Playground", (hooks) => {
 
     QUnit.test("Props panel shows the props names", async (assert) => {
         const env = await makeTestEnv();
-        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
 
         registry.category("stories").add("ui_playground_tests.checkbox", {
             title: "Checkbox",
             module: "web",
             stories: [storyWithoutPropsDef],
         });
-        await mount(UIPlaygroundView, target, { env: playgroundEnv });
+        await mount(UIPlaygroundView, target, { env });
 
         await click(target.querySelector(".o_ui_playground_item"));
         assert.containsOnce(target, ".o-checkbox");
@@ -193,14 +191,13 @@ QUnit.module("UI Playground", (hooks) => {
 
     QUnit.test("Props panel shows the props types", async (assert) => {
         const env = await makeTestEnv();
-        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
 
         registry.category("stories").add("ui_playground_tests.checkbox", {
             title: "Checkbox",
             module: "web",
             stories: [storyWithoutPropsDef],
         });
-        await mount(UIPlaygroundView, target, { env: playgroundEnv });
+        await mount(UIPlaygroundView, target, { env });
         await click(target.querySelector(".o_ui_playground_item"));
         assert.containsOnce(target, ".o-checkbox");
 
@@ -222,10 +219,9 @@ QUnit.module("UI Playground", (hooks) => {
 
     QUnit.test("Check if Tooltip are present and also the content", async (assert) => {
         const env = await makeTestEnv();
-        const playgroundEnv = Object.assign(Object.create(env), { config: {} });
 
         registry.category("stories").add("ui_playground_tests.checkbox", CheckBoxStories);
-        await mount(UIPlaygroundView, target, { env: playgroundEnv });
+        await mount(UIPlaygroundView, target, { env });
 
         await click(target.querySelectorAll(".o_ui_playground_item")[1]);
         assert.containsN(target, ".ui_playground_tooltip", 3);
