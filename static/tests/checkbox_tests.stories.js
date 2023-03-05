@@ -48,13 +48,49 @@ export const storyB = {
     },
 };
 
+export const storyC = {
+    title: "CheckboxThirdStory",
+    component: CheckBox,
+    props: {
+        disabled: {
+            dynamic: true,
+            default: false,
+            help: "this is a magnificent tooltip"
+        },
+        value: {
+            dynamic: true,
+            default: true,
+            help: "Oh ! another tooltip"
+        },
+        className: {
+            dynamic: true,
+        },
+        name: {
+            default: "beautiful_name",
+            help: "Last but not least"
+        },
+    },
+};
+
 export const storyWithoutPropsDef = {
     title: "CheckboxThirdStory",
     component: CheckBox,
+};
+
+export const CheckBoxStoriesWithoutPropsDef = {
+    title: "CheckboxWithoutPropsDef",
+    module: "web",
+    stories: [storyWithoutPropsDef],
 };
 
 export const CheckBoxStories = {
     title: "Checkbox",
     module: "web",
     stories: [storyA, storyB],
+};
+
+export const CheckBoxStories2 = {
+    title: "CheckboxTwo",
+    module: "web2",
+    stories: [storyC],
 };
