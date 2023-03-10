@@ -10,25 +10,19 @@ class ColorListParent extends Component {
         component: ColorList,
         props: {
             canToggle: {
-                dynamic: true,
-                default: true,
+                value: true,
             },
             colors: {
-                default: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-            },
-            forceExpanded: {
-                dynamic: true,
+                value: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             },
             isExpanded: {
-                dynamic: true,
-                default: true,
+                value: true,
             },
             selectedColor: {
-                dynamic: true,
-                default: 9,
+                value: 9,
             },
             onColorSelected: {
-                default: getEventFunction("onColorSelected"),
+                value: getEventFunction("onColorSelected"),
             },
         },
     };

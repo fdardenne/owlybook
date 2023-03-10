@@ -11,19 +11,16 @@ class DatePickerParent extends Component {
         component: DatePicker,
         props: {
             placeholder: {
-                default: "Pick a date ...",
-                dynamic: true,
+                value: "Pick a date ...",
             },
             format: {
-                dynamic: true,
-                default: "dd/MM/yyyy",
+                value: "dd/MM/yyyy",
             },
             readonly: {
-                dynamic: true,
-                default: false,
+                value: false,
             },
             onDateTimeChanged: {
-                default: getEventFunction("onDateTimeChanged"),
+                value: getEventFunction("onDateTimeChanged"),
             },
         },
     };

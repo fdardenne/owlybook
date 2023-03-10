@@ -10,22 +10,17 @@ class CheckboxParent extends Component {
         title: "Checkbox",
         component: CheckBox,
         props: {
-            disabled: {
-                dynamic: true,
-            },
             value: {
-                dynamic: true,
-                default: true,
+                value: true,
             },
             className: {
-                dynamic: true,
-                default: "form-switch",
+                value: "form-switch",
             },
             name: {
-                default: "beautiful_name",
+                value: "beautiful_name",
             },
             onChange: {
-                default: getEventFunction("onChange"),
+                value: getEventFunction("onChange"),
             },
         },
     };

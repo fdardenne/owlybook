@@ -10,22 +10,18 @@ class CodeEditorParent extends Component {
         component: CodeEditor,
         props: {
             type: {
-                default: "qweb",
+                value: "qweb",
                 help: "Defines the language in the code editor",
+                readonly: true,
             },
             value: {
-                dynamic: true,
-                default: "<form/>",
-            },
-            class: {
-                dynamic: true,
+                value: "<form/>",
             },
             theme: {
-                dynamic: true,
-                default: "monokai",
+                value: "monokai",
             },
             onChange: {
-                default: getEventFunction("onChange"),
+                value: getEventFunction("onChange"),
             },
         },
     };

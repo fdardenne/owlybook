@@ -10,12 +10,8 @@ class AutoCompleteParent extends Component {
         title: "Autocomplete",
         component: AutoComplete,
         props: {
-            value: {
-                default: "",
-                dynamic: true,
-            },
             sources: {
-                default: [
+                value: [
                     {
                         placeholder: "Loading...",
                         options: [{ label: "First choice" }, { label: "Second choice" }],
@@ -24,29 +20,26 @@ class AutoCompleteParent extends Component {
                 help: "Change the search options when clicking on the text area",
             },
             placeholder: {
-                default: "Search order by customer ...",
-                dynamic: true,
+                value: "Search order by customer ...",
             },
             autoSelect: {
-                default: false,
-                dynamic: true,
+                value: false,
             },
             onSelect: {
-                default: getEventFunction("onSelect"),
+                value: getEventFunction("onSelect"),
                 help: "Function executed when we select an element of the search",
             },
             onInput: {
-                default: getEventFunction("onInput"),
+                value: getEventFunction("onInput"),
             },
             onChange: {
-                default: getEventFunction("onChange"),
+                value: getEventFunction("onChange"),
             },
             onFocus: {
-                default: getEventFunction("onFocus"),
+                value: getEventFunction("onFocus"),
             },
             resetOnSelect: {
-                default: true,
-                dynamic: true,
+                value: true,
                 help: "Reset the input when clicking on a searched element",
             },
         },
