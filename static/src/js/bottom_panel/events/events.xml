@@ -5,28 +5,11 @@
         <t t-set="uncollapsedObject" t-value="uncollapsed"/>
         <div class="m-3">
             <strong>Events triggered:</strong><br/>
-            <t t-foreach="storyEvents" t-as="event" t-key="event_index">
-                <t t-set="log_id" t-value="event_index"/>
-                <t t-call="ui_playground.events.object"/>
-            </t>
-        </div>
-    </t>
-
-    <t t-name="ui_playground.events.object" owl="1">
-        <span t-on-click="() => toggleCollapse(uncollapsedObject, log_id)" class="o_ui_playground_hover">
-            <i t-if="uncollapsedObject[log_id]" class="fa fa-caret-down me-2"/>
-            <i t-else="" class="fa fa-caret-right me-2"/>
-            <t t-esc="event.name"/> Triggered:
-            <span class="text-muted" t-if="!uncollapsedObject[log_id]">
-                <span>[...]</span> <br/>
-            </span>
-        </span>
-        <t t-if="uncollapsedObject[log_id]">
-            <ol class="mb-0">
-                <t t-foreach="event.argument" t-as="args" t-key="args_index">
-                    <li><t t-esc="args"/></li>
+            <ul>
+                <t t-foreach="storyEvents" t-as="event" t-key="event_index">
+                    <li><ObjectRenderer object="event.params" name="event.name"/></li>
                 </t>
-            </ol>
-        </t>
+            </ul>
+        </div>
     </t>
 </templates>

@@ -1,22 +1,15 @@
 /** @odoo-module **/
 
-import { Component, useState } from "@odoo/owl";
+import { Component } from "@odoo/owl";
 import { useStories } from "../../stories";
+import { ObjectRenderer } from "../../components/object_renderer/object_renderer";
 
 export class Events extends Component {
     static template = "ui_playground.events";
+    static components = { ObjectRenderer };
 
     setup() {
         this.stories = useStories();
-        this.uncollapsed = useState({});
-    }
-
-    toggleCollapse(uncollapsedObject, log_id) {
-        if (uncollapsedObject[log_id]) {
-            uncollapsedObject[log_id] = undefined;
-        } else {
-            uncollapsedObject[log_id] = {};
-        }
     }
 
     get storyEvents() {
