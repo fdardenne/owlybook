@@ -2,7 +2,7 @@
 
 import { reactive, useState, useEnv, useSubEnv } from "@odoo/owl";
 import { registry } from "@web/core/registry";
-import { attrsToXml } from "./utils";
+import { attrsToXml, arrayToSelectMenuArray } from "./utils";
 const storiesRegistry = registry.category("stories");
 let stories = undefined;
 
@@ -132,9 +132,9 @@ export class Stories {
             if (propsStoryConfig && propName in propsStoryConfig) {
                 propsStoryObject.dynamic = propsStoryConfig[propName].dynamic || false;
                 propsStoryObject.help = propsStoryConfig[propName].help || false;
-                propsStoryObject.choices = propsStoryConfig[propName].choices?.map((value) => {
-                    return { value, label: value };
-                });
+                propsStoryObject.choices = arrayToSelectMenuArray(
+                    propsStoryConfig[propName].choices
+                );
                 if ("default" in propsStoryConfig[propName]) {
                     propsStoryObject.value = propsStoryConfig[propName].default;
                 }
@@ -157,6 +157,10 @@ export class Stories {
                 for (const [subName, subValue] of Object.entries(attrsStoryConfig[attrsName])) {
                     if (subName !== "subAttrs") {
                         story.processedAttrs[`${attrsName}.${subName}`] = subValue;
+                        story.processedAttrs[`${attrsName}.${subName}`].choices =
+                            arrayToSelectMenuArray(
+                                story.processedAttrs[`${attrsName}.${subName}`].choices
+                            );
                     }
                 }
             } else {
