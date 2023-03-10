@@ -6,7 +6,7 @@ const serverData = {
     models: {
         foo: {
             fields: {
-                number: { string: "Password", type: "integer" },
+                number: { string: "Integer", type: "integer" },
             },
         },
     },

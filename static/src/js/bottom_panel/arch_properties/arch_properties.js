@@ -23,7 +23,7 @@ export class ArchProperties extends Component {
     }
 
     isDisabled(attrs) {
-        return false;
+        return !!attrs.readonly;
     }
 
     onChange(attrs, value) {
