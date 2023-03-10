@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="ui_playground.DatePickerStories" owl="1">
+        <h1> DatePicker </h1>
+
+        <p> The DatePicker component allows users to easily select a date from a calendar interface. </p>
+
+        <t t-call="ui_playground.DatePickerCall"/>
+
+        <p> Play with the props underneath and sees the results above!</p>
+    </t>
+
+    <t t-name="ui_playground.DatePickerCall" owl="1">
+        <DatePicker t-props="props.storyProps"/>
+    </t>
+
+</templates>

@@ -100,11 +100,14 @@ export class Stories {
         if (!(folder in this.stories[moduleName]["folders"])) {
             this.stories[moduleName]["folders"][folder] = { stories: [] };
         }
+        const storiesConfig = story.storyConfig ? story.storyConfig : story;
+        const parentComponent = story.storyConfig ? story : undefined;
         this.stories[moduleName]["folders"][folder].stories.push({
             id: this.counter++,
             moduleName,
             folder,
-            ...story,
+            ...storiesConfig,
+            parentComponent,
         });
     }
 

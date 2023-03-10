@@ -1,40 +1,47 @@
 /** @odoo-module */
 import { ColorList } from "@web/core/colorlist/colorlist";
 import { registry } from "@web/core/registry";
+import { Component } from "@odoo/owl";
+import { getEventFunction } from "../utils/utils";
 
-const storyA = {
-    title: "ColorListFirstStory",
-    component: ColorList,
-    props: {
-        canToggle: {
-            dynamic: true,
-            default: true,
+class ColorListParent extends Component {
+    static storyConfig = {
+        title: "ColorList",
+        component: ColorList,
+        props: {
+            canToggle: {
+                dynamic: true,
+                default: true,
+            },
+            colors: {
+                default: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            },
+            forceExpanded: {
+                dynamic: true,
+            },
+            isExpanded: {
+                dynamic: true,
+                default: true,
+            },
+            selectedColor: {
+                dynamic: true,
+                default: 9,
+            },
+            onColorSelected: {
+                default: getEventFunction("onColorSelected"),
+            },
         },
-        colors: {
-            default: [0, 4, 5, 6, 7, 8],
-        },
-        forceExpanded: {
-            dynamic: true,
-            default: true,
-        },
-        isExpanded: {
-            dynamic: true,
-            default: true,
-        },
-        selectedColor: {
-            dynamic: true,
-            default: 0,
-        },
-        onColorSelected: {
-             default: () => console.log("Select color"),
-        },
-    },
-};
+    };
+
+    static template = "ui_playground.ColorListStories";
+    static codeTemplate = "ui_playground.ColorListCall";
+    static components = { ColorList };
+}
 
 export const ColorListStories = {
-    title: "ColorList",
+    title: "Core components",
     module: "web",
-    stories: [storyA],
+    stories: [ColorListParent],
 };
 
 registry.category("stories").add("ui_playground.colorlist", ColorListStories);

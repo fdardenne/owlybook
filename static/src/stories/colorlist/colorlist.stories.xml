@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="ui_playground.ColorListStories" owl="1">
+        <h1> ColorList </h1>
+
+        <p> The ColorList components shows a color palet where users can select colors. </p>
+        <t t-call="ui_playground.ColorListCall"/>
+
+        <p> Colors are representend by their index in the following list: </p>
+        <ul>
+            <li>No color</li>
+            <li>Red</li>
+            <li>Orange</li>
+            <li>Yellow</li>
+            <li>Light blue</li>
+            <li>Dark purple</li>
+            <li>Salmon pink</li>
+            <li>Medium blue</li>
+            <li>Dark blue</li>
+            <li>Fuchsia</li>
+            <li>Green</li>
+            <li>Purple</li>
+        </ul>
+    </t>
+
+    <t t-name="ui_playground.ColorListCall" owl="1">
+        <ColorList t-props="props.storyProps"/>
+    </t>
+
+</templates>
