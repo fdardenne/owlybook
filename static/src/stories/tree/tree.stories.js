@@ -27,7 +27,7 @@ const serverData = {
 };
 
 const treeExample = {
-    title: "Tree example",
+    title: "Tree",
     model: "order",
     viewType: "list",
     arch: `<tree>

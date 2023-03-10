@@ -32,4 +32,6 @@ export const FormDocumentationLinkStories = {
     stories: [formWithDocumentationLink],
 };
 
-registry.category("stories").add("ui_playground.formWithDocumentationLink", FormDocumentationLinkStories);
+registry
+    .category("stories")
+    .add("ui_playground.formWithDocumentationLink", FormDocumentationLinkStories);

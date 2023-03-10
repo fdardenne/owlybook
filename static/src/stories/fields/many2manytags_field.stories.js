@@ -51,7 +51,7 @@ const attrs = {
             optional: true,
         },
         create: {
-            type: [Array, Boolean],
+            type: Boolean,
             optional: true,
         },
     },

@@ -27,7 +27,7 @@ const serverData = {
 };
 
 const formExample = {
-    title: "Form example",
+    title: "Form",
     model: "order",
     viewType: "form",
     arch: `<form>

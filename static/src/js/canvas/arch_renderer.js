@@ -9,6 +9,7 @@ import { View } from "@web/views/view";
 import { ORM } from "@web/core/orm_service";
 import { viewService } from "@web/views/view_service";
 import { createDebugContext } from "@web/core/debug/debug_context";
+
 export class ArchRenderer extends Component {
     static template = xml`
         <div t-if="state.hasError" class="alert alert-warning o_error_detail fw-bold m-auto">
@@ -25,13 +26,17 @@ export class ArchRenderer extends Component {
         this.stories = useStories();
         this.state = useState({ hasError: false });
         this.disableAutofocusElement = useRef("disableAutofocus");
-        onError((error) => {
-            // The arch has an error
-            this.state.hasError = true;
-            console.error(error);
-        });
+        // onError((error) => {
+        //     // The arch has an error
+        //     this.state.hasError = true;
+        //     console.error(error);
+        // });
 
-        this.props = { type: this.stories.active.viewType, resModel: this.stories.active.model };
+        this.props = {
+            type: this.stories.active.viewType,
+            resModel: this.stories.active.model,
+            resId: this.stories.active.resId,
+        };
         const serverData = { ...this.stories.active.serverData };
         serverData.views = serverData.views || {};
         this.props.viewId = 100000001;

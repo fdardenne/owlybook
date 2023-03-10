@@ -7,6 +7,7 @@ import { registry } from "@web/core/registry";
 import {
     fakeCompanyService,
     makeFakeLocalizationService,
+    makeFakeHTTPService,
 } from "@web/../tests/helpers/mock_services";
 import { session } from "@web/session";
 import { patch } from "@web/core/utils/patch";
@@ -34,6 +35,7 @@ owl.whenReady(async () => {
         },
         { force: true }
     );
+    serviceRegistry.add("http", makeFakeHTTPService(), { force: true });
 
     await startServices(env);
 

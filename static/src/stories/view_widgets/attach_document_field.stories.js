@@ -14,8 +14,8 @@ const serverData = {
 };
 
 const attrs = {
-    string: { type: String },
-    action: { type: String, optional: true },
+    string: { type: String, value: "Attach document" },
+    action: { type: String, optional: true, value: "my_action", readonly: true },
     highlight: { type: Boolean },
 };
 
@@ -26,11 +26,18 @@ const formWithAttachDocument = {
     attrs,
     arch: `<form>
     <sheet>
-        <widget name="attach_document" action="my_action" string="Attach document"/>
-        <field name="display_name" required="1"/>
+        <group>
+            <field name="display_name" required="1"/>
+            <widget name="attach_document" {{attrs}}/>
+        </group>
     </sheet>
 </form>`,
     serverData,
+    mockRPC(route, args) {
+        if (args.method === "my_action") {
+            return false;
+        }
+    },
 };
 
 export const FormAttachDocumentStories = {
