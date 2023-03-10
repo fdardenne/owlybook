@@ -37,6 +37,9 @@ const formWithRibbon = {
     arch: `<form>
     <sheet>
         <widget name="web_ribbon" {{attrs}}/>
+            <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id tellus et enim sodales lacinia. Ut non pellentesque nunc, eu volutpat metus. Donec vitae dapibus purus, quis pretium tellus. In vehicula ligula sed finibus tempus. Sed sit amet efficitur tortor. Nunc non augue diam. Mauris in mauris hendrerit, malesuada felis vel, rhoncus nulla. Aliquam nisi magna, rhoncus non scelerisque in, eleifend ut turpis. Phasellus in ornare tortor, id fermentum justo. In sed cursus enim.
+            </div>
     </sheet>
 </form>`,
     serverData,

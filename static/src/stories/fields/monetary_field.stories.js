@@ -56,6 +56,7 @@ const attrs = {
     type: {
         type: String,
         optional: true,
+        choices: ["text", "number"],
     },
 };
 

@@ -7,6 +7,7 @@ const serverData = {
         partner: {
             fields: {
                 document: { string: "Binary", type: "binary" },
+                filename: { string: "Filename", type: "char" },
             },
         },
     },
@@ -28,6 +29,7 @@ const attrs = {
     filename: {
         type: String,
         optional: true,
+        value: "filename",
     },
 };
 
@@ -40,6 +42,7 @@ const formWithBinaryField = {
     <sheet>
         <group>
             <field name="document" {{attrs}}/>
+            <field name="filename"/>
         </group>
     </sheet>
 </form>`,

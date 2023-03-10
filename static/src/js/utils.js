@@ -4,6 +4,9 @@ function formatValueForAttrs(value) {
     if (value === false || value === true) {
         return value;
     }
+    if (Array.isArray(value)) {
+        return `[${value}]`;
+    }
     return `'${value}'`;
 }
 

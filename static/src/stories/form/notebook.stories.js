@@ -12,9 +12,7 @@ const serverData = {
 };
 
 const attrs = {
-    className: { type: String, optional: true },
-    defaultPage: { type: String, optional: true },
-    orientation: { type: String, optional: true },
+    class: { type: String, optional: true },
 };
 
 const formWithNotebook = {
@@ -24,8 +22,16 @@ const formWithNotebook = {
     attrs,
     arch: `<form>
     <sheet>
-        <notebook>
-            <page string="Options">
+        <notebook {{attrs}}>
+            <page string="First page">
+                <div>
+                    Hello
+                </div>
+            </page>
+            <page string="Second page">
+                <div>
+                    World
+                </div>
             </page>
         </notebook>
     </sheet>

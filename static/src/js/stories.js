@@ -168,6 +168,9 @@ export class Stories {
                 }
             } else {
                 story.processedAttrs[attrsName] = value;
+                story.processedAttrs[attrsName].choices = arrayToSelectMenuArray(
+                    story.processedAttrs[attrsName].choices
+                );
             }
         }
     }

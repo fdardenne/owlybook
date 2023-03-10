@@ -6,7 +6,7 @@ const serverData = {
     models: {
         foo: {
             fields: {
-                image: { string: "Binary", type: "binary" },
+                image: { string: "Image", type: "binary" },
             },
         },
     },
@@ -19,13 +19,15 @@ const attrs = {
     },
     options: {
         subAttrs: true,
-        type: {
+        size: {
             type: Array,
             choices: [
-                { label: "[0,90]", value: [0, 90] },
                 { label: "[0,30]", value: [0, 30] },
+                { label: "[0,90]", value: [0, 90] },
+                { label: "[0,180]", value: [0, 180] },
+                { label: "[0,300]", value: [0, 300] },
             ],
-            value: [0, 30],
+            value: [0, 180],
         },
     },
 };

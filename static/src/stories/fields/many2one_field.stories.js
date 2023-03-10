@@ -48,16 +48,46 @@ const mockRPC = function (route, args) {
 };
 
 const attrs = {
+    placeholder: {
+        type: String,
+        optional: true,
+    },
+    can_write: {
+        type: Boolean,
+        optional: true,
+    },
+    can_create: {
+        type: Boolean,
+        optional: true,
+    },
     options: {
         subAttrs: true,
-        no_create: {
+        no_open: {
             type: Boolean,
+            optional: true,
+        },
+        no_quick_create: {
+            type: Boolean,
+            optional: true,
+        },
+        no_create_edit: {
+            type: Boolean,
+            optional: true,
+        },
+        can_scan_barcode: {
+            type: Boolean,
+            optional: true,
+        },
+        create_name_field: {
+            type: String,
+            optional: true,
+            readonly: true,
         },
     },
 };
 
 const formWithMany2oneField = {
-    title: "Many2one form view",
+    title: "Many2one field",
     model: "foo",
     viewType: "form",
     attrs,
@@ -73,7 +103,7 @@ const formWithMany2oneField = {
 };
 
 const Many2oneStories = {
-    title: "Many2one Field",
+    title: "Fields",
     module: "web",
     stories: [formWithMany2oneField],
 };
