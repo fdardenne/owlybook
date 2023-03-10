@@ -133,13 +133,13 @@ export class Stories {
             propsStoryObject.optional = value.optional || false;
 
             if (propsStoryConfig && propName in propsStoryConfig) {
-                propsStoryObject.dynamic = propsStoryConfig[propName].dynamic || false;
+                propsStoryObject.readonly = propsStoryConfig[propName].readonly || false;
                 propsStoryObject.help = propsStoryConfig[propName].help || false;
                 propsStoryObject.choices = arrayToSelectMenuArray(
                     propsStoryConfig[propName].choices
                 );
-                if ("default" in propsStoryConfig[propName]) {
-                    propsStoryObject.value = propsStoryConfig[propName].default;
+                if ("value" in propsStoryConfig[propName]) {
+                    propsStoryObject.value = propsStoryConfig[propName].value;
                 }
             }
         }

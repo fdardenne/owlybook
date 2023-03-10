@@ -31,7 +31,7 @@ export class Props extends Component {
     }
 
     isDisabled(prop) {
-        return !prop.dynamic;
+        return prop.readonly;
     }
 
     onChange(props, value) {
