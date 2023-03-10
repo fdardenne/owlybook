@@ -7,9 +7,9 @@ export function getEventFunction(name) {
 }
 
 export function onEvent(name, args) {
-    const argument = [];
+    const params = {};
     for (let i = 0; i < args.length; i++) {
-        argument.push("args " + i + ": " + args[i]);
+        params[`arg #${i}`] = args[i];
     }
-    getStories().active.events.push({ name, argument });
+    getStories().active.events.push({ name, params });
 }
