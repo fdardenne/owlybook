@@ -3,8 +3,8 @@
 import { Component, useState } from "@odoo/owl";
 import { useStories } from "../../stories";
 
-export class Logs extends Component {
-    static template = "ui_playground.logs";
+export class Events extends Component {
+    static template = "ui_playground.events";
 
     setup() {
         this.stories = useStories();

@@ -7,8 +7,8 @@
                 <li class="nav-item" t-if="tabsAvailability['props']">
                     <a t-attf-class="nav-link {{mode === 'props' ? 'active' : ''}}" class="nav-link" aria-current="page" href="#" t-on-click="() => this.changeMode('props')">Props</a>
                 </li>
-                <li class="nav-item" t-if="tabsAvailability['logs']">
-                    <a t-attf-class="nav-link {{mode === 'logs' ? 'active' : ''}}" class="nav-link" aria-current="page" href="#" t-on-click="() => this.changeMode('logs')">Logs</a>
+                <li class="nav-item" t-if="tabsAvailability['events']">
+                    <a t-attf-class="nav-link {{mode === 'events' ? 'active' : ''}}" class="nav-link" aria-current="page" href="#" t-on-click="() => this.changeMode('events')">Events</a>
                 </li>
                 <li class="nav-item d-flex flex-row" t-if="tabsAvailability['code']">
                     <a t-attf-class="nav-link {{mode === 'code' ? 'active': ''}}" t-on-click="() => this.changeMode('code')" href="#">Code</a>
@@ -27,8 +27,8 @@
             <t t-elif="mode === 'code'">
                 <CodeEditor type="'qweb'" value="stories.active.dirtyArch || stories.activeArch" onChange="value => stories.active.dirtyArch = value" id="'studioXmlEditor'" />
             </t>
-            <t t-elif="mode === 'logs'">
-                <Logs/>
+            <t t-elif="mode === 'events'">
+                <Events/>
             </t>
         </div>
     </t>
