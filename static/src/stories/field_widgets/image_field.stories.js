@@ -22,12 +22,12 @@ const attrs = {
         type: {
             type: Array,
             choices: [
-                {label: "[0,90]", value:[0, 90]},
-                {label: "[0,30]", value:[0, 30]},
+                { label: "[0,90]", value: [0, 90] },
+                { label: "[0,30]", value: [0, 30] },
             ],
             value: [0, 30],
         },
-    }
+    },
 };
 
 const formWithImageField = {

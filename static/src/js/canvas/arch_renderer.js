@@ -9,7 +9,6 @@ import { View } from "@web/views/view";
 import { ORM } from "@web/core/orm_service";
 import { viewService } from "@web/views/view_service";
 import { createDebugContext } from "@web/core/debug/debug_context";
-
 export class ArchRenderer extends Component {
     static template = xml`
         <div t-if="state.hasError" class="alert alert-warning o_error_detail fw-bold m-auto">
@@ -26,7 +25,6 @@ export class ArchRenderer extends Component {
         this.stories = useStories();
         this.state = useState({ hasError: false });
         this.disableAutofocusElement = useRef("disableAutofocus");
-
         onError((error) => {
             // The arch has an error
             this.state.hasError = true;
@@ -66,7 +64,6 @@ export class ArchRenderer extends Component {
         };
 
         const rpcService = makeFakeRPCService(_mockRPC).start();
-
         // setup legacy rpc fake service for the form view basic relational model
         // @ts-ignore
         owl.Component.env.session.rpc = (...args) => {
