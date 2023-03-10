@@ -24,8 +24,8 @@
         </ul>
     </t>
 
-    <t t-name="ui_playground.ColorListCall" owl="1">
-        <ColorList t-props="props.storyProps"/>
-    </t>
+<t t-name="ui_playground.ColorListCall" owl="1">
+<ColorList t-props="props.storyProps"/>
+</t>
 
 </templates>

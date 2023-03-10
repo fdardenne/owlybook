@@ -14,8 +14,8 @@
         Play with the props underneath and sees the results above!
     </t>
 
-    <t t-name="ui_playground.AutoCompleteCall" owl="1">
-        <AutoComplete t-props="props.storyProps"/>
-    </t>
+<t t-name="ui_playground.AutoCompleteCall" owl="1">
+<AutoComplete t-props="props.storyProps"/>
+</t>
 
 </templates>

@@ -12,8 +12,8 @@
         <p> Play with the props underneath and sees the results above!</p>
     </t>
 
-    <t t-name="ui_playground.CodeEditorCall" owl="1">
-        <CodeEditor t-props="props.storyProps"/>
-    </t>
+<t t-name="ui_playground.CodeEditorCall" owl="1">
+<CodeEditor t-props="props.storyProps"/>
+</t>
 
 </templates>
