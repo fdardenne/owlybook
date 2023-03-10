@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+<t t-name="ui_playground.CheckBoxStories" owl="1">
+    <h1> CheckBox </h1>
+
+    <span> The checkbox component is a graphical user interface element that represents a binary
+    option, i.e., a choice between two mutually exclusive states, such as "yes" or "no", "true" or
+    "false", etc. </span>
+
+    <t t-call="ui_playground.CheckBoxCall"/>
+
+    Play with the props underneath and sees the results above!
+</t>
+
+<t t-name="ui_playground.CheckBoxCall" owl="1">
+    <CheckBox t-props="props.storyProps"/>
+</t>
+
+</templates>

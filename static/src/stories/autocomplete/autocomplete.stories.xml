@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="ui_playground.AutoCompleteStories" owl="1">
+        <h1> AutoComplete </h1>
+
+        <p> The autocomplete component is a user interface element that allows users to quickly
+        search and select from a pre-defined list of options. <br/>
+        It works by dynamically filtering the list of options based on the user's input,
+        presenting only those options that match the user's typed input.</p>
+
+        <t t-call="ui_playground.AutoCompleteCall"/>
+
+        Play with the props underneath and sees the results above!
+    </t>
+
+    <t t-name="ui_playground.AutoCompleteCall" owl="1">
+        <AutoComplete t-props="props.storyProps"/>
+    </t>
+
+</templates>

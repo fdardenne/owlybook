@@ -3,7 +3,7 @@
 <templates>
     <t t-name="ui_playground.canvas" owl="1">
         <div class="o_canvas_page d-flex flex-column">
-            <div class="o_canvas_sheet h-100">
+            <div class="o_canvas_sheet h-100 overflow-auto">
                 <t t-if="stories.active.arch">
                     <ArchRenderer t-key="stories.activeArch"/>
                 </t>

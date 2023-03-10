@@ -6,7 +6,7 @@ import { useStories } from "../stories";
 export class ComponentRenderer extends Component {
     static template = xml`
         <t t-if="stories.active.component">
-            <t t-component="stories.active.component" t-props="storyProps" t-key="propsKey"/>
+            <t t-component="stories.active.parentComponent" storyProps="storyProps" t-key="propsKey"/>
         </t>
     `;
 

@@ -1,59 +1,44 @@
 /** @odoo-module */
 
+import { Component, xml } from "@odoo/owl";
 import { CheckBox } from "@web/core/checkbox/checkbox";
 import { registry } from "@web/core/registry";
 import { getEventFunction } from "../utils/utils";
 
-const storyA = {
-    title: "CheckboxFirstStory",
-    component: CheckBox,
-    props: {
-        disabled: {
-            dynamic: true,
-            default: true,
+class CheckboxParent extends Component {
+    static storyConfig = {
+        title: "Checkbox",
+        component: CheckBox,
+        props: {
+            disabled: {
+                dynamic: true,
+            },
+            value: {
+                dynamic: true,
+                default: true,
+            },
+            className: {
+                dynamic: true,
+                default: "form-switch",
+            },
+            name: {
+                default: "beautiful_name",
+            },
+            onChange: {
+                default: getEventFunction("onChange"),
+            },
         },
-        value: {
-            dynamic: true,
-            default: true,
-        },
-        className: {
-            dynamic: true,
-            default: "form-switch",
-        },
-        name: {
-            default: "beautiful_name",
-        },
-        onChange: {
-            default: getEventFunction("onChange"),
-        },
-    },
-};
+    };
 
-const storyB = {
-    title: "CheckboxSecondStory",
-    component: CheckBox,
-    props: {
-        disabled: {
-            dynamic: true,
-            default: false,
-        },
-        value: {
-            dynamic: true,
-            default: true,
-        },
-        className: {
-            dynamic: true,
-        },
-        name: {
-            default: "beautiful_name",
-        },
-    },
-};
+    static template = "ui_playground.CheckBoxStories";
+    static codeTemplate = "ui_playground.CheckBoxCall";
+    static components = { CheckBox };
+}
 
 export const CheckBoxStories = {
-    title: "Checkbox",
+    title: "Core components",
     module: "web",
-    stories: [storyA, storyB],
+    stories: [CheckboxParent],
 };
 
 registry.category("stories").add("ui_playground.checkbox", CheckBoxStories);
