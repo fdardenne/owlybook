@@ -5,31 +5,32 @@ import { CodeEditor } from "../../js/components/code_editor/code_editor";
 import { getEventFunction } from "../utils/utils";
 
 class CodeEditorParent extends Component {
-    static storyConfig = {
-        title: "CodeEditor",
-        component: CodeEditor,
-        props: {
-            type: {
-                value: "qweb",
-                help: "Defines the language in the code editor",
-                readonly: true,
-            },
-            value: {
-                value: "<form/>",
-            },
-            theme: {
-                value: "monokai",
-            },
-            onChange: {
-                value: getEventFunction("onChange"),
-            },
-        },
-    };
-
     static template = "ui_playground.CodeEditorStories";
-    static codeTemplate = "ui_playground.CodeEditorCall";
     static components = { CodeEditor };
 }
+
+CodeEditorParent.codeTemplate = "ui_playground.CodeEditorCall";
+CodeEditorParent.storyConfig = {
+    title: "CodeEditor",
+    component: CodeEditor,
+    props: {
+        type: {
+            value: "qweb",
+            help: "Defines the language in the code editor",
+            readonly: true,
+        },
+        value: {
+            value: "<form/>",
+        },
+        theme: {
+            value: "monokai",
+        },
+        onChange: {
+            value: getEventFunction("onChange"),
+        },
+    },
+    noCode: true,
+};
 
 export const CodeEditorStories = {
     title: "Core components",

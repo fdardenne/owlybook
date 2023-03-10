@@ -14,7 +14,7 @@
 </t>
 
 <t t-name="ui_playground.CheckBoxCall" owl="1">
-    <CheckBox t-props="props.storyProps"/>
+<CheckBox t-props="props.storyProps"/>
 </t>
 
 </templates>

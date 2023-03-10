@@ -10,6 +10,12 @@
                 <li class="nav-item" t-if="tabsAvailability['events']">
                     <a t-attf-class="nav-link {{mode === 'events' ? 'active' : ''}}" class="nav-link" aria-current="page" href="#" t-on-click="() => this.changeMode('events')">Events</a>
                 </li>
+                <li class="nav-item" t-if="tabsAvailability['js']">
+                    <a t-attf-class="nav-link {{mode === 'js' ? 'active' : ''}}" class="nav-link" aria-current="page" href="#" t-on-click="() => this.changeMode('js')">JavaScript</a>
+                </li>
+                <li class="nav-item" t-if="tabsAvailability['xml']">
+                    <a t-attf-class="nav-link {{mode === 'xml' ? 'active' : ''}}" class="nav-link" aria-current="page" href="#" t-on-click="() => this.changeMode('xml')">Template</a>
+                </li>
                 <li class="nav-item d-flex flex-row" t-if="tabsAvailability['code']">
                     <a t-attf-class="nav-link {{mode === 'code' ? 'active': ''}}" t-on-click="() => this.changeMode('code')" href="#">Code</a>
                     <button t-if="isArchDirty and mode === 'code'" t-on-click="saveDirtyArch" class="btn btn-secondary oe-inline ms-auto"> Render </button>
@@ -29,6 +35,9 @@
             </t>
             <t t-elif="mode === 'events'">
                 <Events/>
+            </t>
+            <t t-elif="mode === 'js' or mode === 'xml'">
+                <ComponentCode mode="mode" t-key="mode"/>
             </t>
         </div>
     </t>

@@ -5,32 +5,31 @@ import { Component } from "@odoo/owl";
 import { getEventFunction } from "../utils/utils";
 
 class ColorListParent extends Component {
-    static storyConfig = {
-        title: "ColorList",
-        component: ColorList,
-        props: {
-            canToggle: {
-                value: true,
-            },
-            colors: {
-                value: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-            },
-            isExpanded: {
-                value: true,
-            },
-            selectedColor: {
-                value: 9,
-            },
-            onColorSelected: {
-                value: getEventFunction("onColorSelected"),
-            },
-        },
-    };
-
     static template = "ui_playground.ColorListStories";
-    static codeTemplate = "ui_playground.ColorListCall";
     static components = { ColorList };
 }
+ColorListParent.codeTemplate = "ui_playground.ColorListCall";
+ColorListParent.storyConfig = {
+    title: "ColorList",
+    component: ColorList,
+    props: {
+        canToggle: {
+            value: true,
+        },
+        colors: {
+            value: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        },
+        isExpanded: {
+            value: true,
+        },
+        selectedColor: {
+            value: 9,
+        },
+        onColorSelected: {
+            value: getEventFunction("onColorSelected"),
+        },
+    },
+};
 
 export const ColorListStories = {
     title: "Core components",
