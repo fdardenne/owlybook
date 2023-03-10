@@ -52,7 +52,7 @@ const formWithCharField = {
 };
 
 export const FormStories = {
-    title: "Char Field",
+    title: "Fields",
     module: "web",
     stories: [formWithCharField],
 };

@@ -42,3 +42,13 @@ export function attrsToXml(attrs) {
 
     return xml;
 }
+
+export function arrayToSelectMenuArray(choices) {
+    return choices?.map((value) => {
+        if (typeof value !== "object") {
+            return { value, label: value };
+        } else {
+            return value;
+        }
+    });
+}

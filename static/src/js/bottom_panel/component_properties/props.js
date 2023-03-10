@@ -3,7 +3,7 @@
 import { Component } from "@odoo/owl";
 import { useStories } from "../../stories";
 import { ObjectRenderer } from "../../components/object_renderer/object_renderer";
-import { SelectMenu } from "@web/core/select_menu/select_menu";
+import { SelectMenu } from "../../components/select_menu/select_menu";
 
 export class Props extends Component {
     static template = "ui_playground.properties";
