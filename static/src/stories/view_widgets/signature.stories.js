@@ -53,4 +53,4 @@ export const FormSignatureStories = {
     stories: [formWithSignature],
 };
 
-registry.category("stories").add("ui_playground.formWithSignature", FormSignatureStories);
+registry.category("stories").add("owlybook.formWithSignature", FormSignatureStories);

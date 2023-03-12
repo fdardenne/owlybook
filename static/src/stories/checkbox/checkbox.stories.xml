@@ -14,7 +14,9 @@
 </t>
 
 <t t-name="owlybook.CheckBoxCall" owl="1">
-<CheckBox t-props="props.storyProps"/>
+<CheckBox t-props="props.storyProps">
+    label
+</CheckBox>
 </t>
 
 </templates>

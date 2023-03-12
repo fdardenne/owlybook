@@ -70,7 +70,7 @@
             </t>
         </t>
         <t t-elif="propType === 'Function'">
-            <t t-esc="propValue"/>
+            <t t-esc="propValue?.name"/>
         </t>
         <t t-else="">
             <input t-att-disabled="1" class="o_input w-50"/>
