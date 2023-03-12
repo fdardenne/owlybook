@@ -1,12 +1,23 @@
 /** @odoo-module */
 import { ColorList } from "@web/core/colorlist/colorlist";
 import { registry } from "@web/core/registry";
-import { Component } from "@odoo/owl";
+import { Component, onMounted } from "@odoo/owl";
 import { getEventFunction } from "../utils/utils";
 
 class ColorListParent extends Component {
     static template = "owlybook.ColorListStories";
     static components = { ColorList };
+
+    setup() {
+        onMounted(() => {
+            this.props.changeProps("onColorSelected", this.onColorSelected.bind(this));
+        });
+    }
+
+    onColorSelected(colorNumber) {
+        getEventFunction("onColorSelected")(colorNumber);
+        this.props.changeProps("selectedColor", colorNumber);
+    }
 }
 ColorListParent.codeTemplate = "owlybook.ColorListCall";
 ColorListParent.storyConfig = {
@@ -24,9 +35,6 @@ ColorListParent.storyConfig = {
         },
         selectedColor: {
             value: 9,
-        },
-        onColorSelected: {
-            value: getEventFunction("onColorSelected"),
         },
     },
 };

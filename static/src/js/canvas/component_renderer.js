@@ -6,7 +6,7 @@ import { useStories } from "../stories";
 export class ComponentRenderer extends Component {
     static template = xml`
         <t t-if="stories.active.component">
-            <t t-component="stories.active.parentComponent" storyProps="storyProps" t-key="propsKey"/>
+            <t t-component="stories.active.parentComponent" storyProps="storyProps" changeProps.bind="changeProps"/>
         </t>
     `;
 
@@ -20,6 +20,10 @@ export class ComponentRenderer extends Component {
             finalProps[propName] = config.value;
         }
         return finalProps;
+    }
+
+    changeProps(name, value) {
+        this.stories.active.processedProps[name].value = value;
     }
 
     get propsKey() {

@@ -3,7 +3,12 @@
 import { getStories } from "../../js/stories";
 
 export function getEventFunction(name) {
-    return (...args) => onEvent(name, args);
+    const functionName = "trigger event " + name;
+    return {
+        [functionName](...args) {
+            onEvent(name, args);
+        },
+    }[functionName];
 }
 
 export function onEvent(name, args) {
