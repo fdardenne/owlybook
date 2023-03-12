@@ -6,7 +6,7 @@ import { cleanStoriesRegistry, setupPlaygroundRegistries, makePlaygroundView } f
 
 let target;
 
-QUnit.module("UI Playground", (hooks) => {
+QUnit.module("Owlybook", (hooks) => {
     hooks.beforeEach(async () => {
         target = getFixture();
         cleanStoriesRegistry();
@@ -20,7 +20,7 @@ QUnit.module("UI Playground", (hooks) => {
             checkbox: CheckBoxStoriesWithoutPropsDef,
         });
 
-        await click(target.querySelector(".o_ui_playground_item"));
+        await click(target.querySelector(".o_owlybook_item"));
         assert.containsOnce(target, ".o-checkbox");
 
         const namesElement = document.querySelectorAll("tr td:first-child");
@@ -36,7 +36,7 @@ QUnit.module("UI Playground", (hooks) => {
             checkbox: CheckBoxStoriesWithoutPropsDef,
         });
 
-        await click(target.querySelector(".o_ui_playground_item"));
+        await click(target.querySelector(".o_owlybook_item"));
         assert.containsOnce(target, ".o-checkbox");
 
         const namesElement = document.querySelectorAll("tr td:nth-child(2)");
@@ -60,10 +60,10 @@ QUnit.module("UI Playground", (hooks) => {
             checkbox: CheckBoxStories,
         });
 
-        await click(target.querySelectorAll(".o_ui_playground_item")[1]);
-        assert.containsN(target, ".ui_playground_tooltip", 3);
+        await click(target.querySelectorAll(".o_owlybook_item")[1]);
+        assert.containsN(target, ".owlybook_tooltip", 3);
 
-        const tooltips = document.querySelectorAll(".ui_playground_tooltip");
+        const tooltips = document.querySelectorAll(".owlybook_tooltip");
         assert.hasAttrValue(
             tooltips[0],
             "data-tooltip",

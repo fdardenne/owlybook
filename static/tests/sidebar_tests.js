@@ -6,7 +6,7 @@ import { cleanStoriesRegistry, setupPlaygroundRegistries, makePlaygroundView } f
 
 let target;
 
-QUnit.module("UI Playground", (hooks) => {
+QUnit.module("Owlybook", (hooks) => {
     hooks.beforeEach(async () => {
         target = getFixture();
         cleanStoriesRegistry();
@@ -20,39 +20,39 @@ QUnit.module("UI Playground", (hooks) => {
             checkbox: CheckBoxStories,
         });
 
-        assert.containsN(target, ".o_ui_playground_module", 1);
+        assert.containsN(target, ".o_owlybook_module", 1);
 
         assert.strictEqual(
-            target.querySelector(".o_ui_playground_module").textContent,
+            target.querySelector(".o_owlybook_module").textContent,
             "web",
             "web should be the first module"
         );
 
         // two "folders", one for the introduction and one for checkbox
-        assert.containsN(target, ".o_ui_playground_folder", 2);
+        assert.containsN(target, ".o_owlybook_folder", 2);
 
         assert.strictEqual(
-            target.querySelectorAll(".o_ui_playground_folder")[0].textContent,
+            target.querySelectorAll(".o_owlybook_folder")[0].textContent,
             "Introduction",
             "Introduction should be the first folder"
         );
 
         assert.strictEqual(
-            target.querySelectorAll(".o_ui_playground_folder")[1].textContent,
+            target.querySelectorAll(".o_owlybook_folder")[1].textContent,
             "Checkbox",
             "Checkbox should be the second folder"
         );
 
-        assert.containsN(target, ".o_ui_playground_item", 2);
+        assert.containsN(target, ".o_owlybook_item", 2);
 
         assert.strictEqual(
-            target.querySelector(".o_ui_playground_item").textContent,
+            target.querySelector(".o_owlybook_item").textContent,
             "CheckboxFirstStory",
             "CheckboxFirstStory should be the first story"
         );
 
         assert.strictEqual(
-            target.querySelectorAll(".o_ui_playground_item:first-child")[1].textContent,
+            target.querySelectorAll(".o_owlybook_item:first-child")[1].textContent,
             "CheckboxSecondStory",
             "CheckboxSecondStory should be the second story"
         );
@@ -63,15 +63,15 @@ QUnit.module("UI Playground", (hooks) => {
             checkbox: CheckBoxStories,
         });
 
-        assert.containsN(target, ".o_ui_playground_item", 2);
+        assert.containsN(target, ".o_owlybook_item", 2);
 
         // fold
-        await click(target.querySelectorAll(".o_ui_playground_folder")[1]);
-        assert.containsN(target, ".o_ui_playground_item", 0);
+        await click(target.querySelectorAll(".o_owlybook_folder")[1]);
+        assert.containsN(target, ".o_owlybook_item", 0);
 
         // unfold
-        await click(target.querySelectorAll(".o_ui_playground_folder")[1]);
-        assert.containsN(target, ".o_ui_playground_item", 2);
+        await click(target.querySelectorAll(".o_owlybook_folder")[1]);
+        assert.containsN(target, ".o_owlybook_item", 2);
     });
 
     QUnit.test("Clicking on a module fold/unfold it", async (assert) => {
@@ -79,18 +79,18 @@ QUnit.module("UI Playground", (hooks) => {
             checkbox: CheckBoxStories,
         });
 
-        assert.containsN(target, ".o_ui_playground_item", 2);
-        assert.containsN(target, ".o_ui_playground_folder", 2);
+        assert.containsN(target, ".o_owlybook_item", 2);
+        assert.containsN(target, ".o_owlybook_folder", 2);
 
         // fold
-        await click(target.querySelector(".o_ui_playground_module"));
-        assert.containsN(target, ".o_ui_playground_item", 0);
-        assert.containsN(target, ".o_ui_playground_folder", 1);
+        await click(target.querySelector(".o_owlybook_module"));
+        assert.containsN(target, ".o_owlybook_item", 0);
+        assert.containsN(target, ".o_owlybook_folder", 1);
 
         // unfold
-        await click(target.querySelector(".o_ui_playground_module"));
-        assert.containsN(target, ".o_ui_playground_item", 2);
-        assert.containsN(target, ".o_ui_playground_folder", 2);
+        await click(target.querySelector(".o_owlybook_module"));
+        assert.containsN(target, ".o_owlybook_item", 2);
+        assert.containsN(target, ".o_owlybook_folder", 2);
     });
 
     QUnit.test("Searchbar is filtering stories", async (assert) => {
@@ -100,18 +100,18 @@ QUnit.module("UI Playground", (hooks) => {
         });
 
         assert.containsOnce(target, ".o_searchview_input");
-        assert.containsN(target, ".o_ui_playground_item", 3);
-        assert.containsN(target, ".o_ui_playground_folder", 3);
+        assert.containsN(target, ".o_owlybook_item", 3);
+        assert.containsN(target, ".o_owlybook_folder", 3);
 
         editInput(target, "input.o_searchview_input", "F");
         await nextTick();
 
         assert.containsOnce(target, ".o_searchview_input");
-        assert.containsN(target, ".o_ui_playground_item", 1);
-        assert.containsN(target, ".o_ui_playground_folder", 2);
+        assert.containsN(target, ".o_owlybook_item", 1);
+        assert.containsN(target, ".o_owlybook_folder", 2);
 
         assert.strictEqual(
-            target.querySelector(".o_ui_playground_item").textContent,
+            target.querySelector(".o_owlybook_item").textContent,
             "CheckboxFirstStory",
             "CheckboxFirstStory should be the only one displayed"
         );

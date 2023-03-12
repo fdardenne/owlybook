@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
 
-    <t t-name="ui_playground.ObjectRenderer" owl="1">
+    <t t-name="owlybook.ObjectRenderer" owl="1">
         <t t-set="name" t-value="props.name"/>
         <t t-set="object" t-value="props.object"/>
         <t t-set="uncollapsedObject" t-value="uncollapsed"
-        <t t-call="ui_playground.ObjectRenderer.object"/>
+        <t t-call="owlybook.ObjectRenderer.object"/>
     </t>
 
-    <t t-name="ui_playground.ObjectRenderer.object" owl="1">
+    <t t-name="owlybook.ObjectRenderer.object" owl="1">
         <t t-if="object and isObject(object)">
-            <span t-on-click="() => toggleCollapse(uncollapsedObject, name)" class="o_ui_playground_hover">
+            <span t-on-click="() => toggleCollapse(uncollapsedObject, name)" class="o_owlybook_hover">
                 <i t-if="uncollapsedObject[name]" class="fa fa-caret-down"></i>
                 <i t-else="" class="fa fa-caret-right"></i>
                 <span> <t t-esc="name"/>: </span>
@@ -23,7 +23,7 @@
                 <ul class="m-0">
                     <t t-foreach="Object.keys(object)" t-as="subObject" t-key="subObject">
                         <li class="ms-4">
-                            <t t-call="ui_playground.ObjectRenderer.object">
+                            <t t-call="owlybook.ObjectRenderer.object">
                                 <t t-set="uncollapsedObject" t-value="uncollapsedObject[name]"/>
                                 <t t-set="name" t-value="subObject"/>
                                 <t t-set="object" t-value="object[subObject]"/>

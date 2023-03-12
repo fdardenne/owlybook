@@ -65,4 +65,4 @@ export const FormStatusBarStories = {
     stories: [formWithStatusBarField],
 };
 
-registry.category("stories").add("ui_playground.formWithStatusBarField", FormStatusBarStories);
+registry.category("stories").add("owlybook.formWithStatusBarField", FormStatusBarStories);

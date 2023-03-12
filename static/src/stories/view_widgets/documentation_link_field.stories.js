@@ -34,4 +34,4 @@ export const FormDocumentationLinkStories = {
 
 registry
     .category("stories")
-    .add("ui_playground.formWithDocumentationLink", FormDocumentationLinkStories);
+    .add("owlybook.formWithDocumentationLink", FormDocumentationLinkStories);

@@ -101,8 +101,8 @@ export class Sidebar extends Component {
 
     showIntroduction() {
         this.stories.resetActive();
-        window.history.pushState(null, "", "ui_playground");
+        window.history.pushState(null, "", "owlybook");
     }
 }
 
-Sidebar.template = "ui_playground.Sidebar";
+Sidebar.template = "owlybook.Sidebar";

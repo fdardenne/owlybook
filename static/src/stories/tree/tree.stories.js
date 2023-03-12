@@ -43,4 +43,4 @@ export const TreeStories = {
     stories: [treeExample],
 };
 
-registry.category("stories").add("ui_playground.tree", TreeStories);
+registry.category("stories").add("owlybook.tree", TreeStories);

@@ -5,7 +5,7 @@ import { useStories } from "../../stories";
 import { CodeEditor } from "../../components/code_editor/code_editor";
 
 export class ComponentCode extends Component {
-    static template = "ui_playground.ComponentCode";
+    static template = "owlybook.ComponentCode";
     static components = { CodeEditor };
 
     setup() {

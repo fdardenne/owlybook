@@ -5,10 +5,10 @@ import { Component } from "@odoo/owl";
 import { getEventFunction } from "../utils/utils";
 
 class ColorListParent extends Component {
-    static template = "ui_playground.ColorListStories";
+    static template = "owlybook.ColorListStories";
     static components = { ColorList };
 }
-ColorListParent.codeTemplate = "ui_playground.ColorListCall";
+ColorListParent.codeTemplate = "owlybook.ColorListCall";
 ColorListParent.storyConfig = {
     title: "ColorList",
     component: ColorList,
@@ -37,4 +37,4 @@ export const ColorListStories = {
     stories: [ColorListParent],
 };
 
-registry.category("stories").add("ui_playground.colorlist", ColorListStories);
+registry.category("stories").add("owlybook.colorlist", ColorListStories);

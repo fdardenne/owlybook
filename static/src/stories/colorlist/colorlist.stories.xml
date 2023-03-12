@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-    <t t-name="ui_playground.ColorListStories" owl="1">
+    <t t-name="owlybook.ColorListStories" owl="1">
         <h1> ColorList </h1>
 
         <p> The ColorList components shows a color palet where users can select colors. </p>
-        <t t-call="ui_playground.ColorListCall"/>
+        <t t-call="owlybook.ColorListCall"/>
 
         <p> Colors are representend by their index in the following list: </p>
         <ul>
@@ -24,7 +24,7 @@
         </ul>
     </t>
 
-<t t-name="ui_playground.ColorListCall" owl="1">
+<t t-name="owlybook.ColorListCall" owl="1">
 <ColorList t-props="props.storyProps"/>
 </t>
 

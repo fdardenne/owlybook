@@ -1,10 +1,10 @@
 from odoo import http
 from odoo.http import request, route
 
-class UIPlaygroundController(http.Controller):
-    @http.route(['/ui_playground'], type='http', auth='public')
-    def show_ui_playground(self):
+class OwlybookController(http.Controller):
+    @http.route(['/owlybook'], type='http', auth='public')
+    def show_owlybook(self):
         """
-        Renders the ui playground
+        Renders the Owlybook
         """
-        return request.render('ui_playground.ui_playground')
+        return request.render('owlybook.owlybook')

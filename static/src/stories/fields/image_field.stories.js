@@ -53,4 +53,4 @@ export const FormImageStories = {
     stories: [formWithImageField],
 };
 
-registry.category("stories").add("ui_playground.formWithImageField", FormImageStories);
+registry.category("stories").add("owlybook.formWithImageField", FormImageStories);

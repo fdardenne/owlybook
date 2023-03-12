@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="owlybook_open" model="ir.actions.act_url">
+            <field name="name">Owlybook</field>
+            <field name="url">owlybook</field>
+            <field name="target">self</field>
+        </record>
+
+        <template id="owlybook.owlybook" name="Storybook">
+            <t t-call="web.layout">
+                <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
+                <t t-set="title">Owlybook</t>
+                <t t-set="head">
+                    <t t-call-assets="web.assets_common" t-js="false"/>
+                    <t t-call-assets="owlybook.assets_backend" t-js="false"/>
+                    <t t-call-assets="web.assets_common" t-css="false"/>
+                    <t t-call-assets="owlybook.assets_backend" t-css="false"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

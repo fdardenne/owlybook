@@ -47,4 +47,4 @@ export const FormHandleStories = {
     stories: [formWithHandleField],
 };
 
-registry.category("stories").add("ui_playground.formWithHandleField", FormHandleStories);
+registry.category("stories").add("owlybook.formWithHandleField", FormHandleStories);

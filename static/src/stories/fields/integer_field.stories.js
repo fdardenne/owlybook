@@ -52,4 +52,4 @@ export const FormIntegerStories = {
     stories: [formWithIntegerField],
 };
 
-registry.category("stories").add("ui_playground.formWithIntegerField", FormIntegerStories);
+registry.category("stories").add("owlybook.formWithIntegerField", FormIntegerStories);

@@ -6,7 +6,7 @@ import { archParseBoolean } from "@web/views/utils";
 import { SelectMenu } from "../../components/select_menu/select_menu";
 
 export class ArchProperties extends Component {
-    static template = "ui_playground.properties";
+    static template = "owlybook.properties";
     static components = { SelectMenu };
 
     setup() {

@@ -55,4 +55,4 @@ export const FormBinaryStories = {
     stories: [formWithBinaryField],
 };
 
-registry.category("stories").add("ui_playground.formWithBinaryField", FormBinaryStories);
+registry.category("stories").add("owlybook.formWithBinaryField", FormBinaryStories);

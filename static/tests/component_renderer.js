@@ -6,7 +6,7 @@ import { cleanStoriesRegistry, setupPlaygroundRegistries, makePlaygroundView } f
 
 let target;
 
-QUnit.module("UI Playground", (hooks) => {
+QUnit.module("Owlybook", (hooks) => {
     hooks.beforeEach(async () => {
         target = getFixture();
         cleanStoriesRegistry();
@@ -20,7 +20,7 @@ QUnit.module("UI Playground", (hooks) => {
             checkbox: CheckBoxStories,
         });
 
-        await click(target.querySelector(".o_ui_playground_item"));
+        await click(target.querySelector(".o_owlybook_item"));
         assert.containsOnce(target, ".o-checkbox");
     });
 });

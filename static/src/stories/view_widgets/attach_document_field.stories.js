@@ -46,4 +46,4 @@ export const FormAttachDocumentStories = {
     stories: [formWithAttachDocument],
 };
 
-registry.category("stories").add("ui_playground.formWithAttachDocument", FormAttachDocumentStories);
+registry.category("stories").add("owlybook.formWithAttachDocument", FormAttachDocumentStories);

@@ -45,4 +45,4 @@ export const FormNotebookStories = {
     stories: [formWithNotebook],
 };
 
-registry.category("stories").add("ui_playground.formWithNotebook", FormNotebookStories);
+registry.category("stories").add("owlybook.formWithNotebook", FormNotebookStories);

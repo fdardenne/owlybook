@@ -7,7 +7,7 @@ import { useStories } from "../stories";
 
 export class Canvas extends Component {
     static components = { ComponentRenderer, ArchRenderer };
-    static template = "ui_playground.canvas";
+    static template = "owlybook.canvas";
 
     setup() {
         this.stories = useStories();
@@ -25,7 +25,7 @@ export class Canvas extends Component {
                     if (
                         !document.querySelector(".o_canvas_sheet").contains(this) ||
                         !document
-                            .querySelector(".o_ui_playground_panel")
+                            .querySelector(".o_owlybook_panel")
                             .contains(document.activeElement)
                     ) {
                         return realFocusFunction.bind(this)(params);

@@ -3,7 +3,7 @@
 import { Component, useState } from "@odoo/owl";
 
 export class ObjectRenderer extends Component {
-    static template = "ui_playground.ObjectRenderer";
+    static template = "owlybook.ObjectRenderer";
 
     setup() {
         this.uncollapsed = useState({});

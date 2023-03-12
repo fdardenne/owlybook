@@ -1,5 +1,5 @@
-.o_ui_playground_bottom_bar {
-    background-color: var(--ui_playground-background-color);
+.o_owlybook_bottom_bar {
+    background-color: var(--owlybook-background-color);
     > ul > li {
         .nav-link.active {
             background-color: #f3f1f1;
@@ -8,7 +8,7 @@
     }
 }
 
-.o_ui_playground_panel {
+.o_owlybook_panel {
     bottom: 0px;
     height: 350px; // TODO: make it dynamic with handle
 }
@@ -21,7 +21,7 @@
     color: red;
 }
 
-.o_ui_playground_panel input {
+.o_owlybook_panel input {
     background: transparent !important;
 }
 

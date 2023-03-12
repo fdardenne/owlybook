@@ -6,11 +6,11 @@ import { registry } from "@web/core/registry";
 import { getEventFunction } from "../utils/utils";
 
 class AutoCompleteParent extends Component {
-    static template = "ui_playground.AutoCompleteStories";
+    static template = "owlybook.AutoCompleteStories";
     static components = { AutoComplete };
 }
 
-AutoCompleteParent.codeTemplate = "ui_playground.AutoCompleteCall";
+AutoCompleteParent.codeTemplate = "owlybook.AutoCompleteCall";
 AutoCompleteParent.storyConfig = {
     title: "Autocomplete",
     component: AutoComplete,
@@ -56,4 +56,4 @@ export const AutocompleteStories = {
     stories: [AutoCompleteParent],
 };
 
-registry.category("stories").add("ui_playground.autocomplete", AutocompleteStories);
+registry.category("stories").add("owlybook.autocomplete", AutocompleteStories);
