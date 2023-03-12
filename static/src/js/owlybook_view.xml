@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="ui_playground.UiPlaygroundView" owl="1">
+    <t t-name="owlybook.OwlybookView" owl="1">
         <MainComponentsContainer/>
         <div class="d-sm-flex flex-row h-100 bg-white">
-
-            <Sidebar stories="stories.stories"/>
+            <Sidebar t-if="!hideSidebar" stories="stories.stories"/>
             <div class="d-flex flex-column bg-white w-100 h-100 position-relative" style="width:100px">
-                <div class="o_ui_playground_topbar text-black w-100">
+                <div t-if="!hideSidebar" class="o_owlybook_topbar text-black w-100">
                     <div class="d-flex flex-row justify-content-between border-bottom align-items-center">
                         <span class="p-3">
                             <t t-esc="stories.active.title"/>
@@ -15,10 +14,6 @@
                             </t>
                         </span>
 
-                        <div class="d-flex flex-row">
-                            <button class="btn text-black"> Canvas </button>
-                            <button class="btn text-black"> Documentation </button>
-                        </div>
                     </div>
                 </div>
 
@@ -27,15 +22,15 @@
                     <Panel t-key="stories.active.id"/>
                 </t>
                 <t t-else="">
-                   <t t-call="ui_playground.Introduction"/>
+                   <t t-call="owlybook.Introduction"/>
                 </t>
             </div>
         </div>
     </t>
 
-    <t t-name="ui_playground.Introduction" owl="1">
+    <t t-name="owlybook.Introduction" owl="1">
         <div class="m-3">
-            <span>This is the Introduction of UI Playground, have fun !</span>
+            <span>This is the Introduction of Owlybook, have fun !</span>
         </div>
     </t>
 </templates>

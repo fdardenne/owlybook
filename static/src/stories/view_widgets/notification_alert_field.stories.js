@@ -40,4 +40,4 @@ export const FormNotificationAlertStories = {
 
 registry
     .category("stories")
-    .add("ui_playground.formWithNotificationAlert", FormNotificationAlertStories);
+    .add("owlybook.formWithNotificationAlert", FormNotificationAlertStories);

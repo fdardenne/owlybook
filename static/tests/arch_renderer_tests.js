@@ -16,7 +16,7 @@ import {
 let target;
 let deferEditor;
 
-QUnit.module("UI Playground", (hooks) => {
+QUnit.module("Owlybook", (hooks) => {
     hooks.beforeEach(async () => {
         target = getFixture();
         cleanStoriesRegistry();

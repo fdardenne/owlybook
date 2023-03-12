@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <templates>
-    <t t-name="ui_playground.events" owl="1">
+    <t t-name="owlybook.events" owl="1">
         <t t-set="uncollapsedObject" t-value="uncollapsed"/>
         <div class="m-3">
             <strong>Events triggered:</strong><br/>

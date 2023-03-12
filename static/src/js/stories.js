@@ -45,7 +45,7 @@ export class Stories {
 
     /**
      * Set the story passed in parameter as active.
-     * The active story is read by the UI Playground to know which story to render.
+     * The active story is read by the Owlybook to know which story to render.
      * Also deal with custom URL
      * @param {Object} story
      */

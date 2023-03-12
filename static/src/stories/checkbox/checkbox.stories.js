@@ -6,11 +6,11 @@ import { registry } from "@web/core/registry";
 import { getEventFunction } from "../utils/utils";
 
 class CheckBoxParent extends Component {
-    static template = "ui_playground.CheckBoxStories";
+    static template = "owlybook.CheckBoxStories";
     static components = { CheckBox };
 }
 
-CheckBoxParent.codeTemplate = "ui_playground.CheckBoxCall";
+CheckBoxParent.codeTemplate = "owlybook.CheckBoxCall";
 CheckBoxParent.storyConfig = {
     title: "Checkbox",
     component: CheckBox,
@@ -26,6 +26,7 @@ CheckBoxParent.storyConfig = {
         },
         onChange: {
             value: getEventFunction("onChange"),
+            help: "Called when the user clicked on the checkbox",
         },
     },
 };
@@ -36,4 +37,4 @@ export const CheckBoxStories = {
     stories: [CheckBoxParent],
 };
 
-registry.category("stories").add("ui_playground.checkbox", CheckBoxStories);
+registry.category("stories").add("owlybook.checkbox", CheckBoxStories);

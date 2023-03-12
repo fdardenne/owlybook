@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
 import { mount } from "@odoo/owl";
-import { UIPlaygroundView } from "./ui_playground_view";
+import { OwlybookView } from "./owlybook_view";
 import { makeEnv, startServices } from "@web/env";
 import { registry } from "@web/core/registry";
 import {
@@ -52,5 +52,5 @@ owl.whenReady(async () => {
         },
     });
     // @ts-ignore
-    mount(UIPlaygroundView, document.body, { templates, env });
+    mount(OwlybookView, document.body, { templates, env });
 });

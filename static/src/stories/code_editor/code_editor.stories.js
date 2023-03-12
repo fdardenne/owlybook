@@ -5,11 +5,11 @@ import { CodeEditor } from "../../js/components/code_editor/code_editor";
 import { getEventFunction } from "../utils/utils";
 
 class CodeEditorParent extends Component {
-    static template = "ui_playground.CodeEditorStories";
+    static template = "owlybook.CodeEditorStories";
     static components = { CodeEditor };
 }
 
-CodeEditorParent.codeTemplate = "ui_playground.CodeEditorCall";
+CodeEditorParent.codeTemplate = "owlybook.CodeEditorCall";
 CodeEditorParent.storyConfig = {
     title: "CodeEditor",
     component: CodeEditor,
@@ -38,4 +38,4 @@ export const CodeEditorStories = {
     stories: [CodeEditorParent],
 };
 
-registry.category("stories").add("ui_playground.code_editor", CodeEditorStories);
+registry.category("stories").add("owlybook.code_editor", CodeEditorStories);

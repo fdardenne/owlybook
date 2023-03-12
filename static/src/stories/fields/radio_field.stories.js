@@ -52,4 +52,4 @@ export const FormRadioStories = {
     stories: [formWithRadioField],
 };
 
-registry.category("stories").add("ui_playground.formWithRadioField", FormRadioStories);
+registry.category("stories").add("owlybook.formWithRadioField", FormRadioStories);

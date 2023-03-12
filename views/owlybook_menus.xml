@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <menuitem name="Owlybook"
+                  id="menu_root_owlybook"
+                  action="owlybook_open"
+                  web_icon="owlybook,static/description/icon.png"
+                  sequence="0"
+        />
+    </data>
+</odoo>

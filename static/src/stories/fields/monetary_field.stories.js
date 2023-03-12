@@ -82,4 +82,4 @@ export const FormMonetaryStories = {
     stories: [formWithMonetaryField],
 };
 
-registry.category("stories").add("ui_playground.formWithMonetaryField", FormMonetaryStories);
+registry.category("stories").add("owlybook.formWithMonetaryField", FormMonetaryStories);

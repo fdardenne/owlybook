@@ -6,11 +6,11 @@ import { Component } from "@odoo/owl";
 import { getEventFunction } from "../utils/utils";
 
 class DatePickerParent extends Component {
-    static template = "ui_playground.DatePickerStories";
+    static template = "owlybook.DatePickerStories";
     static components = { DatePicker };
 }
 
-DatePickerParent.codeTemplate = "ui_playground.DatePickerCall";
+DatePickerParent.codeTemplate = "owlybook.DatePickerCall";
 DatePickerParent.storyConfig = {
     title: "DatePicker",
     component: DatePicker,
@@ -36,4 +36,4 @@ export const DatePickerStories = {
     stories: [DatePickerParent],
 };
 
-registry.category("stories").add("ui_playground.datepicker", DatePickerStories);
+registry.category("stories").add("owlybook.datepicker", DatePickerStories);

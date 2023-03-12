@@ -51,4 +51,4 @@ export const FormRibbonStories = {
     stories: [formWithRibbon],
 };
 
-registry.category("stories").add("ui_playground.formWithRibbon", FormRibbonStories);
+registry.category("stories").add("owlybook.formWithRibbon", FormRibbonStories);

@@ -9,12 +9,13 @@ import { registry } from "@web/core/registry";
 import { useBus, useService } from "@web/core/utils/hooks";
 import { MainComponentsContainer } from "@web/core/main_components_container";
 
-export class UIPlaygroundView extends Component {
+export class OwlybookView extends Component {
     setup() {
         this.router = useService("router");
         this.stories = setupStories(this.router);
         onMounted(this.onMounted);
         useBus(this.env.bus, "ROUTE_CHANGE", this.setStoryFromUrl);
+        this.hideSidebar = this.router.current?.hash?.hideSidebar;
     }
 
     onMounted() {
@@ -29,7 +30,7 @@ export class UIPlaygroundView extends Component {
     }
 }
 
-UIPlaygroundView.template = "ui_playground.UiPlaygroundView";
-UIPlaygroundView.components = { Sidebar, Canvas, Panel, MainComponentsContainer };
+OwlybookView.template = "owlybook.OwlybookView";
+OwlybookView.components = { Sidebar, Canvas, Panel, MainComponentsContainer };
 
-registry.category("actions").add("ui_playground_view", UIPlaygroundView);
+registry.category("actions").add("owlybook_view", OwlybookView);

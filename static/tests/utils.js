@@ -4,7 +4,7 @@ import { mount, nextTick, click, patchWithCleanup, makeDeferred } from "@web/../
 import { setupViewRegistries } from "@web/../tests/views/helpers";
 import { registry } from "@web/core/registry";
 import { makeTestEnv } from "@web/../tests/helpers/mock_env";
-import { UIPlaygroundView } from "../src/js/ui_playground_view";
+import { OwlybookView } from "../src/js/owlybook_view";
 import { CodeEditor } from "../src/js/components/code_editor/code_editor";
 
 export function cleanStoriesRegistry() {
@@ -25,12 +25,12 @@ export async function makePlaygroundView(target, stories) {
     for (const name in stories) {
         registry.category("stories").add(name, stories[name]);
     }
-    await mount(UIPlaygroundView, target, { env });
+    await mount(OwlybookView, target, { env });
     await nextTick();
 }
 
 export async function selectStory(target, name) {
-    const story = Array.from(target.querySelectorAll(".o_ui_playground_item")).find(
+    const story = Array.from(target.querySelectorAll(".o_owlybook_item")).find(
         (el) => el.textContent === name
     );
     await click(story);

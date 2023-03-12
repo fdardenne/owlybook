@@ -108,4 +108,4 @@ const Many2oneStories = {
     stories: [formWithMany2oneField],
 };
 
-registry.category("stories").add("ui_playground.formWithOne2ManyField", Many2oneStories);
+registry.category("stories").add("owlybook.formWithOne2ManyField", Many2oneStories);

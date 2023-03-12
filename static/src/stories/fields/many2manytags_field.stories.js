@@ -78,4 +78,4 @@ export const FormMany2ManyTagsStories = {
     stories: [formWithMany2ManyTagsField],
 };
 
-registry.category("stories").add("ui_playground.formWithMany2ManyTagsField", FormMany2ManyTagsStories);
+registry.category("stories").add("owlybook.formWithMany2ManyTagsField", FormMany2ManyTagsStories);

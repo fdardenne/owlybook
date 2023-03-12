@@ -50,4 +50,4 @@ export const FormWeekDaysStories = {
     stories: [formWithWeekDays],
 };
 
-registry.category("stories").add("ui_playground.formWithWeekDays", FormWeekDaysStories);
+registry.category("stories").add("owlybook.formWithWeekDays", FormWeekDaysStories);

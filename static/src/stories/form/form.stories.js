@@ -47,4 +47,4 @@ export const FormStories = {
     stories: [formExample],
 };
 
-registry.category("stories").add("ui_playground.form", FormStories);
+registry.category("stories").add("owlybook.form", FormStories);

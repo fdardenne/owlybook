@@ -53,4 +53,4 @@ export const FormDateStories = {
     stories: [formWithDateField],
 };
 
-registry.category("stories").add("ui_playground.formWithDateField", FormDateStories);
+registry.category("stories").add("owlybook.formWithDateField", FormDateStories);

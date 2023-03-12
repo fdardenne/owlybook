@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <templates>
-    <t t-name="ui_playground.panel" owl="1">
-        <div class="o_ui_playground_panel border-top w-100 d-flex flex-column o_ui_playground_bottom_bar">
+    <t t-name="owlybook.panel" owl="1">
+        <div class="o_owlybook_panel border-top w-100 d-flex flex-column o_owlybook_bottom_bar">
             <ul class="nav nav-tabs">
                 <li class="nav-item" t-if="tabsAvailability['props']">
                     <a t-attf-class="nav-link {{mode === 'props' ? 'active' : ''}}" class="nav-link" aria-current="page" href="#" t-on-click="() => this.changeMode('props')">Props</a>
@@ -27,7 +27,7 @@
                     <ArchProperties/>
                 </t>
                 <t t-else="">
-                    <Props/>
+                    <ComponentProperties/>
                 </t>
             </t>
             <t t-elif="mode === 'code'">

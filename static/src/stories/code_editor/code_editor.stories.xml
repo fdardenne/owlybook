@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
 
-    <t t-name="ui_playground.CodeEditorStories" owl="1">
+    <t t-name="owlybook.CodeEditorStories" owl="1">
         <h1> CodeEditor </h1>
 
         <p> The code editor component typically consists of a text editor that displays the source code
      by doing syntax highlighting. The theme and the language can be modified through props. </p>
 
-        <t t-call="ui_playground.CodeEditorCall"/>
+        <t t-call="owlybook.CodeEditorCall"/>
 
         <p> Play with the props underneath and sees the results above!</p>
     </t>
 
-<t t-name="ui_playground.CodeEditorCall" owl="1">
+<t t-name="owlybook.CodeEditorCall" owl="1">
 <CodeEditor t-props="props.storyProps"/>
 </t>
 
