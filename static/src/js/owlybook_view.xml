@@ -29,8 +29,67 @@
     </t>
 
     <t t-name="owlybook.Introduction" owl="1">
-        <div class="m-3">
-            <span>This is the Introduction of Owlybook, have fun !</span>
+        <div class="m-5 p-5">
+            <h1><strong>Welcome to Owlybook ! 👋 🦉 </strong></h1><br/>
+            <h2><font class="text-o-color-2">Introduction</font></h2>
+            <p class="o_owlybook_h2_p">
+                Owlybook is a collection of stories that showcase many component available in the Odoo software.
+                Whether you're new to Odoo or a seasoned user, Owlybook is a great way to discover and explore.
+                <br/>
+                In here, you will have the possibility to see, try and play with a lot of different component and architecture
+                available to you by the Odoo software.
+            </p>
+
+            <h2><font class="text-o-color-2">What is Owlybook ?</font></h2>
+            <p class="o_owlybook_h2_p">
+                Owlybook is composed of different distinct element that we will explain in the next section. To be precise,
+                it is composed of three elements (Sidebar, canvas and bottom panel).
+            </p>
+            <h3><font class="text-o-color-1 ms-5">Sidebar</font></h3>
+            <h4><font class="text-o-color-2 ms-5 ps-5">Stories</font></h4>
+            <p class="o_owlybook_h4_p">
+                In the context of Owlybook, a "story" is a term used to refer to a single instance of a UI component with
+                a set of defined inputs, props or a specific state. It allows developers to create and display variations
+                of a component in isolation, and document their behavior and functionality. Each story is a self-contained entity
+                that showcases a specific use case of the component, making it easier for developers to test, debug, and collaborate
+                on the development of UI components.
+                <br/>
+                You can see on the sidebar that our Owlybook has multiple stories organised into a sort of file explorer.
+                Each folder can be close or open, and selecting a story on the sidebar will display on the canvas the according story.
+            </p>
+
+            <h3><font class="text-o-color-1 ms-5">Canvas</font></h3>
+            <h4><font class="text-o-color-2 ms-10">Component</font></h4>
+            <h4><font class="text-o-color-2 ms-10">Arch</font></h4>
+
+            <h3><font class="text-o-color-1 ms-5">Bottom Panel</font></h3>
+            <h4><font class="text-o-color-2 ms-10">Props</font></h4>
+            <p class="o_owlybook_h4_p">
+                This page is maybe the most important one of the bottom panel, since it allow you to play with props of the component or arch field.
+                Modifying lines in the props panel should modify the story in real time.
+            </p>
+            <h4><font class="text-o-color-2 ms-10">Events</font></h4>
+            <p class="o_owlybook_h4_p">
+                In the bottom panel, you will be able to see (for some specific stories) a page named "Events".
+                This page will show you the different actions done on the stories you are playing with. Be careful that those events are volatile.
+                When changing stories, you will lose your events.
+            </p>
+            <h4><font class="text-o-color-2 ms-10">Code</font></h4>
+            <p class="o_owlybook_h4_p">
+                This page is displayed only if the stories is using an arch. It's pretty straightforward as you will be able
+                to see the code of the arch so that you can copy and paste it for your personal use.
+            </p>
+            <h4><font class="text-o-color-2 ms-10">JavaScript</font></h4>
+            <p class="o_owlybook_h4_p">
+                This page is displayed only if the stories is using a component. In this section you will be able to see the JavaScript code.
+                Modifying the code in the editor below will not modify the component. Its purpose is to copy/paste or to understand the component usage.
+            </p>
+            <h4><font class="text-o-color-2 ms-10">Template</font></h4>
+            <p class="o_owlybook_h4_p">
+                This page is displayed only if the stories is using a component. Same as the javascript code,
+                except that here you will be able to see the template.
+            </p>
+
         </div>
     </t>
 </templates>
