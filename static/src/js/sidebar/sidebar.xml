@@ -4,7 +4,9 @@
     <t t-name="owlybook.Sidebar" owl="1">
         <div class="o_owlybook_sidebar overflow-auto border-end">
             <ul class="p-2" >
-                <li> <h1 class="o_owlybook_title h2 p-2"> Owlybook </h1> </li>
+                <li class="text-center pb-2">
+                    <img t-attf-src="owlybook/static/src/images/owlybook.png" class="w-75"/>
+                </li>
                 <li>
                     <div class="o_searchview_ui align-self-center flex-grow-1 border rounded-pill" role="search">
                         <i class="o_searchview_icon oi oi-search pe-2" role="img" aria-label="Search..." title="Search..."/>
