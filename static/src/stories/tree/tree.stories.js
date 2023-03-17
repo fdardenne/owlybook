@@ -27,7 +27,7 @@ const serverData = {
 };
 
 const treeExample = {
-    title: "Tree",
+    title: "List",
     model: "order",
     viewType: "list",
     arch: `<tree>
@@ -38,7 +38,7 @@ const treeExample = {
 };
 
 export const TreeStories = {
-    title: "Tree",
+    title: "List",
     module: "web",
     stories: [treeExample],
 };
