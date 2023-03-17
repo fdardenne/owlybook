@@ -21,6 +21,10 @@ export class ComponentCode extends Component {
         }
     }
 
+    /**
+     * The goal of this function is simply to return qweb if the props mode is "xml" otherwise return default
+     * @returns {string}
+     */
     get mode() {
         return this.props.mode === "xml" ? "qweb" : "default";
     }
