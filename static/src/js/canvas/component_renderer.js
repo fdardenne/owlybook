@@ -14,6 +14,10 @@ export class ComponentRenderer extends Component {
         this.stories = useStories();
     }
 
+    /**
+     * The goal of this function is to get the final props of a story
+     * @returns {Object}
+     */
     get storyProps() {
         const finalProps = {};
         for (const [propName, config] of Object.entries(this.stories.active.processedProps)) {
@@ -22,10 +26,19 @@ export class ComponentRenderer extends Component {
         return finalProps;
     }
 
+    /**
+     * The goal of this function is to change the value of a specific props in the current active story
+     * @param name
+     * @param value
+     */
     changeProps(name, value) {
         this.stories.active.processedProps[name].value = value;
     }
 
+    /**
+     * The goal of this function is to stingify the props of a story
+     * @returns {string}
+     */
     get propsKey() {
         return JSON.stringify(this.storyProps);
     }

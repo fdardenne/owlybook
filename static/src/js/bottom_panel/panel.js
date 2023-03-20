@@ -17,6 +17,10 @@ export class Panel extends Component {
         this.state = useState({ mode: undefined });
     }
 
+    /**
+     * The goal of this function is to know which tabs will be displayed in the panel
+     * @returns {{code, xml: boolean, js: boolean, events: boolean, props: boolean}}
+     */
     get tabsAvailability() {
         return {
             props: this.stories.active.attrs || !this.stories.active.arch,
@@ -27,6 +31,11 @@ export class Panel extends Component {
         };
     }
 
+    /**
+     * The goal of this function is to return the first available tab, if there is a mode in the state return the mode in priority
+     * If there is no mode and no tab then return undefined
+     * @returns {undefined|*|string}
+     */
     get mode() {
         if (this.state.mode) {
             return this.state.mode;
@@ -39,15 +48,27 @@ export class Panel extends Component {
         }
         return undefined;
     }
+
+    /**
+     * The goal of this function is to change the mode of the state
+     * @param mode
+     */
     changeMode(mode) {
         this.state.mode = mode;
     }
 
+    /**
+     * The goal of this function is that when changing something in the code and save the arch is modified
+     */
     saveDirtyArch() {
         this.stories.active.modifiedArch = this.stories.active.dirtyArch;
         this.stories.active.dirtyArch = undefined;
     }
 
+    /**
+     * The goal of this function is to know if the arch is dirty
+     * @returns {boolean}
+     */
     get isArchDirty() {
         return (
             this.stories.active.dirtyArch !== undefined &&

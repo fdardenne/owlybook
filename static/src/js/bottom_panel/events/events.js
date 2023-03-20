@@ -12,6 +12,10 @@ export class Events extends Component {
         this.stories = useStories();
     }
 
+    /**
+     * The goal of this function is to get events of the active stories, if there is not return empty dic
+     * @returns {*|{}}
+     */
     get storyEvents() {
         return this.stories.active?.events || {};
     }
