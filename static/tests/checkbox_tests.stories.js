@@ -1,96 +1,47 @@
 /** @odoo-module */
 
+import { Component } from "@odoo/owl";
 import { CheckBox } from "@web/core/checkbox/checkbox";
+import { registry } from "@web/core/registry";
+import { getEventFunction } from "../src/js/stories";
 
-export const storyA = {
-    title: "CheckboxFirstStory",
+class CheckBoxParentTest extends Component {
+    static template = "owlybook.CheckBoxStoriesTest";
+    static components = { CheckBox };
+}
+
+CheckBoxParentTest.codeTemplate = "owlybook.CheckBoxCallTest";
+CheckBoxParentTest.storyConfig = {
+    title: "Checkbox",
     component: CheckBox,
     props: {
-        disabled: {
-            dynamic: true,
-            default: true,
-        },
         value: {
-            dynamic: true,
-            default: true,
+            value: true,
         },
         className: {
-            dynamic: true,
-            default: "form-switch",
+            value: "form-switch",
         },
         name: {
-            default: "beautiful_name",
+            value: "beautiful_name",
+            help: "tooltip test",
+        },
+        onChange: {
+            value: getEventFunction("onChange"),
+            help: "Called when the user clicked on the checkbox",
         },
     },
-};
-
-export const storyB = {
-    title: "CheckboxSecondStory",
-    component: CheckBox,
-    props: {
-        disabled: {
-            dynamic: true,
-            default: false,
-            help: "this is a magnificent tooltip"
-        },
-        value: {
-            dynamic: true,
-            default: true,
-            help: "Oh ! another tooltip"
-        },
-        className: {
-            dynamic: true,
-        },
-        name: {
-            default: "beautiful_name",
-            help: "Last but not least"
-        },
-    },
-};
-
-export const storyC = {
-    title: "CheckboxThirdStory",
-    component: CheckBox,
-    props: {
-        disabled: {
-            dynamic: true,
-            default: false,
-            help: "this is a magnificent tooltip"
-        },
-        value: {
-            dynamic: true,
-            default: true,
-            help: "Oh ! another tooltip"
-        },
-        className: {
-            dynamic: true,
-        },
-        name: {
-            default: "beautiful_name",
-            help: "Last but not least"
-        },
-    },
-};
-
-export const storyWithoutPropsDef = {
-    title: "CheckboxThirdStory",
-    component: CheckBox,
-};
-
-export const CheckBoxStoriesWithoutPropsDef = {
-    title: "CheckboxWithoutPropsDef",
-    module: "web",
-    stories: [storyWithoutPropsDef],
 };
 
 export const CheckBoxStories = {
-    title: "Checkbox",
+    title: "Core components",
     module: "web",
-    stories: [storyA, storyB],
+    stories: [CheckBoxParentTest],
 };
 
 export const CheckBoxStories2 = {
-    title: "CheckboxTwo",
-    module: "web2",
-    stories: [storyC],
+    title: "Core components",
+    module: "web",
+    stories: [CheckBoxParentTest],
 };
+registry.category("stories").add("owlybook.checkbox", CheckBoxStories);
+registry.category("stories").add("owlybook.checkbox2", CheckBoxStories2);
