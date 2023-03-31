@@ -75,7 +75,7 @@
         <t t-else="">
             <input t-att-disabled="1" class="o_input w-50"/>
         </t>
-        <i t-if="property_value.value !== undefined and !property_value.choices and !isDisabled(property_value) and isDeleteBtnEnabled" t-on-click="(ev) => this.onChange(property_value, undefined)" class="fa fa-times ms-1 o_delete align-middle" aria-hidden="true"/>
+        <i t-if="property_value.value !== undefined and !property_value.choices and !isDisabled(property_value) and isDeleteBtnEnabled" t-on-click="(ev) => this.onChange(property_value, '')" class="fa fa-times ms-1 o_delete align-middle" aria-hidden="true"/>
     </t>
 
     <t t-name="owlybook.properties.name" owl="1">

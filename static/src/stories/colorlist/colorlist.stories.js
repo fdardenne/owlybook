@@ -2,7 +2,7 @@
 import { ColorList } from "@web/core/colorlist/colorlist";
 import { registry } from "@web/core/registry";
 import { Component, onMounted } from "@odoo/owl";
-import { getEventFunction } from "../utils/utils";
+import { getEventFunction } from "../../js/stories";
 
 class ColorListParent extends Component {
     static template = "owlybook.ColorListStories";

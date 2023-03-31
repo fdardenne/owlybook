@@ -93,7 +93,7 @@ export class SelectMenu extends Component {
             const choices = [...this.props.choices, ...this.props.groups.flatMap((g) => g.choices)];
             const value = choices.find((c) => {
                 if (typeof c.value === "object" && typeof this.props.value === "object") {
-                    return shallowEqual(c.value, this.props.value);
+                    return shallowEqual(c.value, this.props.value || "");
                 }
                 return c.value === this.props.value;
             });

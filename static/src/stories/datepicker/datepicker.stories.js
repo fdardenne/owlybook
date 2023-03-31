@@ -3,7 +3,7 @@
 import { DatePicker } from "@web/core/datepicker/datepicker";
 import { registry } from "@web/core/registry";
 import { Component } from "@odoo/owl";
-import { getEventFunction } from "../utils/utils";
+import { getEventFunction } from "../../js/stories";
 
 class DatePickerParent extends Component {
     static template = "owlybook.DatePickerStories";

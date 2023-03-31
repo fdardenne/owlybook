@@ -3,7 +3,7 @@
 import { Component } from "@odoo/owl";
 import { AutoComplete } from "@web/core/autocomplete/autocomplete";
 import { registry } from "@web/core/registry";
-import { getEventFunction } from "../utils/utils";
+import { getEventFunction } from "../../js/stories";
 
 class AutoCompleteParent extends Component {
     static template = "owlybook.AutoCompleteStories";

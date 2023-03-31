@@ -3,7 +3,7 @@
 import { Component } from "@odoo/owl";
 import { CheckBox } from "@web/core/checkbox/checkbox";
 import { registry } from "@web/core/registry";
-import { getEventFunction } from "../utils/utils";
+import { getEventFunction } from "../../js/stories";
 
 class CheckBoxParent extends Component {
     static template = "owlybook.CheckBoxStories";

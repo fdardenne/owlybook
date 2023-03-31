@@ -2,7 +2,7 @@
 import { Component } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { CodeEditor } from "../../js/components/code_editor/code_editor";
-import { getEventFunction } from "../utils/utils";
+import { getEventFunction } from "../../js/stories";
 
 class CodeEditorParent extends Component {
     static template = "owlybook.CodeEditorStories";
