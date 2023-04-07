@@ -26,11 +26,12 @@ export class ArchRenderer extends Component {
         this.stories = useStories();
         this.state = useState({ hasError: false });
         this.disableAutofocusElement = useRef("disableAutofocus");
-        // onError((error) => {
-        //     // The arch has an error
-        //     this.state.hasError = true;
-        //     console.error(error);
-        // });
+
+        onError((error) => {
+            // The arch has an error
+            this.state.hasError = true;
+            console.error(error);
+        });
 
         this.props = {
             type: this.stories.active.viewType,
@@ -68,7 +69,7 @@ export class ArchRenderer extends Component {
             return res;
         };
 
-        const rpcService = makeFakeRPCService(_mockRPC).start();
+        const rpcService = makeFakeRPCService(_mockRPC).start(this.env);
         // setup legacy rpc fake service for the form view basic relational model
         // @ts-ignore
         owl.Component.env.session.rpc = (...args) => {
