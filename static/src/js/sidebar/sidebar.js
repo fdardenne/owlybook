@@ -8,9 +8,10 @@ export class Sidebar extends Component {
         this.stories = useStories();
         this.filterName = "";
         this.map = this.getAllStories();
-        this.all = this.getStoriesAndFolder();
+        this.all = this.getStories_Folder_Module();
         this.filteredStories = useState([...this.all[0]]);
         this.filteredFolders = useState([...this.all[1]]);
+        this.filteredModule = useState([...this.all[2]]);
     }
 
     /**
@@ -46,15 +47,17 @@ export class Sidebar extends Component {
     getAllStories() {
         const result = new Map();
         for (const name in this.stories.stories) {
+            const innerResult = new Map();
+            result.set(name, innerResult);
             const folder = this.stories.stories[name];
             for (const folderName in folder) {
                 const file = folder[folderName];
                 for (const fileName in file) {
-                    result.set(fileName, []);
+                    innerResult.set(fileName, []);
                     const stories = file[fileName].stories;
                     for (let i = 0; i < stories.length; i++) {
                         const title = stories[i].title;
-                        result.get(fileName).push(title);
+                        innerResult.get(fileName).push(title);
                     }
                 }
             }
@@ -66,35 +69,57 @@ export class Sidebar extends Component {
      * This function iterate through the map and add the element to the list res_stories and the set res_folder
      * @returns {Object} res_stories, res_folders - res_stories is a list of items and res_folder is a set of items
      */
-    getStoriesAndFolder() {
+    getStories_Folder_Module() {
         const res_stories = [];
         const res_folder = new Set();
+        const res_module = new Set();
+
         for (const [key, value] of this.map) {
-            res_folder.add(key);
-            res_stories.push(value);
+            res_module.add(key);
+            const innerMap = value;
+            for (const [key, value] of innerMap) {
+                res_folder.add(key);
+                res_stories.push(value);
+            }
         }
-        return [res_stories.flat(), res_folder];
+        return [res_stories.flat(), res_folder, res_module];
     }
 
     /**
-     * This function will filter the stories and folder according to the searchString. filterStories and filterFolder
+     * This function will filter stories, folder and module according to the searchString. filterStories and filterFolder
      * are then used to display only the result containing the searchString.
      * @param {Object} searchString - The element typed by the user.
      */
     filter(searchString) {
         this.filteredStories.splice(0, this.filteredStories.length);
         this.filteredFolders.splice(0, this.filteredFolders.length);
+        this.filteredModule.splice(0, this.filteredModule.length);
+        console.log(this.filteredModule);
+
         for (const [key, value] of this.map) {
-            for (const elem of value) {
-                if (
-                    elem.toLowerCase().includes(searchString.toLowerCase()) &&
-                    !this.filteredStories.includes(elem)
-                ) {
-                    this.filteredStories.push(elem);
-                    if (!this.filteredFolders.includes(key)) {
-                        this.filteredFolders.push(key);
+            const module = key;
+            const innerMap = value;
+            for (const [key, value] of innerMap) {
+                for (const elem of value) {
+                    if (elem.toLowerCase().includes(searchString.toLowerCase()) && !this.filteredStories.includes(elem)) {
+                        this.filteredStories.push(elem);
+                        if (!this.filteredFolders.includes(key)) {
+                            this.filteredFolders.push(key);
+                        }
+                        if (!this.filteredModule.includes(module)) {
+                            this.filteredModule.push(module);
+                        }
                     }
                 }
+                if (key.toLowerCase().includes(searchString.toLowerCase()) && !this.filteredFolders.includes(key)) {
+                    this.filteredFolders.push(key);
+                    if (!this.filteredModule.includes(module)) {
+                        this.filteredModule.push(module);
+                    }
+                }
+            }
+            if (module.toLowerCase().includes(searchString.toLowerCase()) && !this.filteredModule.includes(module)) {
+                this.filteredModule.push(module);
             }
         }
     }

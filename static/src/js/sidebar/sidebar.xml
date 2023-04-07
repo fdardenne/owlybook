@@ -27,21 +27,22 @@
     </t>
 
     <t t-name="owlybook.Sidebar.module" owl="1">
-        <t t-set="moduleObject" t-value="stories.stories[moduleName]" />
-        <div t-on-click="() => this.toggleFold(moduleObject)" class="d-flex align-items-center o_owlybook_module o_owlybook_hover text-uppercase text-muted user-select-none">
-            <button class="btn btn-link p-0">
-                <i t-att-class="(!moduleObject['folded'] ? 'fa-caret-down' : 'fa-caret-right') + ' fa o_owlybook_caret align-self-center' "/>
-            </button>
+        <t t-if="filteredModule.includes(moduleName)">
+            <t t-set="moduleObject" t-value="stories.stories[moduleName]" />
+            <div t-on-click="() => this.toggleFold(moduleObject)" class="d-flex align-items-center o_owlybook_module o_owlybook_hover text-uppercase text-muted user-select-none">
+                <button class="btn btn-link p-0">
+                    <i t-att-class="(!moduleObject['folded'] ? 'fa-caret-down' : 'fa-caret-right') + ' fa o_owlybook_caret align-self-center' "/>
+                </button>
+                <t t-esc="moduleName"/>
+            </div>
 
-            <t t-esc="moduleName"/>
-        </div>
-
-        <t t-if="!moduleObject['folded']">
-            <ul>
-                <li t-foreach="moduleObject['folders']" t-as="folderName" t-key="folderName">
-                    <t t-call="owlybook.Sidebar.folder"/>
-                </li>
-            </ul>
+            <t t-if="!moduleObject['folded']">
+                <ul>
+                    <li t-foreach="moduleObject['folders']" t-as="folderName" t-key="folderName">
+                        <t t-call="owlybook.Sidebar.folder"/>
+                    </li>
+                </ul>
+            </t>
         </t>
     </t>
 
