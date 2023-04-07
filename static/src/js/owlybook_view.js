@@ -23,7 +23,7 @@ export class OwlybookView extends Component {
     }
 
     setStoryFromUrl() {
-        const hash = this.router.current.hash;
+        const hash = this.router.current?.hash || {};
         if (hash.title && hash.folder && hash.module) {
             this.stories.setActive(this.stories.getStoryByDescription(hash));
         }
