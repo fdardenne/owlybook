@@ -125,13 +125,12 @@ QUnit.module("Owlybook", (hooks) => {
         assert.strictEqual(newRibbon[0].textContent, "");
     });
 
-    QUnit.debug("Check if suboptions are displayed", async (assert) => {
+    QUnit.test("Check if suboptions are displayed", async (assert) => {
         await makePlaygroundView(target, {
             number: FormIntegerStories,
         });
         await click(target.querySelector(".o_owlybook_item"));
         const propertyNames = document.querySelectorAll("tr td:first-child");
-        console.log(propertyNames);
         const expectedNames = ["placeholder*", "options.type*"];
         for (let i = 0; i < expectedNames.length; i++) {
             assert.strictEqual(propertyNames[i].textContent, expectedNames[i]);

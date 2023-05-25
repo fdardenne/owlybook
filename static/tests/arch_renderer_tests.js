@@ -99,7 +99,7 @@ QUnit.module("Owlybook", (hooks) => {
         );
     });
 
-    QUnit.debug("Modifying arch's attributes with the props tab", async (assert) => {
+    QUnit.test("Modifying arch's attributes with the props tab", async (assert) => {
         await makePlaygroundView(target, {
             form: FormStories,
         });
