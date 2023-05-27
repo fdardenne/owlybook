@@ -1,6 +1,6 @@
 /** @odoo-module */
 
-import { DatePicker } from "@web/core/datepicker/datepicker";
+import { DatePicker } from "@web/core/datetime/datetime_picker";
 import { registry } from "@web/core/registry";
 import { Component } from "@odoo/owl";
 import { getEventFunction } from "../../js/stories";
