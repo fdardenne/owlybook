@@ -28,7 +28,7 @@ QUnit.module("Owlybook", (hooks) => {
         await makePlaygroundView(target, {
             checkbox: CheckBoxStories,
         });
-        await selectStory(target, "Checkbox");
+        await selectStory(target, "CheckboxFirstStory");
         await nextTick();
         const currentTab = target.querySelector(".nav .nav-link.active").innerText;
         assert.strictEqual(currentTab, "Props", "Bottom panel tabs should be on 'Props'");

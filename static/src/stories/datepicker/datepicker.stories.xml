@@ -12,7 +12,7 @@
     </t>
 
 <t t-name="owlybook.DatePickerCall" owl="1">
-<DatePicker t-props="props.storyProps"/>
+<DateTimePicker t-props="props.storyProps"/>
 </t>
 
 </templates>

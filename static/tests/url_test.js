@@ -39,7 +39,7 @@ QUnit.module("Owlybook", (hooks) => {
             router.pushState({
                 module: "web",
                 folder: "Core components",
-                title: "Checkbox",
+                title: "CheckboxFirstStory",
             });
             await nextTick();
         };
@@ -60,7 +60,7 @@ QUnit.module("Owlybook", (hooks) => {
         assert.deepEqual(router.current.hash, {
             module: "web",
             folder: "Core components",
-            title: "Checkbox",
+            title: "CheckboxFirstStory",
         });
     });
 });

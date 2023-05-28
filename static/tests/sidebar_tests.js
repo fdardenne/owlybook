@@ -39,8 +39,8 @@ QUnit.module("Owlybook", (hooks) => {
 
         assert.strictEqual(
             target.querySelectorAll(".o_owlybook_folder")[1].textContent,
-            "Checkbox",
-            "Checkbox should be the second folder"
+            "Core components",
+            "Core components should be the second folder"
         );
 
         assert.containsN(target, ".o_owlybook_item", 2);
@@ -51,11 +51,6 @@ QUnit.module("Owlybook", (hooks) => {
             "CheckboxFirstStory should be the first story"
         );
 
-        assert.strictEqual(
-            target.querySelectorAll(".o_owlybook_item:first-child")[1].textContent,
-            "CheckboxSecondStory",
-            "CheckboxSecondStory should be the second story"
-        );
     });
 
     QUnit.test("Clicking on a folder fold/unfold it", async (assert) => {

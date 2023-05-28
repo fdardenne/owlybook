@@ -1,39 +1,31 @@
 /** @odoo-module */
 
-import { DatePicker } from "@web/core/datetime/datetime_picker";
+import { DateTimePicker } from "@web/core/datetime/datetime_picker";
 import { registry } from "@web/core/registry";
 import { Component } from "@odoo/owl";
 import { getEventFunction } from "../../js/stories";
 
-class DatePickerParent extends Component {
+class DateTimePickerParent extends Component {
     static template = "owlybook.DatePickerStories";
-    static components = { DatePicker };
+    static components = { DateTimePicker };
 }
 
-DatePickerParent.codeTemplate = "owlybook.DatePickerCall";
-DatePickerParent.storyConfig = {
-    title: "DatePicker",
-    component: DatePicker,
+DateTimePickerParent.codeTemplate = "owlybook.DatePickerCall";
+DateTimePickerParent.storyConfig = {
+    title: "DateTimePicker",
+    component: DateTimePicker,
     props: {
-        placeholder: {
-            value: "Pick a date ...",
-        },
-        format: {
-            value: "dd/MM/yyyy",
-        },
-        readonly: {
-            value: false,
-        },
-        onDateTimeChanged: {
-            value: getEventFunction("onDateTimeChanged"),
+        onSelect: {
+            value: getEventFunction("onSelect"),
+            help: "Called when the user select a date",
         },
     },
 };
 
-export const DatePickerStories = {
+export const DateTimePickerStories = {
     title: "Core components",
     module: "web",
-    stories: [DatePickerParent],
+    stories: [DateTimePickerParent],
 };
 
-registry.category("stories").add("owlybook.datepicker", DatePickerStories);
+registry.category("stories").add("owlybook.datepicker", DateTimePickerStories);

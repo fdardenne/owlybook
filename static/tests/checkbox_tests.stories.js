@@ -12,7 +12,34 @@ class CheckBoxParentTest extends Component {
 
 CheckBoxParentTest.codeTemplate = "owlybook.CheckBoxCallTest";
 CheckBoxParentTest.storyConfig = {
-    title: "Checkbox",
+    title: "CheckboxFirstStory",
+    component: CheckBox,
+    props: {
+        value: {
+            value: true,
+        },
+        className: {
+            value: "form-switch",
+        },
+        name: {
+            value: "beautiful_name",
+            help: "tooltip test",
+        },
+        onChange: {
+            value: getEventFunction("onChange"),
+            help: "Called when the user clicked on the checkbox",
+        },
+    },
+};
+
+class CheckBoxParentTest2 extends Component {
+    static template = "owlybook.CheckBoxStoriesTest";
+    static components = { CheckBox };
+}
+
+CheckBoxParentTest2.codeTemplate = "owlybook.CheckBoxCallTest";
+CheckBoxParentTest2.storyConfig = {
+    title: "CheckboxSecondStory",
     component: CheckBox,
     props: {
         value: {
@@ -35,11 +62,11 @@ CheckBoxParentTest.storyConfig = {
 export const CheckBoxStories = {
     title: "Core components",
     module: "web",
-    stories: [CheckBoxParentTest],
+    stories: [CheckBoxParentTest, CheckBoxParentTest2],
 };
 
 export const CheckBoxStories2 = {
-    title: "Core components",
+    title: "Core components2",
     module: "web",
     stories: [CheckBoxParentTest],
 };

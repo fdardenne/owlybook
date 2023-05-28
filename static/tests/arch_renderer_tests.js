@@ -74,7 +74,7 @@ QUnit.module("Owlybook", (hooks) => {
         assert.containsOnce(target, "#ace-editor", "The code editor should be present");
         assert.containsOnce(
             target,
-            ".o_form_label[for=image_url]",
+            ".o_form_label[for=image_url_0]",
             "Should have an input for the image label"
         );
         assert.containsNone(
