@@ -6,6 +6,8 @@ With Owlybook, developers can create and organize "stories", which are individua
 Each story represents a specific state or use case of the component, allowing developers to easily see how the component behaves under different conditions. 
 Developers can browse through stories, view the code for each component, and make adjustments in real-time.
 
+![owlybook](https://github.com/fdardenne/owlybook/assets/109217759/e4369406-b4e8-4e95-a835-1c95f5e20e6a)
+
 ## How to use it
 
 To use Owlybook in your Odoo server
