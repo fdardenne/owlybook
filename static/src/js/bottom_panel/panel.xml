@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <templates>
-    <t t-name="owlybook.panel" owl="1">
+    <t t-name="owlybook.panel">
         <div class="o_owlybook_panel border-top w-100 d-flex flex-column o_owlybook_bottom_bar">
             <ul class="nav nav-tabs">
                 <li class="nav-item" t-if="tabsAvailability['props']">

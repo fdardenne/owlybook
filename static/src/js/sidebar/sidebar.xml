@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <templates>
-    <t t-name="owlybook.Sidebar" owl="1">
+    <t t-name="owlybook.Sidebar">
         <div class="o_owlybook_sidebar overflow-auto border-end">
             <ul class="p-2" >
                 <li class="text-center pb-2">
@@ -26,7 +26,7 @@
         </div>
     </t>
 
-    <t t-name="owlybook.Sidebar.module" owl="1">
+    <t t-name="owlybook.Sidebar.module">
         <t t-if="filteredModule.includes(moduleName)">
             <t t-set="moduleObject" t-value="stories.stories[moduleName]" />
             <div t-on-click="() => this.toggleFold(moduleObject)" class="d-flex align-items-center o_owlybook_module o_owlybook_hover text-uppercase text-muted user-select-none">
@@ -46,7 +46,7 @@
         </t>
     </t>
 
-    <t t-name="owlybook.Sidebar.folder" owl="1">
+    <t t-name="owlybook.Sidebar.folder">
         <t t-if="filteredFolders.includes(folderName)">
             <t t-set="folderObject" t-value="moduleObject['folders'][folderName]"/>
             <div t-on-click="() => this.toggleFold(folderObject)" class="d-flex align-items-center o_owlybook_folder o_owlybook_hover user-select-none ps-4 pb-1">

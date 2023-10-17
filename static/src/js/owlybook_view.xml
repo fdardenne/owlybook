@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="owlybook.OwlybookView" owl="1">
+    <t t-name="owlybook.OwlybookView">
         <MainComponentsContainer/>
         <div class="d-sm-flex flex-row h-100 bg-white">
             <Sidebar t-if="!hideSidebar" stories="stories.stories"/>
@@ -22,13 +22,13 @@
                     <Panel t-key="stories.active.id"/>
                 </t>
                 <t t-else="">
-                   <t t-call="owlybook.Introduction"/>
+                    <t t-call="owlybook.Introduction"/>
                 </t>
             </div>
         </div>
     </t>
 
-    <t t-name="owlybook.Introduction" owl="1">
+    <t t-name="owlybook.Introduction">
         <div class="m-5 p-5">
             <h1><strong>Welcome to Owlybook ! 👋 🦉 </strong></h1><br/>
             <h2><font class="text-o-color-2">Introduction</font></h2>

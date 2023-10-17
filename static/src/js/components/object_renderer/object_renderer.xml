@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
 
-    <t t-name="owlybook.ObjectRenderer" owl="1">
+    <t t-name="owlybook.ObjectRenderer">
         <t t-set="name" t-value="props.name"/>
         <t t-set="object" t-value="props.object"/>
         <t t-set="uncollapsedObject" t-value="uncollapsed"
         <t t-call="owlybook.ObjectRenderer.object"/>
     </t>
 
-    <t t-name="owlybook.ObjectRenderer.object" owl="1">
+    <t t-name="owlybook.ObjectRenderer.object">
         <t t-if="object and isObject(object)">
             <span t-on-click="() => toggleCollapse(uncollapsedObject, name)" class="o_owlybook_hover">
                 <i t-if="uncollapsedObject[name]" class="fa fa-caret-down"></i>

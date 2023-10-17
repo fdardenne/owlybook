@@ -10,6 +10,9 @@ import { useBus, useService } from "@web/core/utils/hooks";
 import { MainComponentsContainer } from "@web/core/main_components_container";
 
 export class OwlybookView extends Component {
+    static template = "owlybook.OwlybookView";
+    static components = { Sidebar, Canvas, Panel, MainComponentsContainer };
+
     setup() {
         this.router = useService("router");
         this.stories = setupStories(this.router);
@@ -30,7 +33,5 @@ export class OwlybookView extends Component {
     }
 }
 
-OwlybookView.template = "owlybook.OwlybookView";
-OwlybookView.components = { Sidebar, Canvas, Panel, MainComponentsContainer };
 
 registry.category("actions").add("owlybook_view", OwlybookView);

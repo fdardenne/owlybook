@@ -1,5 +1,5 @@
 <templates>
-    <t t-name="owlybook.ComponentCode" owl="1">
+    <t t-name="owlybook.ComponentCode">
         <div class="alert alert-primary mb-0" role="alert">
             Modifying the code in the editor below will not modify the component.
             It's purpose is to copy/paste or to understand the component usage

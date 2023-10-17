@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <templates>
-    <t t-name="owlybook.properties" owl="1">
+    <t t-name="owlybook.properties">
         <div t-if="warning" class="alert alert-warning mb-0" role="alert">
             <t t-esc="warning"/>
         </div>
@@ -31,7 +31,7 @@
         </div>
     </t>
 
-    <t t-name="owlybook.properties.input" owl="1">
+    <t t-name="owlybook.properties.input">
         <t t-set="propType" t-value="propertyType(property_value)"/>
         <t t-set="propValue" t-value="formatValue(propType, property_value.value)"/>
         <t t-if="propType === 'Boolean'">
@@ -78,7 +78,7 @@
         <i t-if="property_value.value !== undefined and !property_value.choices and !isDisabled(property_value) and isDeleteBtnEnabled" t-on-click="(ev) => this.onChange(property_value, '')" class="fa fa-times ms-1 o_delete align-middle" aria-hidden="true"/>
     </t>
 
-    <t t-name="owlybook.properties.name" owl="1">
+    <t t-name="owlybook.properties.name">
         <t t-esc="property"/>
         <t t-if="!property_value.optional"><span>*</span></t>
         <i class="fa fa-question-circle-o ps-2 owlybook_tooltip" t-if="property_value.help" t-att-data-tooltip="property_value.help"/>
