@@ -70,29 +70,6 @@ export class ArchRenderer extends Component {
         };
 
         const rpcService = makeFakeRPCService(_mockRPC).start(this.env);
-        // setup legacy rpc fake service for the form view basic relational model
-        // @ts-ignore
-        owl.Component.env.session.rpc = (...args) => {
-            let rejection;
-            // @ts-ignore
-            const prom = new Promise((resolve, reject) => {
-                const [route, params, settings = {}] = args;
-
-                // @ts-ignore
-                const jsonrpc = rpcService(route, params, {
-                    silent: settings.shadow,
-                    xhr: settings.xhr,
-                });
-                rejection = () => {
-                    // @ts-ignore
-                    jsonrpc.abort();
-                };
-                jsonrpc.then(resolve);
-            });
-            // @ts-ignore
-            prom.abort = rejection;
-            return prom;
-        };
 
         // setup fake rpc and orm services for viewService
         const orm = new ORM(rpcService, this.env.services.user);
