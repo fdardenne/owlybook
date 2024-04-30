@@ -4,7 +4,7 @@
     <t t-name="owlybook.ObjectRenderer">
         <t t-set="name" t-value="props.name"/>
         <t t-set="object" t-value="props.object"/>
-        <t t-set="uncollapsedObject" t-value="uncollapsed"
+        <t t-set="uncollapsedObject" t-value="uncollapsed"/>
         <t t-call="owlybook.ObjectRenderer.object"/>
     </t>
 
