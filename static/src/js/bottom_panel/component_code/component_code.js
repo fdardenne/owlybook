@@ -13,18 +13,10 @@ export class ComponentCode extends Component {
         if (this.props.mode === "js") {
             this.sourceCode = this.stories.active.parentComponent.toString();
         } else {
-            const codeTemplateName = this.stories.active.parentComponent.codeTemplate;
-            const templateName = this.stories.active.parentComponent.template;
-            this.sourceCode =
-                // @ts-ignore
-                this.__owl__.app.rawTemplates[codeTemplateName || templateName]?.innerHTML;
+            this.sourceCode = "(Template source not available)";
         }
     }
 
-    /**
-     * The goal of this function is simply to return qweb if the props mode is "xml" otherwise return default
-     * @returns {string}
-     */
     get mode() {
         return this.props.mode === "xml" ? "qweb" : "default";
     }

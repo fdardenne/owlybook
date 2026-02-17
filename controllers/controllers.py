@@ -1,10 +1,13 @@
 from odoo import http
-from odoo.http import request, route
+from odoo.http import request
+
 
 class OwlybookController(http.Controller):
-    @http.route(['/owlybook'], type='http', auth='public')
+    @http.route(["/owlybook"], type="http", auth="user")
     def show_owlybook(self):
-        """
-        Renders the Owlybook
-        """
-        return request.render('owlybook.owlybook')
+        return request.render(
+            "owlybook.owlybook",
+            {
+                "session_info": request.env["ir.http"].session_info(),
+            },
+        )
