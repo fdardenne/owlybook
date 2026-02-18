@@ -26,11 +26,11 @@ const SumExample = {
     title: "List Sum and Average",
     model: "order",
     viewType: "list",
-    arch: `<tree editable="bottom">
+    arch: `<list editable="bottom">
     <field name="description"/>
     <field name="int_field" sum="Total"/>
     <field name="int_field_avg" avg="Average"/>
-</tree>`,
+</list>`,
     serverData,
 };
 

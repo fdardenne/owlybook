@@ -31,13 +31,13 @@
                 </t>
             </t>
             <t t-elif="mode === 'code'">
-                <CodeEditor mode="'qweb'" value="stories.active.dirtyArch || stories.activeArch" onChange="value => stories.active.dirtyArch = value" />
+                <CodeEditor mode="'qweb'" value="stories.active.dirtyArch || stories.activeArch" onChange="value => stories.active.dirtyArch = value" maxLines="20" />
             </t>
             <t t-elif="mode === 'events'">
                 <Events/>
             </t>
             <t t-elif="mode === 'js' or mode === 'xml'">
-                <ComponentCode mode="mode" t-key="mode"/>
+                <ComponentCode mode="mode" t-key="mode" maxLines="20"/>
             </t>
         </div>
     </t>

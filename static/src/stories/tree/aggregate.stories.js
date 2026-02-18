@@ -23,10 +23,10 @@ const AggregateExample = {
     title: "List Aggregate",
     model: "order",
     viewType: "list",
-    arch: `<tree editable="bottom">
+    arch: `<list editable="bottom">
     <field name="description"/>
     <field name="int_field"/>
-</tree>`,
+</list>`,
     serverData,
 };
 

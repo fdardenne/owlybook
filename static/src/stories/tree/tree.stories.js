@@ -28,10 +28,10 @@ const treeExample = {
     title: "List",
     model: "order",
     viewType: "list",
-    arch: `<tree>
+    arch: `<list>
     <field name="description"/>
     <field name="image_url"/>
-</tree>`,
+</list>`,
     serverData,
 };
 

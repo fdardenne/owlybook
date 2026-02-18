@@ -35,6 +35,9 @@ ColorListParent.storyConfig = {
         selectedColor: {
             value: 9,
         },
+        onColorSelected: {
+            value: () => {},
+        }
     },
 };
 

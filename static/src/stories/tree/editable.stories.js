@@ -33,10 +33,10 @@ const EditableExample = {
     title: "List Editable",
     model: "order",
     viewType: "list",
-    arch: `<tree editable="bottom">
+    arch: `<list editable="bottom">
     <field name="description"/>
     <field name="int_field"/>
-</tree>`,
+</list>`,
     serverData,
 };
 

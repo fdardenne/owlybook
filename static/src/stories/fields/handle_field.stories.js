@@ -32,10 +32,10 @@ const formWithHandleField = {
     title: "Handle field",
     model: "partner",
     viewType: "list",
-    arch: `<tree>
+    arch: `<list>
     <field name="sequence" widget="handle"/>
     <field name="display_name" />
-</tree>`,
+</list>`,
     serverData,
 };
 
