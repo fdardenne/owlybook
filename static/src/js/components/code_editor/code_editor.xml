@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<templates>
-
-    <t t-name="web_studio.CodeEditor" owl="1">
-        <div t-ref="editorRef" id="ace-editor" class="o_web_studio_code_editor w-100 h-100">
-        </div>
-    </t>
-
-</templates>

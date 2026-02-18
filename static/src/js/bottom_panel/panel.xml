@@ -31,7 +31,7 @@
                 </t>
             </t>
             <t t-elif="mode === 'code'">
-                <CodeEditor type="'qweb'" value="stories.active.dirtyArch || stories.activeArch" onChange="value => stories.active.dirtyArch = value" id="'studioXmlEditor'" />
+                <CodeEditor mode="'qweb'" value="stories.active.dirtyArch || stories.activeArch" onChange="value => stories.active.dirtyArch = value" />
             </t>
             <t t-elif="mode === 'events'">
                 <Events/>

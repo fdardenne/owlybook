@@ -3,7 +3,7 @@
 import { Component, useState } from "@odoo/owl";
 import { useStories } from "../stories";
 import { ComponentProperties } from "./component_properties/component_properties";
-import { CodeEditor } from "../components/code_editor/code_editor";
+import { CodeEditor } from "@web/core/code_editor/code_editor";
 import { ArchProperties } from "./arch_properties/arch_properties";
 import { Events } from "./events/events";
 import { ComponentCode } from "./component_code/component_code";
