@@ -6,17 +6,25 @@
             <field name="target">self</field>
         </record>
 
-        <template id="owlybook.owlybook" name="Storybook">
-            <t t-call="web.layout">
-                <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
-                <t t-set="title">Owlybook</t>
-                <t t-set="head">
-                    <t t-call-assets="web.assets_common" t-js="false"/>
-                    <t t-call-assets="owlybook.assets_backend" t-js="false"/>
-                    <t t-call-assets="web.assets_common" t-css="false"/>
-                    <t t-call-assets="owlybook.assets_backend" t-css="false"/>
-                </t>
-            </t>
+        <template id="owlybook.owlybook" name="Owlybook">&lt;!DOCTYPE html&gt;
+<html style="height: 100%;">
+    <head>
+        <title>Owlybook</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <script type="text/javascript">
+            var odoo = <t t-out="json.dumps({
+                'csrf_token': request.csrf_token(None),
+                '__session_info__': session_info,
+                'debug': debug,
+            })"/>;
+            odoo.loadMenusPromise = Promise.resolve();
+        </script>
+        <t t-call-assets="owlybook.assets_owlybook"/>
+    </head>
+    <body style="height: 100%; margin: 0;"/>
+</html>
         </template>
     </data>
 </odoo>

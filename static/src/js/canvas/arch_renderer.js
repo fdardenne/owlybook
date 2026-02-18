@@ -1,13 +1,9 @@
 /** @odoo-module */
 
-// @ts-ignore
 import { Component, xml, useSubEnv, onError, useState, useRef } from "@odoo/owl";
 import { useStories } from "../stories";
-import { MockServer } from "@web/../tests/helpers/mock_server";
-import { makeFakeRPCService } from "@web/../tests/helpers/mock_services";
 import { View } from "@web/views/view";
 import { ORM } from "@web/core/orm_service";
-import { viewService } from "@web/views/view_service";
 import { createDebugContext } from "@web/core/debug/debug_context";
 
 export class ArchRenderer extends Component {
@@ -28,7 +24,6 @@ export class ArchRenderer extends Component {
         this.disableAutofocusElement = useRef("disableAutofocus");
 
         onError((error) => {
-            // The arch has an error
             this.state.hasError = true;
             console.error(error);
         });
@@ -43,45 +38,130 @@ export class ArchRenderer extends Component {
         this.props.viewId = 100000001;
         serverData.views[`${this.props.resModel},${this.props.viewId},${this.props.type}`] =
             this.stories.activeArch;
-        // note: maybe we'll need to use that later
-        // props.searchViewId = 100000002; // hopefully will not conflict with an id already in views
-        // const searchViewArch = props.searchViewArch || "<search/>";
-        // serverData.views[`${props.resModel},${props.searchViewId},search`] = searchViewArch;
-        // delete props.searchViewArch;
 
-        const mockServer = new MockServer(this.stories.active.serverData);
-        const _mockRPC = async (route, args = {}) => {
-            let res;
-            if (args.method !== "POST") {
-                // simulates that we serialized the call to be passed in a real request
-                args = JSON.parse(JSON.stringify(args));
+        const storyActive = this.stories.active;
+
+        // Build a fake RPC function that handles get_views and other ORM calls
+        // using the story's serverData instead of hitting the real server.
+        const fakeRPC = async (url, params, options) => {
+            const { model, method, args, kwargs } = params || {};
+
+            // Let the story's custom mockRPC handle it first
+            if (storyActive.mockRPC) {
+                const res = await storyActive.mockRPC(url, params);
+                if (res !== undefined) {
+                    return res;
+                }
             }
-            if (this.stories.active.mockRPC) {
-                res = await this.stories.active.mockRPC(
-                    route,
-                    args,
-                    mockServer.performRPC.bind(mockServer)
-                );
+
+            if (method === "get_views") {
+                return this._handleGetViews(serverData, model, kwargs);
             }
-            if (res === undefined) {
-                res = await mockServer.performRPC(route, args);
+            if (method === "read") {
+                return this._handleRead(serverData, model, args);
             }
-            return res;
+            if (method === "web_search_read" || method === "search_read") {
+                return this._handleSearchRead(serverData, model, kwargs);
+            }
+            if (method === "search_count") {
+                const records = serverData.models?.[model]?.records || [];
+                return records.length;
+            }
+            if (method === "name_get") {
+                const records = serverData.models?.[model]?.records || [];
+                const ids = args?.[0] || [];
+                return records
+                    .filter((r) => ids.includes(r.id))
+                    .map((r) => [r.id, r.display_name || r.name || `${model},${r.id}`]);
+            }
+            if (method === "onchange") {
+                return { value: {} };
+            }
+
+            console.warn(`[Owlybook] Unhandled RPC: ${model}.${method}`, params);
+            return {};
         };
 
-        const rpcService = makeFakeRPCService(_mockRPC).start(this.env);
+        // Create a custom ORM that uses our fake RPC
+        const fakeOrm = new ORM();
+        fakeOrm.rpc = fakeRPC;
 
-        // setup fake rpc and orm services for viewService
-        const orm = new ORM(rpcService, this.env.services.user);
+        // Provide a fake view service that uses the fake ORM
+        const fakeViewService = {
+            async loadViews(params, options = {}) {
+                const { resModel, views, context } = params;
+                const result = await fakeOrm.call(resModel, "get_views", [], {
+                    context: context || {},
+                    views,
+                    options,
+                });
+                const viewDescriptions = {
+                    fields: result.models[resModel].fields,
+                    relatedModels: result.models,
+                    views: {},
+                };
+                for (const viewType in result.views) {
+                    const { arch, id } = result.views[viewType];
+                    viewDescriptions.views[viewType] = { arch, id };
+                }
+                return viewDescriptions;
+            },
+        };
+
         useSubEnv({
             services: {
                 ...this.env.services,
-                rpc: rpcService,
-                orm: orm,
-                view: viewService.start(this.env, { orm }),
+                rpc: fakeRPC,
+                orm: fakeOrm,
+                view: fakeViewService,
             },
         });
 
         useSubEnv(createDebugContext(this.env));
+    }
+
+    _handleGetViews(serverData, model, kwargs) {
+        const views = kwargs?.views || [];
+        const modelData = serverData.models?.[model] || {};
+        const fields = modelData.fields || {};
+        const result = {
+            models: { [model]: { fields } },
+            views: {},
+        };
+        for (const [viewId, viewType] of views) {
+            const key = `${model},${viewId},${viewType}`;
+            const arch = serverData.views?.[key] || `<${viewType}/>`;
+            result.views[viewType] = { arch, id: viewId || false };
+        }
+        return result;
+    }
+
+    _handleRead(serverData, model, args) {
+        const records = serverData.models?.[model]?.records || [];
+        const ids = args?.[0] || [];
+        const fieldNames = args?.[1];
+        return records
+            .filter((r) => ids.includes(r.id))
+            .map((r) => {
+                if (fieldNames) {
+                    const filtered = { id: r.id };
+                    for (const f of fieldNames) {
+                        filtered[f] = r[f];
+                    }
+                    return filtered;
+                }
+                return { ...r };
+            });
+    }
+
+    _handleSearchRead(serverData, model, kwargs) {
+        const records = serverData.models?.[model]?.records || [];
+        const limit = kwargs?.limit || records.length;
+        const offset = kwargs?.offset || 0;
+        const sliced = records.slice(offset, offset + limit);
+        return {
+            length: records.length,
+            records: sliced,
+        };
     }
 }

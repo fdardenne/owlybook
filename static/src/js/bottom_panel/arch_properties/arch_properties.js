@@ -2,7 +2,7 @@
 
 import { Component } from "@odoo/owl";
 import { useStories } from "../../stories";
-import { archParseBoolean } from "@web/views/utils";
+
 import { SelectMenu } from "@web/core/select_menu/select_menu";
 
 export class ArchProperties extends Component {
@@ -72,7 +72,7 @@ export class ArchProperties extends Component {
      */
     formatValue(type, value) {
         if (type === "Boolean") {
-            return archParseBoolean(value);
+            return value === "True" || value === "true" || value === "1" || value === true;
         } else {
             return value;
         }
