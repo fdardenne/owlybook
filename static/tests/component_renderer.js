@@ -1,4 +1,4 @@
-/** @odoo-module **/
+
 
 import { click, getFixture } from "@web/../tests/helpers/utils";
 import { CheckBoxStories } from "./checkbox_tests.stories";

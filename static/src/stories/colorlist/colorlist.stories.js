@@ -1,5 +1,3 @@
-/** @odoo-module */
-
 import { ColorList } from "@web/core/colorlist/colorlist";
 import { registry } from "@web/core/registry";
 import { Component, onMounted } from "@odoo/owl";

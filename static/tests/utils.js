@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import { mount, nextTick, click, patchWithCleanup, makeDeferred } from "@web/../tests/helpers/utils";
 import { setupViewRegistries } from "@web/../tests/views/helpers";
 import { registry } from "@web/core/registry";

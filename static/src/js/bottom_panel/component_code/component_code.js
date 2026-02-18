@@ -1,5 +1,3 @@
-/** @odoo-module */
-
 import { Component } from "@odoo/owl";
 import { useStories } from "../../stories";
 import { CodeEditor } from "@web/core/code_editor/code_editor";

@@ -1,4 +1,4 @@
-/** @odoo-module **/
+
 
 import {
     editSelectMenu,

@@ -1,5 +1,3 @@
-/** @odoo-module */
-
 function formatValueForAttrs(value) {
     if (value === false || value === true) {
         return value;

@@ -1,5 +1,3 @@
-/** @odoo-module */
-
 const serverData = {
     models: {
         order: {

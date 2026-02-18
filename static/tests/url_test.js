@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import { CheckBoxStories } from "./checkbox_tests.stories";
 import { cleanStoriesRegistry, setupPlaygroundRegistries, makePlaygroundView } from "./utils";
 import { FormIntegerStories } from "./integer_test.stories";

@@ -1,4 +1,3 @@
-/** @odoo-module */
 import { Component } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { CodeEditor } from "../../js/components/code_editor/code_editor";

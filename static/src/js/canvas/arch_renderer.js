@@ -1,5 +1,3 @@
-/** @odoo-module */
-
 import { Component, xml, useSubEnv, onError, useState, useRef } from "@odoo/owl";
 import { useStories } from "../stories";
 import { View } from "@web/views/view";

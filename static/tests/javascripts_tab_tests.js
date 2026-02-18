@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import { getFixture, nextTick, click } from "@web/../tests/helpers/utils";
 
 import { CheckBoxStories } from "./checkbox_tests.stories";

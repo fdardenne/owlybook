@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import { Component, useEffect } from "@odoo/owl";
 import { ComponentRenderer } from "./component_renderer";
 import { ArchRenderer } from "./arch_renderer";

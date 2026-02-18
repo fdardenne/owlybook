@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import { Component, useState } from "@odoo/owl";
 import { useStories } from "../stories";
 import { ComponentProperties } from "./component_properties/component_properties";

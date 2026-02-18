@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import { Component } from "@odoo/owl";
 import { useStories } from "../../stories";
 import { ObjectRenderer } from "../../components/object_renderer/object_renderer";

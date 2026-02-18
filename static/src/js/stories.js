@@ -1,5 +1,3 @@
-/** @odoo-module */
-
 import { reactive, useState, useEnv, useSubEnv } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { attrsToXml, arrayToSelectMenuArray } from "./utils";

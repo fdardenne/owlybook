@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import { click, getFixture, editInput, nextTick } from "@web/../tests/helpers/utils";
 import { CheckBoxStories, CheckBoxStories2 } from "./checkbox_tests.stories";
 import { cleanStoriesRegistry, setupPlaygroundRegistries, makePlaygroundView } from "./utils";
