@@ -1,0 +1,93 @@
+.o_owlybook_preview {
+    position: relative;
+    min-height: 100%;
+}
+
+.o_owlybook_preview_view {
+    display: flex;
+    flex-direction: column;
+
+    .o_owlybook_view {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    // Views expect to fill the action manager: let them grow with the canvas.
+    .o_view_controller,
+    .o_content {
+        height: auto;
+        overflow: visible;
+    }
+}
+
+.o_owlybook_preview_error {
+    padding: $spacer;
+    border: $border-width solid rgba($danger, 0.3);
+    border-radius: $border-radius-lg;
+    background-color: rgba($danger, 0.05);
+
+    pre {
+        max-height: 240px;
+        overflow: auto;
+        white-space: pre-wrap;
+    }
+}
+
+// Canvas: where the story is shown, shared with exported stories.
+.o_owlybook_canvas {
+    padding: $spacer * 1.5;
+    background-color: $o-view-background-color;
+}
+
+.o_owlybook_canvas_webclient {
+    background-color: $o-gray-100;
+}
+
+.o_owlybook_canvas_grid {
+    background-color: $o-view-background-color;
+    background-image:
+        linear-gradient(rgba($o-gray-400, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba($o-gray-400, 0.25) 1px, transparent 1px);
+    background-size: 16px 16px;
+}
+
+.o_owlybook_canvas_inner {
+    transition: max-width 0.2s ease;
+}
+
+.o_owlybook_description {
+    max-width: 72ch;
+    margin-bottom: $spacer;
+    color: $o-gray-700;
+}
+
+.o_owlybook_stage {
+    padding: $spacer * 1.5;
+    border: $border-width solid var(--bs-border-color);
+    border-radius: $border-radius-lg;
+    background-color: $o-view-background-color;
+    box-shadow: 0 1px 2px rgba($o-black, 0.04), 0 4px 16px -8px rgba($o-black, 0.12);
+
+    .o_owlybook_canvas_grid & {
+        border-style: dashed;
+        background-color: transparent;
+        box-shadow: none;
+    }
+}
+
+.o_owlybook_preview_view .o_form_view .o_form_sheet_bg {
+    padding: 0;
+    border: 0;
+}
+
+.o_owlybook_standalone_app .o_owlybook_canvas {
+    padding: $spacer;
+}
+
+.o_owlybook_dialog_launcher {
+    display: flex;
+    align-items: center;
+    gap: $spacer;
+    padding: $spacer * 2 0;
+    justify-content: center;
+}

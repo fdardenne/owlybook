@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_owlybook" model="ir.actions.act_url">
+        <field name="name">Owlybook</field>
+        <field name="url">/owlybook</field>
+        <field name="target">self</field>
+    </record>
+
+    <menuitem id="menu_owlybook_root"
+              name="Owlybook"
+              action="action_owlybook"
+              web_icon="owlybook,static/description/icon.png"
+              sequence="200"/>
+
+    <template id="owlybook_page" name="Owlybook">
+        <t t-set="head">
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <script type="text/javascript">
+                odoo.__session_info__ = <t t-out="json.dumps(session_info)"/>;
+            </script>
+            <t t-call-assets="web.odoo_ui_icons" t-binary="True"/>
+            <t t-call-assets="owlybook.assets_owlybook"/>
+        </t>
+        <t t-call="web.layout"
+           title="'Owlybook'"
+           html_data="{'style': 'height: 100%;'}"
+           head="head"/>
+    </template>
+
+    <!-- Rendered by /owlybook/export and /owlybook/export_site: nothing in it
+         may point to the server. -->
+    <template id="owlybook_standalone_page" name="Owlybook Standalone Story">&lt;!DOCTYPE html&gt;
+<html style="height: 100%;">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title t-out="title"/>
+        <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🦉&lt;/text&gt;&lt;/svg&gt;"/>
+        <script t-if="story" type="application/json" id="owlybook_story" t-out="story"/>
+        <script type="application/json" id="owlybook_translations" t-out="translations"/>
+        <script type="text/javascript">
+            var odoo = { csrf_token: "", debug: "", __session_info__: <t t-out="session_info"/> };
+            // No apps to show: an empty menu tree, instead of fetching it.
+            odoo.loadMenusPromise = Promise.resolve({
+                root: { id: "root", name: "root", children: [], appID: false, xmlid: "", actionID: false },
+            });
+            // No server to stream notifications from: the bus worker is
+            // replaced by one that only acknowledges its initialization.
+            odoo.__session_info__.bus_info = { worker_version: "owlybook", last_id: 0 };
+            (function () {
+                class OfflineBusWorker extends EventTarget {
+                    port = this;
+                    start() {}
+                    close() {}
+                    postMessage(message) {
+                        if (message?.action === "BASE:INIT") {
+                            setTimeout(() => this.dispatchEvent(
+                                new MessageEvent("message", { data: { type: "BASE:INITIALIZED" } })
+                            ));
+                        }
+                    }
+                }
+                function isBusWorker(url) {
+                    url = String(url);
+                    if (url.startsWith("data:application/javascript;base64,")) {
+                        url = atob(url.split(",")[1]);
+                    }
+                    return url.includes("/bus/websocket_worker_bundle");
+                }
+                for (const name of ["Worker", "SharedWorker"]) {
+                    const NativeWorker = window[name];
+                    if (NativeWorker) {
+                        window[name] = function (url, options) {
+                            return isBusWorker(url) ? new OfflineBusWorker() : new NativeWorker(url, options);
+                        };
+                    }
+                }
+            })();
+            // In a sandboxed iframe the storages throw on access: keep the
+            // values in memory instead, the story doesn't need them to last.
+            for (const name of ["localStorage", "sessionStorage"]) {
+                try {
+                    window[name].setItem("__owlybook__", "1");
+                    window[name].removeItem("__owlybook__");
+                } catch {
+                    const data = new Map();
+                    const storage = {
+                        getItem: (key) => (data.has(key) ? data.get(key) : null),
+                        setItem: (key, value) => data.set(key, String(value)),
+                        removeItem: (key) => data.delete(key),
+                        clear: () => data.clear(),
+                        key: (index) => [...data.keys()][index] ?? null,
+                        get length() {
+                            return data.size;
+                        },
+                    };
+                    Object.defineProperty(window, name, { value: storage, configurable: true });
+                }
+            }
+            // The web client fetches its translations at startup: answer from
+            // the inlined copy instead of the network.
+            (function () {
+                const translations = document.getElementById("owlybook_translations").textContent;
+                const fetch = window.fetch.bind(window);
+                window.fetch = function (input, init) {
+                    const url = typeof input === "string" ? input : input.url;
+                    if (url.startsWith("/web/webclient/translations")) {
+                        return Promise.resolve(new Response(translations, {
+                            headers: { "Content-Type": "application/json" },
+                        }));
+                    }
+                    return fetch(input, init);
+                };
+            })();
+        </script>
+        <!-- The assets, gzipped then base64 encoded: inflated below. -->
+        <script type="application/octet-stream" id="owlybook_css" t-out="css"/>
+        <script type="application/octet-stream" id="owlybook_js" t-out="js"/>
+        <script type="text/javascript">
+            (async function () {
+                async function inflate(id) {
+                    const base64 = document.getElementById(id).textContent;
+                    const bytes = Uint8Array.from(atob(base64), (char) => char.charCodeAt(0));
+                    const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
+                    return new Response(stream).text();
+                }
+                const [css, js] = await Promise.all([inflate("owlybook_css"), inflate("owlybook_js")]);
+                const style = document.createElement("style");
+                style.textContent = css;
+                document.head.appendChild(style);
+                const script = document.createElement("script");
+                script.textContent = js;
+                document.head.appendChild(script);
+            })();
+        </script>
+    </head>
+    <body class="o_owlybook_standalone" style="height: 100%; margin: 0;"/>
+</html>
+    </template>
+</odoo>

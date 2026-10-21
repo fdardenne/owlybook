@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="owlybook.ValueViewer">
+        <div class="o_owlybook_value font-monospace">
+            <t t-if="this.isExpandable()">
+                <button class="btn btn-link p-0 text-reset text-decoration-none o_owlybook_value_toggle"
+                        t-on-click="() => this.state.open = !this.state.open">
+                    <i class="oi oi-fw" t-att-data-icon="this.state.open ? 'arrow_drop_down' : 'arrow_right'" aria-hidden="true"/>
+                    <span t-if="this.props.name !== undefined" class="o_owlybook_value_key"><t t-out="this.props.name"/>: </span>
+                    <span class="text-muted" t-out="this.getSummary()"/>
+                </button>
+                <div t-if="this.state.open" class="o_owlybook_value_children">
+                    <t t-foreach="this.getEntries()" t-as="entry" t-key="entry_index">
+                        <ValueViewer name="entry[0]" value="entry[1]" depth="this.props.depth + 1"/>
+                    </t>
+                </div>
+            </t>
+            <span t-else="" class="o_owlybook_value_leaf">
+                <span t-if="this.props.name !== undefined" class="o_owlybook_value_key"><t t-out="this.props.name"/>: </span>
+                <span t-att-class="this.getPrimitiveClass()" t-out="this.formatPrimitive()"/>
+            </span>
+        </div>
+    </t>
+
+</templates>

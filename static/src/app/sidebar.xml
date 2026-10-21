@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="owlybook.Sidebar">
+        <nav class="o_owlybook_sidebar d-flex flex-column" aria-label="Stories">
+            <div class="o_owlybook_search px-3 pt-3 pb-2">
+                <div class="position-relative">
+                    <i class="oi o_owlybook_search_icon" data-icon="search" aria-hidden="true"/>
+                    <input type="search" class="form-control form-control-sm" placeholder="Search stories"
+                           t-att-value="this.state.search"
+                           t-on-input="(ev) => this.state.search = ev.target.value"
+                           t-on-keydown="this.onSearchKeydown"/>
+                </div>
+            </div>
+            <div class="o_owlybook_tree flex-grow-1 overflow-auto px-2 pb-3">
+                <button class="o_owlybook_tree_item o_owlybook_welcome_link" t-att-class="{ active: !this.props.activeStoryId }" t-on-click="() => this.props.onShowWelcome()">
+                    <i class="oi oi-fw" data-icon="apps" aria-hidden="true"/>
+                    <span>Welcome</span>
+                </button>
+                <t t-set="tree" t-value="this.getFilteredTree()"/>
+                <div t-if="!tree.length" class="text-muted small px-2 py-3">No story matches this search.</div>
+                <section t-foreach="tree" t-as="addon" t-key="addon.addon" class="o_owlybook_addon">
+                    <h6 class="o_owlybook_addon_name" t-out="addon.addon"/>
+                    <div t-foreach="addon.folders" t-as="folder" t-key="folder.name" class="o_owlybook_folder">
+                        <t t-set="isOpen" t-value="this.isFolderOpen(addon.addon, folder)"/>
+                        <button class="o_owlybook_tree_item o_owlybook_folder_name" t-att-aria-expanded="isOpen ? 'true' : 'false'"
+                                t-on-click="() => this.toggleFolder(addon.addon, folder)">
+                            <i class="oi oi-fw o_owlybook_caret" t-att-class="{ 'oi-rotate-90': isOpen }" data-icon="keyboard_arrow_right" aria-hidden="true"/>
+                            <span class="text-truncate" t-out="folder.name"/>
+                            <span class="o_owlybook_count ms-auto" t-out="folder.stories.length"/>
+                        </button>
+                        <div t-if="isOpen" class="o_owlybook_folder_stories">
+                            <button t-foreach="folder.stories" t-as="story" t-key="story.id"
+                                    class="o_owlybook_tree_item o_owlybook_story_link"
+                                    t-att-class="{ active: story.id === this.props.activeStoryId }"
+                                    t-att-title="story.title"
+                                    t-on-click="() => this.props.onSelect(story.id)">
+                                <i class="oi oi-fw" t-att-data-icon="this.getStoryIcon(story)" aria-hidden="true"/>
+                                <span class="text-truncate" t-out="story.title"/>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </nav>
+    </t>
+
+</templates>

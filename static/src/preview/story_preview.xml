@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="owlybook.StoryPreview">
+        <t t-set="runtime" t-value="this.props.runtime"/>
+        <div class="o_owlybook_preview" t-att-class="'o_owlybook_preview_' + runtime.type">
+            <div t-if="runtime.error()" class="o_owlybook_preview_error" role="alert">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="oi text-danger" data-icon="warning" aria-hidden="true"/>
+                    <strong>The story could not be rendered</strong>
+                    <button class="btn btn-sm btn-secondary ms-auto" t-on-click="() => runtime.rerender()">
+                        <i class="oi me-1" data-icon="refresh" aria-hidden="true"/>Retry
+                    </button>
+                </div>
+                <p class="mb-2 font-monospace" t-out="this.getErrorMessage()"/>
+                <p t-if="runtime.story.generated" class="mb-2">
+                    This story was generated from the registry: the widget needs data or options it
+                    can't guess. Write its story, e.g.
+                    <code t-out="'stories.add({ widget: &quot;' + runtime.story.widget + '&quot;, options: {...}, models: {...} })'"/>.
+                </p>
+                <details>
+                    <summary class="text-muted small">Stack trace</summary>
+                    <pre class="small mb-0 mt-2" t-out="this.getErrorStack()"/>
+                </details>
+            </div>
+            <t t-else="">
+            <t t-set="renderKey" t-value="runtime.renderKey()"/>
+            <ErrorHandler onError="(error) => this.onError(error, renderKey)" t-key="renderKey">
+                <ComponentPreview t-if="runtime.type === 'component'" runtime="runtime"/>
+                <ViewPreview t-else="" runtime="runtime" t-key="runtime.arch() + runtime.searchArch()"/>
+            </ErrorHandler>
+            </t>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="owlybook.App">
+        <t t-set="runtime" t-value="this.runtime()"/>
+        <t t-set="story" t-value="runtime?.story"/>
+        <div class="o_owlybook d-flex flex-column h-100">
+            <header class="o_owlybook_topbar d-flex align-items-center gap-2">
+                <button class="btn btn-link o_owlybook_icon_button d-lg-none" title="Toggle the stories"
+                        t-on-click="() => this.state.isSidebarOpen = !this.state.isSidebarOpen">
+                    <i class="oi" data-icon="menu" aria-hidden="true"/>
+                </button>
+                <a class="o_owlybook_brand d-flex align-items-center gap-2" href="#" t-on-click.prevent="() => this.selectStory(null)">
+                    <span class="o_owlybook_logo" aria-hidden="true">🦉</span>
+                    <span class="fw-bold">Owlybook</span>
+                </a>
+                <nav t-if="story" class="o_owlybook_breadcrumb d-none d-md-flex align-items-center" aria-label="Breadcrumb">
+                    <t t-foreach="this.getStoryPath()" t-as="part" t-key="part_index">
+                        <span class="text-muted" t-out="part"/>
+                        <i class="oi mx-1 text-muted" data-icon="chevron_forward" aria-hidden="true"/>
+                    </t>
+                    <span class="fw-semibold" t-out="story.title"/>
+                </nav>
+                <div t-if="story" class="ms-auto d-flex align-items-center gap-2">
+                    <div class="btn-group btn-group-sm d-none d-md-flex" role="group" aria-label="Viewport">
+                        <button t-foreach="this.viewports" t-as="viewport" t-key="viewport.id"
+                                class="btn btn-secondary o_owlybook_viewport" t-att-class="{ active: this.state.viewport === viewport.id }"
+                                t-att-title="viewport.title" t-on-click="() => this.setViewport(viewport.id)"
+                            t-out="viewport.label"/>
+                    </div>
+                    <div t-if="runtime.type === 'view'" class="form-check form-switch mb-0 me-1 d-none d-md-block" title="Show the control panel of the view: buttons, search, pager">
+                        <input class="form-check-input" type="checkbox" role="switch" id="o_owlybook_control_panel"
+                               t-att-checked="runtime.hasControlPanel()" t-on-change="() => runtime.toggleControlPanel()"/>
+                        <label class="form-check-label small" for="o_owlybook_control_panel">Control panel</label>
+                    </div>
+                    <select class="form-select form-select-sm o_owlybook_background_select d-none d-md-block" title="Background"
+                            t-on-change="(ev) => this.setBackground(ev.target.value)">
+                        <option t-foreach="this.backgrounds" t-as="background" t-key="background.id"
+                                t-att-value="background.id" t-att-selected="this.state.background === background.id"
+                                t-out="background.label"/>
+                    </select>
+                    <Dropdown t-if="!this.isOffline" position="'bottom-end'">
+                        <button class="btn btn-primary btn-sm" t-att-disabled="story.liveData">
+                            <i class="oi me-1" data-icon="download" aria-hidden="true"/>Export
+                        </button>
+                        <t t-set-slot="content">
+                            <DropdownItem onSelected="() => this.exportStory({ withControls: false })">
+                                <div class="fw-semibold">Story only</div>
+                                <div class="small text-muted">A standalone HTML page showing the story</div>
+                            </DropdownItem>
+                            <DropdownItem onSelected="() => this.exportStory({ withControls: true })">
+                                <div class="fw-semibold">Story with its controls</div>
+                                <div class="small text-muted">A playground: props and events included</div>
+                            </DropdownItem>
+                            <div class="dropdown-divider"/>
+                            <DropdownItem onSelected="() => this.exportSite()">
+                                <div class="fw-semibold">The whole Owlybook</div>
+                                <div class="small text-muted">Every story, as a static site (GitHub Pages...)</div>
+                            </DropdownItem>
+                        </t>
+                    </Dropdown>
+                </div>
+                <div t-elif="!this.isOffline" class="ms-auto d-flex align-items-center gap-2">
+                    <button class="btn btn-secondary btn-sm" t-on-click="() => this.exportSite()"
+                            title="Every story in a single HTML file working without a server">
+                        <i class="oi me-1" data-icon="download" aria-hidden="true"/>Export as a static site
+                    </button>
+                    <a class="btn btn-link btn-sm text-muted" href="/odoo">
+                        <i class="oi me-1" data-icon="arrow_back" aria-hidden="true"/>Back to Odoo
+                    </a>
+                </div>
+            </header>
+            <div class="o_owlybook_body d-flex flex-grow-1 min-h-0">
+                <Sidebar t-if="this.state.isSidebarOpen"
+                         tree="this.tree"
+                         activeStoryId="this.state.storyId or undefined"
+                         onSelect="(storyId) => this.selectStory(storyId)"
+                         onShowWelcome="() => this.selectStory(null)"/>
+                <main class="o_owlybook_main d-flex flex-column flex-grow-1 min-w-0">
+                    <t t-if="runtime">
+                        <div class="o_owlybook_canvas flex-grow-1 overflow-auto"
+                             t-att-class="'o_owlybook_canvas_' + this.state.background">
+                            <div class="o_owlybook_canvas_inner mx-auto" t-att-style="this.getCanvasStyle()">
+                                <div t-if="story.description" class="o_owlybook_description" t-out="story.descriptionMarkup"/>
+                                <div class="o_owlybook_stage">
+                                    <StoryPreview runtime="runtime" t-key="story.id"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="o_owlybook_resizer" t-on-pointerdown="this.onResizeStart" title="Drag to resize"/>
+                        <div class="o_owlybook_panel_container" t-att-style="'height: ' + this.state.panelHeight + 'px'">
+                            <StoryPanel runtime="runtime" t-key="story.id"/>
+                        </div>
+                    </t>
+                    <t t-else="" t-call="owlybook.Welcome"/>
+                </main>
+            </div>
+        </div>
+        <MainComponentsContainer/>
+    </t>
+
+    <t t-name="owlybook.Welcome">
+        <div class="o_owlybook_welcome overflow-auto h-100">
+            <div class="o_owlybook_welcome_content mx-auto">
+                <div class="o_owlybook_hero">
+                    <div class="o_owlybook_hero_logo" aria-hidden="true">🦉</div>
+                    <h1>Owlybook</h1>
+                    <p class="lead text-muted">
+                        Odoo UI components and views, rendered in isolation.
+                        Play with their props, read the code to reuse them, and export
+                        any story as a standalone HTML page.
+                    </p>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <div class="o_owlybook_stat">
+                            <span class="o_owlybook_stat_value" t-out="this.storyCount"/>
+                            <span class="o_owlybook_stat_label">stories</span>
+                        </div>
+                        <div class="o_owlybook_stat">
+                            <span class="o_owlybook_stat_value" t-out="this.tree.length"/>
+                            <span class="o_owlybook_stat_label">addons</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="o_owlybook_card h-100">
+                            <i class="oi oi-lg o_owlybook_card_icon" data-icon="widgets" aria-hidden="true"/>
+                            <h5>Components</h5>
+                            <p class="text-muted mb-0">Props are read from <code>useProps</code>: each gets a control, callbacks are logged as events.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="o_owlybook_card h-100">
+                            <i class="oi oi-lg o_owlybook_card_icon" data-icon="article" aria-hidden="true"/>
+                            <h5>Views and widgets</h5>
+                            <p class="text-muted mb-0">Every field and view widget has a story. Its options come from the registry, the data from an in-memory database.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="o_owlybook_card h-100">
+                            <i class="oi oi-lg o_owlybook_card_icon" data-icon="download" aria-hidden="true"/>
+                            <h5>Standalone export</h5>
+                            <p class="text-muted mb-0">Export a story as a single HTML file, assets and fonts included, to embed it in documentation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="mb-3">Write a story</h4>
+                <p>Add a file to the <code>owlybook.stories</code> bundle of your addon, in its manifest:</p>
+                <pre class="o_owlybook_snippet"><code>'assets': {
+    'owlybook.stories': ['my_addon/static/stories/**/*'],
+},</code></pre>
+                <p>A story only says what can't be read from the code:</p>
+                <pre class="o_owlybook_snippet"><code>import { stories } from "@owlybook/story/story_registry";
+import { CheckBox } from "@web/core/checkbox/checkbox";
+
+// a component: its props, import and template are found automatically
+stories.add({ component: CheckBox, props: { value: true }, sync: { onChange: "value" } });
+
+// a field widget: a model and a value for it are generated
+stories.add({ widget: "many2one_avatar" });
+
+// a view: undeclared fields are guessed from the arch
+stories.add({
+    title: "Contact form",
+    arch: `&lt;form&gt;&lt;field name="name"/&gt;&lt;field name="partner_id"/&gt;&lt;field name="tag_ids" widget="many2many_tags"/&gt;&lt;/form&gt;`,
+});</code></pre>
+            </div>
+        </div>
+    </t>
+
+</templates>

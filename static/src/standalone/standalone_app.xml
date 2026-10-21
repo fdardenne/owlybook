@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="owlybook.StandaloneApp">
+        <div class="o_owlybook o_owlybook_standalone_app d-flex flex-column h-100">
+            <div t-if="!this.runtime" class="alert alert-danger m-3">
+                The story <code t-out="this.storyId"/> is not part of this export.
+            </div>
+            <t t-else="">
+                <div class="o_owlybook_canvas o_owlybook_canvas_webclient flex-grow-1 overflow-auto">
+                    <div class="o_owlybook_canvas_inner mx-auto">
+                        <div class="o_owlybook_stage">
+                            <StoryPreview runtime="this.runtime"/>
+                        </div>
+                    </div>
+                </div>
+                <div t-if="this.withControls" class="o_owlybook_panel_container o_owlybook_standalone_panel">
+                    <StoryPanel runtime="this.runtime" tabs="['controls', 'events']"/>
+                </div>
+            </t>
+        </div>
+        <MainComponentsContainer/>
+    </t>
+
+</templates>

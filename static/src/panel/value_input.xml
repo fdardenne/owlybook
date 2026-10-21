@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="owlybook.ValueInput">
+        <t t-set="type" t-value="this.props.type"/>
+        <t t-set="value" t-value="this.props.value"/>
+        <div t-if="type === 'boolean'" class="form-check form-switch mb-0">
+            <input class="form-check-input" type="checkbox" role="switch"
+                   t-att-checked="value === true"
+                   t-att-disabled="this.props.readonly"
+                   t-on-change="(ev) => this.props.onChange(ev.target.checked)"/>
+        </div>
+        <select t-elif="type === 'selection'" class="form-select form-select-sm"
+                t-att-disabled="this.props.readonly" t-on-change="this.onSelectChange">
+            <option value="" t-att-selected="value === undefined">
+                <t t-out="this.props.placeholder or 'Not set'"/>
+            </option>
+            <t t-foreach="this.props.choices" t-as="choice" t-key="choice_index">
+                <option t-att-value="choice.value" t-att-selected="this.isSelected(choice)" t-out="choice.label"/>
+            </t>
+        </select>
+        <input t-elif="type === 'string'" type="text" class="form-control form-control-sm"
+               t-att-value="value ?? ''"
+               t-att-placeholder="this.props.placeholder"
+               t-att-disabled="this.props.readonly"
+               t-on-input="(ev) => this.props.onChange(ev.target.value)"/>
+        <input t-elif="type === 'number'" type="number" class="form-control form-control-sm"
+               t-att-value="value ?? ''"
+               t-att-placeholder="this.props.placeholder"
+               t-att-disabled="this.props.readonly"
+               t-on-change="this.onNumberChange"/>
+        <textarea t-elif="type === 'json'" class="form-control form-control-sm font-monospace o_owlybook_code_input"
+                  t-att-class="{ 'is-invalid': this.state.invalid }"
+                  t-att-rows="this.getRows(this.formatJson(value))"
+                  t-att-disabled="this.props.readonly"
+                  t-att-placeholder="this.props.placeholder or 'JSON value'"
+                  t-on-change="this.onJsonChange" t-out="this.formatJson(value)"/>
+        <input t-elif="type === 'literal'" type="text" class="form-control form-control-sm font-monospace"
+               t-att-value="this.formatLiteral(value)"
+               t-att-placeholder="this.props.placeholder"
+               t-att-disabled="this.props.readonly"
+               t-on-change="this.onLiteralChange"/>
+        <span t-elif="type === 'callback'" class="badge text-bg-light border o_owlybook_badge">
+            <i class="oi me-1" data-icon="schedule" aria-hidden="true"/>Logged in Events
+        </span>
+        <span t-else="" class="text-muted font-monospace small" t-out="this.describeReadonly(value)"/>
+    </t>
+
+</templates>

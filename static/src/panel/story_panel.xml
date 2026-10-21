@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="owlybook.StoryPanel">
+        <t t-set="runtime" t-value="this.props.runtime"/>
+        <div class="o_owlybook_panel d-flex flex-column h-100">
+            <div class="o_owlybook_panel_header d-flex align-items-center">
+                <ul class="nav o_owlybook_tabs" role="tablist">
+                    <li t-if="this.props.tabs.includes('controls')" class="nav-item">
+                        <button class="nav-link" t-att-class="{ active: this.state.tab === 'controls' }" t-on-click="() => this.selectTab('controls')">
+                            <t t-if="runtime.type === 'component'">Props</t><t t-else="">Attributes</t>
+                        </button>
+                    </li>
+                    <li t-if="this.props.tabs.includes('events')" class="nav-item">
+                        <button class="nav-link" t-att-class="{ active: this.state.tab === 'events' }" t-on-click="() => this.selectTab('events')">
+                            <t t-if="runtime.type === 'component'">Events</t><t t-else="">ORM calls</t>
+                            <span t-if="runtime.events.length" class="badge rounded-pill text-bg-primary ms-1" t-out="runtime.events.length"/>
+                        </button>
+                    </li>
+                    <li t-if="this.props.tabs.includes('code')" class="nav-item">
+                        <button class="nav-link" t-att-class="{ active: this.state.tab === 'code' }" t-on-click="() => this.selectTab('code')">
+                            <t t-if="runtime.type === 'component'">Code</t><t t-else="">Arch</t>
+                        </button>
+                    </li>
+                </ul>
+                <div class="ms-auto d-flex gap-1 pe-2">
+                    <button t-if="this.state.tab === 'events' and runtime.events.length" class="btn btn-sm btn-link text-muted" t-on-click="() => runtime.clearEvents()">
+                        <i class="oi me-1" data-icon="delete" aria-hidden="true"/>Clear
+                    </button>
+                    <button class="btn btn-sm btn-link text-muted" title="Reset the story" t-on-click="() => runtime.reset()">
+                        <i class="oi me-1" data-icon="autorenew" aria-hidden="true"/>Reset
+                    </button>
+                </div>
+            </div>
+            <div class="o_owlybook_panel_body flex-grow-1 overflow-auto">
+                <t t-if="this.state.tab === 'controls'">
+                    <t t-if="runtime.type === 'component'" t-call="owlybook.StoryPanel.props"/>
+                    <t t-else="" t-call="owlybook.StoryPanel.arch"/>
+                </t>
+                <t t-elif="this.state.tab === 'events'" t-call="owlybook.StoryPanel.events"/>
+                <t t-elif="this.state.tab === 'code'" t-call="owlybook.StoryPanel.code"/>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="owlybook.StoryPanel.props">
+        <t t-set="rows" t-value="this.getPropRows()"/>
+        <div t-if="!rows.length" class="o_owlybook_panel_empty">
+            The props of the component appear here once it is rendered.
+        </div>
+        <table t-else="" class="table table-sm align-middle mb-0 o_owlybook_controls">
+            <thead>
+                <tr><th>Name</th><th class="o_owlybook_kind_column">Type</th><th class="w-50">Value</th></tr>
+            </thead>
+            <tbody>
+                <tr t-foreach="rows" t-as="row" t-key="row.name">
+                    <td>
+                        <span class="font-monospace fw-semibold" t-out="row.name"/>
+                        <span t-if="row.required" class="text-danger ms-1" title="Required">*</span>
+                        <i t-if="row.help" class="oi ms-1 text-muted" data-icon="help" t-att-data-tooltip="row.help" aria-hidden="true"/>
+                    </td>
+                    <td><span class="o_owlybook_kind" t-out="row.kindLabel"/></td>
+                    <td>
+                        <ValueInput type="row.type" value="row.value" choices="row.choices"
+                                    readonly="row.readonly" placeholder="row.placeholder"
+                                    onChange="(value) => runtime.setValue(row.name, value)"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </t>
+
+    <t t-name="owlybook.StoryPanel.arch">
+        <t t-set="nodes" t-value="this.getNodes()"/>
+        <t t-set="activeNode" t-value="this.getActiveNode()"/>
+        <div t-if="!activeNode" class="o_owlybook_panel_empty">
+            This arch has no field nor widget to configure.
+        </div>
+        <div t-else="" class="d-flex h-100">
+            <div class="o_owlybook_nodes border-end">
+                <button t-foreach="nodes" t-as="node" t-key="node.index"
+                        class="o_owlybook_node"
+                        t-att-class="{ active: node.index === activeNode.index }"
+                        t-on-click="() => this.state.nodeIndex = node.index">
+                    <span t-out="node.name"/>
+                    <span t-if="node.widget or node.fieldType" class="o_owlybook_node_type" t-out="node.widget or node.fieldType"/>
+                </button>
+            </div>
+            <table class="table table-sm align-middle mb-0 o_owlybook_controls flex-grow-1">
+                <thead>
+                    <tr><th>Name</th><th class="o_owlybook_kind_column">Kind</th><th class="w-50">Value</th></tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="this.getArchRows(activeNode)" t-as="row" t-key="row.control.key">
+                        <td>
+                            <span class="fw-semibold" t-out="row.control.label"/>
+                            <i t-if="row.control.help" class="oi ms-1 text-muted" data-icon="help" t-att-data-tooltip="row.control.help" aria-hidden="true"/>
+                            <div class="font-monospace small text-muted" t-out="row.control.name"/>
+                        </td>
+                        <td><span class="o_owlybook_kind" t-out="row.control.target === 'option' ? 'option' : 'attribute'"/></td>
+                        <td>
+                            <ValueInput type="row.type" value="row.control.value" choices="row.choices"
+                                        placeholder="row.placeholder"
+                                        onChange="(value) => this.onArchControlChange(activeNode, row.control, value)"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </t>
+
+    <t t-name="owlybook.StoryPanel.events">
+        <div t-if="!runtime.events.length" class="o_owlybook_panel_empty">
+            <t t-if="runtime.type === 'component'">Callbacks given to the component are logged here when it calls them.</t>
+            <t t-else="">The ORM calls of the view are logged here, answered by the in-memory database of the story.</t>
+        </div>
+        <ul t-else="" class="list-unstyled mb-0 o_owlybook_events">
+            <li t-foreach="runtime.events" t-as="event" t-key="event_index" class="o_owlybook_event">
+                <span class="text-muted small font-monospace me-2" t-out="this.formatTime(event.time)"/>
+                <span class="fw-semibold font-monospace" t-out="event.name"/>
+                <div class="ms-4">
+                    <t t-foreach="event.args" t-as="arg" t-key="arg_index">
+                        <ValueViewer value="arg" name="event.labels[arg_index] or 'arg' + arg_index"/>
+                    </t>
+                </div>
+            </li>
+        </ul>
+    </t>
+
+    <t t-name="owlybook.StoryPanel.code">
+        <div t-if="runtime.type === 'component'" class="o_owlybook_code">
+            <t t-set="code" t-value="this.componentCode()"/>
+            <h6 class="o_owlybook_code_title">Usage</h6>
+            <CodeEditor mode="'qweb'" value="code.usage" readonly="true" maxLines="30" class="'o_owlybook_editor'"/>
+            <t t-if="code.template">
+                <h6 class="o_owlybook_code_title">Template <span class="font-monospace text-muted" t-out="runtime.story.component.template"/></h6>
+                <CodeEditor mode="'qweb'" value="code.template" readonly="true" maxLines="40" class="'o_owlybook_editor'"/>
+            </t>
+            <h6 class="o_owlybook_code_title">Component</h6>
+            <p t-if="!this.isDebugAssets()" class="small text-muted mb-2">
+                The source is minified: open Owlybook with <code>?debug=assets</code> to read it as written.
+            </p>
+            <CodeEditor mode="'javascript'" value="code.source" readonly="true" maxLines="40" class="'o_owlybook_editor'"/>
+        </div>
+        <div t-else="" class="o_owlybook_code">
+            <div class="d-flex align-items-center mb-2">
+                <h6 class="o_owlybook_code_title m-0">Arch</h6>
+                <button class="btn btn-sm btn-primary ms-auto" t-att-disabled="!this.isArchDirty()" t-on-click="this.applyArch">
+                    Apply
+                </button>
+            </div>
+            <CodeEditor mode="'qweb'" value="this.getArchDraft()" maxLines="40" class="'o_owlybook_editor'"
+                        onChange="(value) => this.state.draftArch = value"/>
+            <div class="d-flex align-items-center mt-3 mb-2">
+                <h6 class="o_owlybook_code_title m-0">Search view</h6>
+                <span t-if="!runtime.hasControlPanel()" class="small text-muted ms-2">shown with the control panel</span>
+                <button class="btn btn-sm btn-primary ms-auto" t-att-disabled="!this.isSearchArchDirty()" t-on-click="this.applySearchArch">
+                    Apply
+                </button>
+            </div>
+            <CodeEditor mode="'qweb'" value="this.getSearchArchDraft()" maxLines="30" class="'o_owlybook_editor'"
+                        onChange="(value) => this.state.draftSearchArch = value"/>
+            <h6 class="o_owlybook_code_title">Data</h6>
+            <CodeEditor mode="'json'" value="this.getModelsJson()" readonly="true" maxLines="30" class="'o_owlybook_editor'"/>
+        </div>
+    </t>
+
+</templates>
